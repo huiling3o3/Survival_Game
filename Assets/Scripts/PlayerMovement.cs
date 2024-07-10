@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-    public Camera mainCamera; // Reference to the main camera
-    public Vector2 cameraOffset; // Offset between the player and the camera
+    public float moveSpeed;
+    Rigidbody2D rb;
+    Vector2 moveDir;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
-        // Handle player movement
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-        Vector2 move = new Vector2(moveX, moveY);
-        transform.position += (Vector3)(moveSpeed * Time.deltaTime * move);
+        InputManagement();
+    }
 
-        // Update the camera's position to follow the player
-        if (mainCamera != null)
-        {
-            Vector2 newCameraPosition = (Vector2)transform.position + cameraOffset;
-            mainCamera.transform.position = new Vector3(newCameraPosition.x, newCameraPosition.y, mainCamera.transform.position.z);
-        }
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    void InputManagement()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        moveDir = new Vector2(moveX, moveY).normalized;
+    }
+
+    void Move()
+    {
+        rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
     }
 }
