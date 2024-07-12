@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     public int maxHp = 100;
     public int currentHp = 100;

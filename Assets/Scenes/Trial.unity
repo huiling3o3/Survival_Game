@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcca7a3027012649810bfc788f79232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1449979377}
+  target: {fileID: 1449979371}
   speed: 1
   hp: 0
   damage: 0
@@ -4606,7 +4606,6 @@ GameObject:
   - component: {fileID: 1449979372}
   - component: {fileID: 1449979375}
   - component: {fileID: 1449979376}
-  - component: {fileID: 1449979377}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4756,21 +4755,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1449979377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449979371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55272aa94f096f4ca43cac47b012033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 1000
-  currentHp: 1000
-  hpBar: {fileID: 1029475529}
 --- !u!1 &1564763262
 GameObject:
   m_ObjectHideFlags: 0

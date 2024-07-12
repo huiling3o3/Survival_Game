@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     //[SerializeField] Transform targetDestination;
     //GameObject targetGameObject;
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
 
     //Gets a reference to the player 
     [SerializeField]
-    private Character target;
+    private GameObject target;
 
     //Variables for enemy stats
     //Remove serialize fields after switching to enemy spawning 
