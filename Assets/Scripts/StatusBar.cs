@@ -5,9 +5,9 @@ using UnityEngine;
 public class StatusBar : MonoBehaviour
 {
     [SerializeField] Transform bar;
-    public void SetState(int current, int max)
+    public void SetState(float current, float max)
     {
-        float state = (float)current;
+        float state = current;
         state /= max;
         if (state < 0f)
         {

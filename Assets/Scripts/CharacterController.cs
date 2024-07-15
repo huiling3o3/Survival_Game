@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public int maxHp = 100;
-    public int currentHp = 100;
-    [SerializeField] StatusBar hpBar;
+    //public int maxHp = 100;
+    //public int currentHp = 100;
+    //[SerializeField] StatusBar hpBar;
 
-    public void TakeDamage(int damage)
-    {
-        currentHp -= damage;
+    //public void TakeDamage(int damage)
+    //{
+    //    currentHp -= damage;
 
-        if (currentHp <= 0)
-        {
-            Debug.Log("Character dead");
-        }
-        hpBar.SetState(currentHp, maxHp);
-    }
+    //    if (currentHp <= 0)
+    //    {
+    //        Debug.Log("Character dead");
+    //    }
+    //    hpBar.SetState(currentHp, maxHp);
+    //}
 }

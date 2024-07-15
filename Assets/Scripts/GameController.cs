@@ -26,9 +26,9 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartGame();
-        dm.SetDatabase();
-        Debug.Log("Character " + Game.GetCharacterList().Count);
+        StartGame();
+        //dm.SetDatabase();
+        //Debug.Log("Character " + Game.GetCharacterList().Count);
 
         Game.SetPlayer(new Player(initCharacter, initBuffList));
     }
@@ -43,6 +43,9 @@ public class GameController : MonoBehaviour
     {              
         //set player initial position
         playerObj.transform.position = Vector2.zero;
+
+        //initialie the player
+        playerObj.GetComponent<PlayerController>().Init();
 
         //set input handler to player movement script
         inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>());

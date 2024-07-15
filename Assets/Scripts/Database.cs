@@ -12,11 +12,13 @@ public class Database : MonoBehaviour
 {
     public string characterFilePath = "";
     public string buffFilePath = "";
+    public string enemyFilePath = "";
     public string analyticsTracking = "";
 
     //Demo purpose
     public List<Character> characterList;
     public List<Buff> buffList;
+    public List<Enemy> enemyList;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,7 @@ public class Database : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ReadFile(string filepath)
@@ -66,6 +68,7 @@ public class Database : MonoBehaviour
     {
         //set the charcterlist into the game references
         Game.SetCharacterList(GetCharacterList());
+        Game.SetEnemyList(GetEnemyList());
         //Game.SetBuffList(GetBuffList());
     }
 
@@ -102,7 +105,7 @@ public class Database : MonoBehaviour
                         string desc = fields[2];
                         int hp = int.Parse(fields[3]);
                         float moveSpeed = float.Parse(fields[4]);
-                        //int atk = int.Parse(fields[4]);
+                        int atk = int.Parse(fields[5]);
                         //int atkRange = int.Parse(fields[5]);
                         //int atkInterval = int.Parse(fields[6]);
 
@@ -111,14 +114,14 @@ public class Database : MonoBehaviour
 
                         //Create the new character based on the data
                         //string id, string name, string desc, int hp, int atk, int atkRange, int atkInterval, float moveSpeed
-                        Character character = new Character(id, name, desc, hp, moveSpeed);
+                        Character character = new Character(id, name, desc, hp, atk, moveSpeed);
                         characterList.Add(character);
                     }
 
                 }
             }
         }
-        
+
         return characterList;
     }
 
@@ -160,7 +163,7 @@ public class Database : MonoBehaviour
                         Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
 
                         //Create the new buff based on the data
-                        Buff buff = new Buff(id, name, buffType,buffValue);
+                        Buff buff = new Buff(id, name, buffType, buffValue);
                         buffList.Add(buff);
                     }
 
@@ -169,6 +172,52 @@ public class Database : MonoBehaviour
         }
 
         return buffList;
+    }
+
+    public List<Enemy> GetEnemyList()
+    {
+        List<Enemy> enemyList = new List<Enemy>();
+        //Check if file exist
+        if (File.Exists(enemyFilePath))
+        {
+
+            using (StreamReader sr = new StreamReader(enemyFilePath))
+            {
+                string line = "";
+                bool isFirstLine = true;
+
+                while (!sr.EndOfStream) //reading the file and haven't reach the end
+                {
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (isFirstLine)
+                        {
+                            // Skip the header line
+                            isFirstLine = false;
+                            continue;
+                        }
+
+                        //Split the data into an array of attributes
+                        string[] fields = line.Split(',');
+
+                        //assign the attributes
+                        string id = fields[0];
+                        string name = fields[1];
+                        string desc = fields[2];
+                        int hp = int.Parse(fields[3]);
+                        int atk = int.Parse(fields[4]);
+                        float moveSpeed = float.Parse(fields[5]);
+
+                        //Create the new enemy based on the data
+                        //string id, string name, string desc, int hp, int atk, float moveSpeed
+                        Enemy enemy = new Enemy(id, name, desc, hp, atk, moveSpeed);
+                        enemyList.Add(enemy);
+                    }
+
+                }
+            }
+        }
+        return enemyList;
     }
 }
 

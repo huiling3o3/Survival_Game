@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int hp;
     [SerializeField]
-    private int damage;
+    private int atk;
 
     //Holds navmesh agent reference 
     private NavMeshAgent agent;
@@ -103,11 +103,11 @@ public class EnemyController : MonoBehaviour
 
     //Initializes the enemy stats 
     //Switch to this after implementing enemy spawning
-    public void SetStats(float speed, int hp, int damage)
+    public void SetStats(int hp, int atk, float speed)
     {
-        agent.speed = speed;
         this.hp = hp;
-        this.damage = damage;
+        this.atk = atk;
+        agent.speed = speed;
     }
 
     //Controls the enemy movement 
@@ -129,7 +129,14 @@ public class EnemyController : MonoBehaviour
     {
         //Add in attack code here 
         //Ideally add a deal damage function in the player and call it here
+        PlayerController playerHealth = objToDamage.GetComponent<PlayerController>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(atk);
+        }
+
         //Add in attack animations too 
+
         Debug.Log("Attacking target");
         StartCoroutine(AttackTimer());
     }

@@ -9,6 +9,7 @@ public static class Game
     private static Player mainPlayer;
     private static List<Character> characterList;
     private static List<Buff> buffList;
+    private static List<Enemy> enemyList;
 
     /// <summary>
     /// Player get and set
@@ -61,5 +62,20 @@ public static class Game
     public static string GetSystemTime()
     {
         return System.DateTime.Now.ToString();
+    }
+
+    /// <summary>
+    /// Enemy Set and Get
+    public static Enemy GetEnemyByRefID(string id)
+    {
+        return enemyList.Find(x => x.id == id);
+    }
+    public static List<Enemy> GetEnemyList()
+    {
+        return enemyList;
+    }
+    public static void SetEnemyList(List<Enemy> eList)
+    {
+        enemyList = eList;
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Character : Unit
 {
-
-    public Character(string id, string name, string desc, int hp, float moveSpeed) : base(id, name, desc, UnitType.Character, hp, moveSpeed)
+    bool locked;
+    public Character(string id, string name, string desc, int hp, int atk, float moveSpeed) : base(id, name, desc, UnitType.Character, hp, atk, moveSpeed)
     {
-        
+        locked = true;
     }
 
     public override string GetStatString()

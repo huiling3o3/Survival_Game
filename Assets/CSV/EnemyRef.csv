@@ -1,0 +1,6 @@
+enemyID,enemyName,enemyDescription,enemyHP,enemyATK,enemySpeed
+e201,Guy Zombies,"The basic undead enemy, slow but durable. Common and easy to defeat.",15,4,3
+e202,Girl Zombies,Slightly faster and weaker than Guy Zombies. Often found in groups.,10,2,5
+e203,Jack-O-Lanterns,Explosive enemies that can deal damage in an area. They are fragile but dangerous if they get too close,20,7,4
+e204,Robots,Highly durable and powerful enemies with advanced weaponry. They are rare but pose a significant threat.,40,10,2
+e205,Big Bad Wolf,Final boss ,100,15,4
