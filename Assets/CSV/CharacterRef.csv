@@ -1,4 +1,4 @@
 characterID,characterName,characterDescription,characterHP,characterATK,characterSpeed,characterPrice
-c101,Red Riding Hood,A nimble and quick character armed with a dagger. She excels in speed and agility.,50,15,10,0
-c102,Blacksmith,A strong and durable character wielding a massive hammer. He deals high damage but is slower in movement.,70,25,5,500
-c103,Librarian,A knowledgeable and strategic character who uses magical spells. She has balanced stats with a focus on ranged attacks.,60,20,20,800
+c101,Red Riding Hood,A nimble and quick character armed with a dagger. She excels in speed and agility.,50,5,5,0
+c102,Blacksmith,A strong and durable character wielding a massive hammer. He deals high damage but is slower in movement.,70,3,5,500
+c103,Librarian,A knowledgeable and strategic character who uses magical spells. She has balanced stats with a focus on ranged attacks.,60,4,6,800

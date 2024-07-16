@@ -10,6 +10,28 @@ public static class Game
     private static List<Character> characterList;
     private static List<Buff> buffList;
     private static List<Enemy> enemyList;
+    private static GameController gameController;
+    private static HUDController hudController;
+
+    public static HUDController GetHUDController()
+    {
+        return hudController;
+    }
+
+    public static void SetHUDController(HUDController hc)
+    {
+        hudController = hc;
+    }
+
+    public static GameController GetGameController()
+    {
+        return gameController;
+    }
+
+    public static void SetGameController(GameController gc)
+    {
+        gameController = gc;
+    }
 
     /// <summary>
     /// Player get and set

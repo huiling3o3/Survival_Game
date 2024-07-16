@@ -5,9 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject playerObj;
+    PlayerController pc;
     public InputHandler inputHandler;
     public Database dm;
-    public List<Character> characterList = new List<Character>();
     private bool gameIsActive = false;
 
     private Vector2 screenBounds;
@@ -16,21 +16,24 @@ public class GameController : MonoBehaviour
  
     //initial character 
     public string initCharacter;
-    public List<string> initBuffList;
-
+    public string initWeapon;
     private void Awake()
     {
-        //database.GetComponent<Database>();
+        Game.SetGameController(this);
+        dm.GetComponent<Database>();
+        dm.SetDatabase();
+        pc = playerObj.GetComponent<PlayerController>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        StartGame();
-        //dm.SetDatabase();
-        //Debug.Log("Character " + Game.GetCharacterList().Count);
+        //StartGame();       
+        //Debug.Log("Enemies " + Game.GetEnemyList().Count);
 
-        Game.SetPlayer(new Player(initCharacter, initBuffList));
+        //Create new player
+        Game.SetPlayer(new Player(initCharacter));
+        StartGame();
     }
 
     // Update is called once per frame
@@ -45,9 +48,12 @@ public class GameController : MonoBehaviour
         playerObj.transform.position = Vector2.zero;
 
         //initialie the player
-        playerObj.GetComponent<PlayerController>().Init();
+        pc.Init();
 
         //set input handler to player movement script
         inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>());
+
+        //update the UI
+        Game.GetHUDController().UpdatePlayerStats();
     }
 }

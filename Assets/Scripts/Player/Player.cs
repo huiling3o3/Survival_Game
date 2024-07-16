@@ -8,7 +8,7 @@ public class Player
     string currentCharacter;
     string currentWeapon;
     List<string> currentBuffList = new List<string>();
-
+    List<string> currentWeaponList = new List<string>();
     float playerMaxHp;
     float playerSpeed;
     //float playerAtk;
@@ -18,25 +18,45 @@ public class Player
 
     bool statDirty; //track when the stats have been changed
 
-    public Player(string currentAvatar, List<string> currentBuffList)
+    public Player(string currentAvatar)
     { 
         this.currentCharacter = currentAvatar;
-        this.currentBuffList = currentBuffList;
+        //UpdateStats();
+        Character playerCharacter = Game.GetCharacterByRefID(currentCharacter);
 
-        statDirty = true;
+        playerMaxHp = playerCharacter.hp;
+        playerSpeed = playerCharacter.moveSpeed;
     }
 
-    public void SetCurrentCharacter(string characterID)
+    public string GetCurrentCharacter()
     {
-        currentCharacter = characterID;
-
-        statDirty = true;
+        return currentCharacter;
     }
 
-    public List<string> GetCurrentBuffList() 
+    public List<string> GetCurrentBuffList()
     {
         return currentBuffList;
     }
+
+    #region Weapons
+    public List<string> GetCurrentWeaponList() {  return currentWeaponList; }
+
+    public void AddWeapon(string weapon)
+    {
+        currentWeaponList.Add(weapon);
+    }
+
+    public void RemoveWeapon(string weapon)
+    {
+        currentWeaponList.Remove(weapon);
+    }
+    public void ClearWeaponList()
+    {
+        currentWeaponList.Clear();
+    }
+
+    #endregion
+
 
     public void AddBuff(string buff)
     { 
@@ -69,7 +89,7 @@ public class Player
 
         playerMaxHp = playerCharacter.hp;
         //playerAtk = playerCharacter.atk;
-        //playerSpeed = playerCharacter.moveSpeed;
+        playerSpeed = playerCharacter.moveSpeed;
         //playerAtkInterval = playerCharacter.atkInterval;
         //playerAtkRange = playerCharacter.atkRange;
 
@@ -106,13 +126,13 @@ public class Player
 
     public float GetMaxHp() 
     {
-        UpdateStats();
+        //UpdateStats();
         return playerMaxHp;
     }   
 
     public float GetSpeed()
     {
-        UpdateStats();
+        //UpdateStats();
         return playerSpeed;
     }
 

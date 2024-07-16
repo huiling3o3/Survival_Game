@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Character : Unit
 {
-    bool locked;
+    bool locked = true;
     public Character(string id, string name, string desc, int hp, int atk, float moveSpeed) : base(id, name, desc, UnitType.Character, hp, atk, moveSpeed)
     {
-        locked = true;
+        //locked = true;
     }
 
     public override string GetStatString()

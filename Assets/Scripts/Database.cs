@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Text;
 using System;
+using System.Runtime.InteropServices.ComTypes;
 
 /// <summary>
 /// Contains all the method that read the file from the CSV and set it into the Game
@@ -23,14 +24,15 @@ public class Database : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WriteFile(analyticsTracking);
+        //WriteFile(analyticsTracking);
         //characterList =  GetCharacterList();
+        //enemyList = GetEnemyList();
         //foreach (Character chara in characterList)
         //{
         //    Debug.Log($"id: {chara.id} name: {chara.name} desc: {chara.description} hp: {chara.hp} movepeed: {chara.moveSpeed}");
         //    Debug.Log(chara.id);
         //}
-        //ReadFile(characterFilePath);
+        //ReadFile(enemyFilePath);
     }
 
 
@@ -119,6 +121,7 @@ public class Database : MonoBehaviour
                     }
 
                 }
+
             }
         }
 
@@ -208,6 +211,7 @@ public class Database : MonoBehaviour
                         int atk = int.Parse(fields[4]);
                         float moveSpeed = float.Parse(fields[5]);
 
+                        Debug.Log($"ADD enemy id: {id} name: {name} desc: {desc} hp: {hp} movepeed: {moveSpeed}");
                         //Create the new enemy based on the data
                         //string id, string name, string desc, int hp, int atk, float moveSpeed
                         Enemy enemy = new Enemy(id, name, desc, hp, atk, moveSpeed);
@@ -215,7 +219,9 @@ public class Database : MonoBehaviour
                     }
 
                 }
+
             }
+            
         }
         return enemyList;
     }
