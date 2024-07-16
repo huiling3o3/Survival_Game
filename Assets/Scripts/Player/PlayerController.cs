@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
+        //set player initial position
+        transform.position = Vector2.zero;
         //set the variables of the default val of the player stats to the player controller variables
         SetPlayerIntialStat();
     }

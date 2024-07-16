@@ -14,15 +14,14 @@ public class Player
     //float playerAtk;
     //float playerAtkInterval;
     //float playerAtkRange;
-    int buffCount;
 
     bool statDirty; //track when the stats have been changed
 
-    public Player(string currentAvatar)
+    public Player(string currentCharacter)
     { 
-        this.currentCharacter = currentAvatar;
+        this.currentCharacter = currentCharacter;
         //UpdateStats();
-        Character playerCharacter = Game.GetCharacterByRefID(currentCharacter);
+        Character playerCharacter = Game.GetCharacterByRefID(this.currentCharacter);
 
         playerMaxHp = playerCharacter.hp;
         playerSpeed = playerCharacter.moveSpeed;
@@ -31,6 +30,11 @@ public class Player
     public string GetCurrentCharacter()
     {
         return currentCharacter;
+    }
+
+    public void ChangeCurrentCharacter(string currentCharacter)
+    {
+        this.currentCharacter = currentCharacter;
     }
 
     public List<string> GetCurrentBuffList()

@@ -7,11 +7,23 @@ public class HUDController : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI playerStatsTxt, characterTxt;
-
+    [SerializeField]
+    GameObject SelectCharacterUI;
     public void Awake()
     {
         Game.SetHUDController(this);
     }
+
+    public void CloseCharacterSelectMenu()
+    { 
+        SelectCharacterUI.SetActive(false);
+    }
+
+    public void OpenCharacterSelectMenu()
+    {
+        SelectCharacterUI.SetActive(true);
+    }
+
     public void UpdatePlayerStats()
     {
         //Spd: 00, Current Hp: 00, Max Hp: 00 

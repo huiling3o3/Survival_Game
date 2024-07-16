@@ -14,6 +14,7 @@ public class Database : MonoBehaviour
     public string characterFilePath = "";
     public string buffFilePath = "";
     public string enemyFilePath = "";
+    public string weaponFilePath = "";
     public string analyticsTracking = "";
 
     //Demo purpose
@@ -25,13 +26,13 @@ public class Database : MonoBehaviour
     void Start()
     {
         //WriteFile(analyticsTracking);
-        //characterList =  GetCharacterList();
+        characterList =  GetCharacterList();
         //enemyList = GetEnemyList();
-        //foreach (Character chara in characterList)
-        //{
-        //    Debug.Log($"id: {chara.id} name: {chara.name} desc: {chara.description} hp: {chara.hp} movepeed: {chara.moveSpeed}");
-        //    Debug.Log(chara.id);
-        //}
+        foreach (Character chara in characterList)
+        {
+            Debug.Log($"id: {chara.id} name: {chara.name} desc: {chara.description} hp: {chara.hp} movepeed: {chara.moveSpeed}");
+            Debug.Log(chara.locked);
+        }
         //ReadFile(enemyFilePath);
     }
 

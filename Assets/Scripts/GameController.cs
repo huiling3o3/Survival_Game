@@ -9,51 +9,69 @@ public class GameController : MonoBehaviour
     public InputHandler inputHandler;
     public Database dm;
     private bool gameIsActive = false;
-
-    private Vector2 screenBounds;
-    private float objectWidth;
-    private float objectHeight;
  
     //initial character 
     public string initCharacter;
     public string initWeapon;
+
     private void Awake()
     {
         Game.SetGameController(this);
         dm.GetComponent<Database>();
         dm.SetDatabase();
         pc = playerObj.GetComponent<PlayerController>();
+
+        //Set the initial character to be unlocked for the player to select
+        Character character = Game.GetCharacterByRefID(initCharacter);
+        character.locked = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //StartGame();       
-        //Debug.Log("Enemies " + Game.GetEnemyList().Count);
-
-        //Create new player
-        Game.SetPlayer(new Player(initCharacter));
-        StartGame();
+        //Open character select menu
+        Game.GetHUDController().OpenCharacterSelectMenu();
+        StartGame();       
+        //Debug.Log("Enemies " + Game.GetEnemyList().Count)             
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
+    }  
 
     public void StartGame()
-    {              
-        //set player initial position
-        playerObj.transform.position = Vector2.zero;
+    {
+        CreatePlayer();
 
-        //initialie the player
+
+    }
+
+    public void CreatePlayer()
+    {
+        //Create new player and set the static reference in Game
+        Game.SetPlayer(new Player(initCharacter));
+
+        //initialise the player
         pc.Init();
 
         //set input handler to player movement script
         inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>());
-
+    }
+    public void SetCharacter(string characterId)
+    {
+        Game.GetPlayer().ChangeCurrentCharacter(characterId);
         //update the UI
         Game.GetHUDController().UpdatePlayerStats();
+        //close menu
+        Game.GetHUDController().CloseCharacterSelectMenu();
+    }
+
+    public bool CheckInitialCharacter(string id)
+    {
+        if (initCharacter == id)
+            return true;
+        else return false;
     }
 }
