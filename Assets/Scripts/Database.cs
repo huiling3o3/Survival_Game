@@ -210,11 +210,12 @@ public class Database : MonoBehaviour
                         int hp = int.Parse(fields[3]);
                         int atk = int.Parse(fields[4]);
                         float moveSpeed = float.Parse(fields[5]);
+                        int atkCooldown = int.Parse(fields[6]);
 
-                        Debug.Log($"ADD enemy id: {id} name: {name} desc: {desc} hp: {hp} movepeed: {moveSpeed}");
+                        Debug.Log($"ADD enemy id: {id} name: {name} desc: {desc} hp: {hp} movespeed: {moveSpeed} cooldown: {atkCooldown}");
                         //Create the new enemy based on the data
                         //string id, string name, string desc, int hp, int atk, float moveSpeed
-                        Enemy enemy = new Enemy(id, name, desc, hp, atk, moveSpeed);
+                        Enemy enemy = new Enemy(id, name, desc, hp, atk, moveSpeed, atkCooldown);
                         enemyList.Add(enemy);
                     }
 
