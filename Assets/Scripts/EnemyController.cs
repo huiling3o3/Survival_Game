@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,6 +27,7 @@ public class EnemyController : MonoBehaviour
 
     //Variables for attacks  
     private bool canAttack = true;
+
     private bool targetInRange = false;
 
     public void Init()
@@ -94,12 +94,15 @@ public class EnemyController : MonoBehaviour
     //Trigger used to define enemy attack radius 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        targetInRange = true; 
+        if (collision.CompareTag("Player"))
+            targetInRange = true; 
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        targetInRange = false;
+        if (collision.CompareTag("Player"))
+            targetInRange = false;
     }
+
     void Attack(GameObject objToDamage)
     {
         //Add in attack code here 
@@ -107,6 +110,7 @@ public class EnemyController : MonoBehaviour
         PlayerController playerHealth = objToDamage.GetComponent<PlayerController>();
         if (playerHealth != null)
         {
+            Debug.Log("Player take damge +" + atk);
             playerHealth.TakeDamage(atk);
         }
 
@@ -120,8 +124,10 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("Timer started");
         canAttack = false;
+        agent.isStopped = true;
         yield return new WaitForSeconds(atkCooldown);
         canAttack = true;
+        agent.isStopped = false;
     }
 
     public void TakeDamage(int damage)

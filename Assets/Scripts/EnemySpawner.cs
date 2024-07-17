@@ -24,17 +24,21 @@ public class EnemySpawner : MonoBehaviour
         switch (enemy.name)
         {
             case "Guy Zombies":
-                spawn = Instantiate(zombieGuyPrefab, spawnLocation);
+                spawn = Instantiate(zombieGuyPrefab);
                 break;
             case "Zombie Girl":
-                spawn = Instantiate(zombieGirlPrefab, spawnLocation);
+                spawn = Instantiate(zombieGirlPrefab);
                 break;
             case "Big Bad Wolf":
-                spawn = Instantiate(bossPrefab, spawnLocation);
+                spawn = Instantiate(bossPrefab);
                 break;
 
         }
 
+        //Set the spawn position
+        spawn.transform.position = spawnLocation.position;
+        spawn.transform.parent = spawnLocation;
+        //initialise the enemy stats and start its function
         spawn.GetComponent<EnemyController>().Init();
         spawn.GetComponent<EnemyController>().SetStats(enemy.hp, enemy.atk, enemy.moveSpeed, enemy.atkCooldown);
     }

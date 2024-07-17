@@ -11,15 +11,11 @@ using System.Runtime.InteropServices.ComTypes;
 /// </summary>
 public class Database : MonoBehaviour
 {
-    public string characterFilePath = "";
-    public string buffFilePath = "";
-    public string enemyFilePath = "";
-    public string analyticsTracking = "";
-
-    //Demo purpose
-    public List<Character> characterList;
-    public List<Buff> buffList;
-    public List<Enemy> enemyList;
+    string characterFilePath = "Assets/CSV/CharacterRef.csv";
+    string buffFilePath = "";
+    string enemyFilePath = "Assets/CSV/EnemyRef.csv";
+    string weaponFilePath = "Assets/CSV/WeaponRef.csv";
+    string analyticsTracking = "Assets/CSV/Analytics.csv";
 
     // Start is called before the first frame update
     void Start()
@@ -33,13 +29,6 @@ public class Database : MonoBehaviour
         //    Debug.Log(chara.id);
         //}
         //ReadFile(enemyFilePath);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void ReadFile(string filepath)
@@ -68,9 +57,13 @@ public class Database : MonoBehaviour
 
     public void SetDatabase()
     {
+        Debug.Log("Adding Data into Game");
         //set the charcterlist into the game references
         Game.SetCharacterList(GetCharacterList());
         Game.SetEnemyList(GetEnemyList());
+        Game.SetWeaponList(GetWeaponList());
+        Debug.Log("Data added successfully into Game");
+
         //Game.SetBuffList(GetBuffList());
     }
 
@@ -112,7 +105,7 @@ public class Database : MonoBehaviour
                         //int atkInterval = int.Parse(fields[6]);
 
 
-                        Debug.Log($"ADD Character id: {id} name: {name} desc: {desc} hp: {hp} movepeed: {moveSpeed}");
+                        //Debug.Log($"ADD Character id: {id} name: {name} desc: {desc} hp: {hp} movepeed: {moveSpeed}");
 
                         //Create the new character based on the data
                         //string id, string name, string desc, int hp, int atk, int atkRange, int atkInterval, float moveSpeed
@@ -163,7 +156,7 @@ public class Database : MonoBehaviour
 
                         Buff.BuffType buffType = (Buff.BuffType)System.Enum.Parse(typeof(Buff.BuffType), type);
 
-                        Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
+                        //Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
 
                         //Create the new buff based on the data
                         Buff buff = new Buff(id, name, buffType, buffValue);
@@ -212,7 +205,7 @@ public class Database : MonoBehaviour
                         float moveSpeed = float.Parse(fields[5]);
                         int atkCooldown = int.Parse(fields[6]);
 
-                        Debug.Log($"ADD enemy id: {id} name: {name} desc: {desc} hp: {hp} movespeed: {moveSpeed} cooldown: {atkCooldown}");
+                        //Debug.Log($"ADD enemy id: {id} name: {name} desc: {desc} hp: {hp} movespeed: {moveSpeed} cooldown: {atkCooldown}");
                         //Create the new enemy based on the data
                         //string id, string name, string desc, int hp, int atk, float moveSpeed
                         Enemy enemy = new Enemy(id, name, desc, hp, atk, moveSpeed, atkCooldown);
@@ -225,6 +218,59 @@ public class Database : MonoBehaviour
             
         }
         return enemyList;
+    }
+
+    public List<Weapon> GetWeaponList()
+    {
+        List<Weapon> weaponList = new List<Weapon>();
+        //Check if file exist
+        if (File.Exists(weaponFilePath))
+        {
+            using (StreamReader sr = new StreamReader(weaponFilePath))
+            {
+                string line = "";
+                bool isFirstLine = true;
+
+                while (!sr.EndOfStream) //reading the file and haven't reach the end
+                {
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (isFirstLine)
+                        {
+                            // Skip the header line
+                            isFirstLine = false;
+                            continue;
+                        }
+
+                        //Split the data into an array of attributes
+                        string[] fields = line.Split(',');
+
+                        //weaponID,weaponName,weaponDescription,weaponType,weaponATK,weaponRange,weaponSpeed,weaponCoolDown
+
+                        //assign the attributes
+                        string id = fields[0];
+                        string name = fields[1];
+                        string desc = fields[2];
+                        string type = fields[3];
+                        Weapon.WeaponType weaponType = (Weapon.WeaponType)System.Enum.Parse(typeof(Weapon.WeaponType), type);
+                        int atk = int.Parse(fields[4]);
+                        int range = int.Parse(fields[5]);
+                        int speed = int.Parse(fields[6]);
+                        int cooldown = int.Parse(fields[7]);
+
+                        //Debug.Log($"ADD weapon id: {id} name: {name} desc: {desc} weapontype: {type} atk power: {atk} cooldown: {cooldown}");
+                        //Create the new enemy based on the data
+                        //string id, string name, string desc, int hp, int atk, float moveSpeed
+                        Weapon weapon = new Weapon(id, name, desc, weaponType, atk, range, speed, cooldown);
+                        weaponList.Add(weapon);
+                    }
+
+                }
+
+            }
+
+        }
+        return weaponList;
     }
 }
 

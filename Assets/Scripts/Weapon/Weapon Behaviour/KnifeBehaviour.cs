@@ -7,9 +7,9 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
     KnifeController kc;
 
     // Start is called before the first frame update
-    protected override void Start()
+    public override void init()
     {
-        base.Start();
+        base.init();
         kc = FindAnyObjectByType<KnifeController>();
     }
 

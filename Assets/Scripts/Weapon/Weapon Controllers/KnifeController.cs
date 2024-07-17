@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class KnifeController : WeaponController
 {
-    //references
-    [SerializeField]
-    PlayerMovement pm;
-
     // Start is called before the first frame update
-    protected override void Start()
+    public override void init()
     {
-        base.Start();
+        base.init();
     }
 
     protected override void DoAttack()
@@ -20,8 +16,11 @@ public class KnifeController : WeaponController
         GameObject spawnedKnife = Instantiate(prefab);
         //assigned the spawn knife to shoot from the weapon position
         spawnedKnife.transform.position = transform.position;
+        KnifeBehaviour kb = spawnedKnife.GetComponent<KnifeBehaviour>();
 
+        //initialise the projectile
+        kb.init();
         //reference the player moving direction to shoot the knife
-        spawnedKnife.GetComponent<KnifeBehaviour>().DirectionChecker(pm.lastMovedVector);
+        kb.DirectionChecker(Game.GetPlayer().GetLastMovedVector());
     }
 }

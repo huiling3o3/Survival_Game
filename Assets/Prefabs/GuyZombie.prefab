@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3162504501837211957}
   - component: {fileID: 8108117161562422374}
   - component: {fileID: 4374911945203389598}
-  - component: {fileID: 9160603325791129022}
+  - component: {fileID: 2730048315807345535}
   m_Layer: 0
   m_Name: GuyZombie
   m_TagString: Enemy
@@ -127,6 +127,7 @@ MonoBehaviour:
   hp: 10
   atk: 1
   atkCooldown: 3
+  targetInRange: 0
 --- !u!195 &8108117161562422374
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -161,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &9160603325791129022
-CircleCollider2D:
+--- !u!70 &2730048315807345535
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,6 +194,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.31
+  m_Offset: {x: 0.07608215, y: 0.36350238}
+  m_Size: {x: 2.0221972, y: 3.0476396}
+  m_Direction: 0

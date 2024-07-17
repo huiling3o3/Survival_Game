@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     string currentCharacter;
-    List<string> weaponList;
+
+    private Dictionary<string, GameObject> PlayerWeapons = new Dictionary<string, GameObject>();
 
     [SerializeField] float currentHp;
 
@@ -17,12 +17,6 @@ public class PlayerController : MonoBehaviour
     //references
     PlayerMovement pm;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Init()
     {
         //set player initial position
@@ -32,21 +26,18 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Weapons
-    public List<string> GetCurrentWeaponList() { return weaponList; }
-
-    public void AddWeapon(string weapon)
+    public void AddWeapon(string weaponID, GameObject weaponPrefab)
     {
-        weaponList.Add(weapon);
-
-    }
-
-    public void RemoveWeapon(string weapon)
-    {
-        weaponList.Remove(weapon);
-    }
-    public void ClearWeaponList()
-    {
-        weaponList.Clear();
+        if (!PlayerWeapons.ContainsKey(weaponID))
+        {           
+            GameObject weaponInstance = Instantiate(weaponPrefab, transform);
+            Debug.Log("weapon added success!");
+            Weapon weapon = Game.GetWeaponByRefID(weaponID);
+            //set the weapon details from the weapon class
+            weaponInstance.GetComponent<WeaponController>().init();
+            weaponInstance.GetComponent<WeaponController>().SetStats(weapon.atk, weapon.speed, weapon.ranged, weapon.cooldown);
+            PlayerWeapons.Add(weaponID, weaponInstance);
+        }
     }
 
     #endregion
@@ -74,11 +65,15 @@ public class PlayerController : MonoBehaviour
     public float GetMovementSpeed() => pm.moveSpeed;
     public float GetMaxHp() => MaxHP;
     public float GetCurrentHp() => currentHp;
-
+    public Vector2 GetLastMovedVector() => pm.lastMovedVector;
     #endregion
+
     public void TakeDamage(int damage)
     {
-        currentHp -= damage;
+        if (currentHp >= 0)
+        {
+            currentHp -= damage;
+        }        
 
         if (currentHp <= 0) 
         {

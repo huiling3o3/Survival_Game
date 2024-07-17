@@ -11,39 +11,39 @@ public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
     public GameObject prefab;
+
     public int damage; //atk
     public float speed;
-    public int atkRange;
+    public float atkRange;// the radius of the attack range
     public float cooldownDuration;
     float currentCooldown;
+    int minAtkRmage = 2;
+    int maxAtkRmage = 10;
 
-    // Start is called before the first frame update
-    protected virtual void Start()
+    public virtual void init()
     {
         //set the current cool down to the cool down duration
         currentCooldown = cooldownDuration;
     }
-
-    // Update is called once per frame
     protected virtual void Update()
     {
         currentCooldown -= Time.deltaTime;
-        if (currentCooldown <= 0f)
+        if (currentCooldown <= 0f)   //Once the cooldown becomes 0, attack
         {
-            //DoAttack();
+            DoAttack();
         }
-        
     }
 
-    public void SetStats(int damage, float speed,int atkRange,float cooldown)
+    public void SetStats(int damage, float speed,int range,float cooldown)
     {
         this.damage = damage;
 
         this.speed = speed;
 
-        this.atkRange = atkRange;
+        this.atkRange = 2f * range;
+
         //Set the collider to the atk range
-        this.transform.localScale = new Vector3((float)atkRange, (float)atkRange, (float)atkRange);
+        this.transform.localScale = new Vector3(atkRange, atkRange, atkRange);
 
         this.cooldownDuration = cooldown;
 
@@ -60,13 +60,13 @@ public class WeaponController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Check if the enemy is within range to ATTACK
-        if (col.CompareTag("Enemy"))
-        {
-            currentCooldown -= Time.deltaTime;
-            if (currentCooldown <= 0f)
-            {
-                DoAttack();
-            }
-        }
+        //if (col.CompareTag("Enemy"))
+        //{
+        //    currentCooldown -= Time.deltaTime;
+        //    if (currentCooldown <= 0f)
+        //    {
+        //        DoAttack();
+        //    }
+        //}
     }
 }

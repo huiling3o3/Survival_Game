@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3961951632110076840}
   - component: {fileID: 1568083042301602798}
+  - component: {fileID: 8170162136257658171}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -46,6 +47,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
   inputHandler: {fileID: 0}
-  dm: {fileID: 0}
-  initCharacter: 
-  initBuffList: []
+  dm: {fileID: 8170162136257658171}
+  Spawnlocation:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  garlicControllerPrefab: {fileID: 8528614889637346886, guid: d00b2ba8740bf344ba0eb842be4db389, type: 3}
+  initCharacter: c101
+  initWeapon: w301
+--- !u!114 &8170162136257658171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5660841488138511514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6064b6814ae4ae84794b25063688c911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
