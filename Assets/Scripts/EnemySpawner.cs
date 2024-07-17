@@ -5,30 +5,37 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject enemyPrefab;
+    GameObject zombieGuyPrefab;
+    GameObject zombieGirlPrefab;
+    GameObject bossPrefab;
 
     private void Awake()
     {
         Game.SetEnemySpawner(this);
     }
-    public void SpawnEnemy(string enemyName, Transform spawnLocation)
-    {
-        //Search through database for the enemy name and return value based on the corresponding entry in the database 
+    //change the enemy name to enemyID when change to wave manager
+    public void SpawnEnemy(string enemyID, Transform spawnLocation)
+    { 
+        GameObject spawn = null;
 
-        GameObject spawn = Instantiate(enemyPrefab, spawnLocation);
+        Enemy enemy = Game.GetEnemyByRefID(enemyID);
 
-
-        //Look through the database for the list of enemies
-        foreach (Enemy enemy in Game.GetEnemyList())
+        //instantiate the prefab according to the name
+        switch (enemy.name)
         {
-            if (enemy.name == enemyName)
-            {
-                Debug.Log($"Found {enemy.name}");
-                //Call the set stats function in the enemycontroller to set its stats based on the database
-                spawn.GetComponent<EnemyController>().Init();
-                spawn.GetComponent<EnemyController>().SetStats(enemy.hp, enemy.atk, enemy.moveSpeed, enemy.atkCooldown);
-                //spawn.GetComponent<EnemyController>().enabled = true;
-            }
+            case "Guy Zombies":
+                spawn = Instantiate(zombieGuyPrefab, spawnLocation);
+                break;
+            case "Zombie Girl":
+                spawn = Instantiate(zombieGirlPrefab, spawnLocation);
+                break;
+            case "Big Bad Wolf":
+                spawn = Instantiate(bossPrefab, spawnLocation);
+                break;
+
         }
+
+        spawn.GetComponent<EnemyController>().Init();
+        spawn.GetComponent<EnemyController>().SetStats(enemy.hp, enemy.atk, enemy.moveSpeed, enemy.atkCooldown);
     }
 }

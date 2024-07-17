@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
             {
                 Debug.Log("Enemy Spawned");
                 int rand = Random.Range(0, 3);
-                enemySpawner.SpawnEnemy("Guy Zombies", Spawnlocation[rand]);
+                enemySpawner.SpawnEnemy("e201", Spawnlocation[rand]);
                 timer = 0f;
             }
         }
