@@ -5,7 +5,6 @@ using UnityEngine;
 // a class to store all the static object that can be access anywhere in the scene
 public static class Game
 {
-    //private static PlayerController player;
     private static PlayerController mainPlayer;
     private static List<Character> characterList;
     private static List<Buff> buffList;
@@ -13,17 +12,19 @@ public static class Game
     private static List<Weapon> weaponList;
     private static GameController gameController;
     private static HUDController hudController;
+    private static EnemySpawner enemySpawner;
+    private static BarrelRandomizer barrelRandomizer;
+
+    public static BarrelRandomizer GetBarrelRandomizer() => barrelRandomizer;
+    public static void SetBarrelRandomizer(BarrelRandomizer br) => barrelRandomizer = br;
+
+    public static EnemySpawner GetEnemySpawner() => enemySpawner;
+    public static void SetEnemySpawner(EnemySpawner es) => enemySpawner = es;
+
 
     #region HUD
-    public static HUDController GetHUDController()
-    {
-        return hudController;
-    }
-
-    public static void SetHUDController(HUDController hc)
-    {
-        hudController = hc;
-    }
+    public static HUDController GetHUDController() => hudController;
+    public static void SetHUDController(HUDController hc) => hudController = hc;
     #endregion
 
     #region gamecontroller
@@ -95,7 +96,6 @@ public static class Game
     #endregion
     
     #region enemy
-    /// <summary>
     /// Enemy Set and Get
     public static Enemy GetEnemyByRefID(string id)
     {
@@ -108,6 +108,7 @@ public static class Game
     public static void SetEnemyList(List<Enemy> eList)
     {
         enemyList = eList;
+        Debug.Log("Setting enemy list");
     }
     #endregion
 

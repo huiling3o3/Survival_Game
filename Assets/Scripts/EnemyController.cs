@@ -5,52 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    //[SerializeField] Transform targetDestination;
-    //GameObject targetGameObject;
-    //Character targetCharacter;
-    //[SerializeField] float speed;
-
-    //Rigidbody2D rgdbd2d;
-
-    //[SerializeField] int hp = 999;
-    //[SerializeField] int damage = 1;
-
-    //private void Awake()
-    //{
-    //    rgdbd2d = GetComponent<Rigidbody2D>();
-    //    targetGameObject = targetDestination.gameObject;
-    //}
-
-    //private void FixedUpdate()
-    //{
-    //    Vector3 direction = (targetDestination.position - transform.position).normalized;
-    //    rgdbd2d.velocity = direction * speed;
-    //}
-
-    //private void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject == targetGameObject)
-    //    {
-    //        Attack();
-    //    }
-    //}
-
-    //private void Attack()
-    //{
-    //    if (targetCharacter == null)
-    //    {
-    //        targetCharacter = targetGameObject.GetComponent<Character>();
-    //    }
-
-    //    targetCharacter.TakeDamage(damage);
-    //}
-
-    
-
     //Gets a reference to the player 
     [SerializeField]
     private GameObject target;
-
+    //References
+    Animator am;
+    SpriteRenderer sr;
+    PlayerMovement pm;
     //Variables for enemy stats
     //Remove serialize fields after switching to enemy spawning 
     [SerializeField]
@@ -69,13 +30,19 @@ public class EnemyController : MonoBehaviour
     private bool canAttack = true;
     private bool targetInRange = false;
 
-    void Awake()
+    public void Init()
     {
         //Initializes the reference
-        agent = GetComponent<NavMeshAgent>();
+        target = Game.GetPlayer().gameObject;
 
-        //Delete this after implementing enemy spawning 
-        agent.speed = speed;
+        //sprite render
+        sr = GetComponent<SpriteRenderer>();
+
+        //player movement
+        pm = target.GetComponent<PlayerMovement>();
+
+        //nav mesh agent
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -84,6 +51,7 @@ public class EnemyController : MonoBehaviour
         {
             //Calls the GetTarget function repeatedly to move the navmesh in the target's direction 
             GetTarget(target.gameObject);
+            SpriteDirectionChecker();
 
             //Checks if target is within range 
             if (targetInRange)
@@ -94,10 +62,23 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void SpriteDirectionChecker()
+    {
+        if (pm.lastHorizontalVector < 0)
+        {
+            sr.flipX = true;
+        }
+        else
+        {
+            sr.flipX = false;
+        }
+    }
+
     //Initializes the enemy stats 
-    //Switch to this after implementing enemy spawning
     public void SetStats(int hp, int atk, float speed, int atkCooldown)
     {
+        Debug.Log("Set stats entered");
+
         this.hp = hp;
         this.atk = atk;
         agent.speed = speed;

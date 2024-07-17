@@ -16,10 +16,7 @@ public class WeaponController : MonoBehaviour
     public int atkRange;
     public float cooldownDuration;
     float currentCooldown;
-    private void Awake()
-    {
 
-    }
     // Start is called before the first frame update
     protected virtual void Start()
     {

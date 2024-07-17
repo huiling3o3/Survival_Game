@@ -14,9 +14,9 @@ public class Unit
     public string id { get;}
     public string name { get;}
     public string description { get;}
-    public UnitType unitType { get; set; }
-    public int hp { get; set; }
-    public int atk { get; set; }
+    public UnitType unitType { get;}
+    public int hp { get;}
+    public int atk { get;}
     //public int atkRange { get; set; }
     //public int atkInterval { get; set; }
     public float moveSpeed { get; set; }

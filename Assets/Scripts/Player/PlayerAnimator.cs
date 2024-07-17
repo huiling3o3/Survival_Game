@@ -10,7 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     SpriteRenderer sr;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         am = GetComponent<Animator>();
         pm = GetComponent<PlayerMovement>();

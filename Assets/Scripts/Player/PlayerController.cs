@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     string currentCharacter;
-    string currentWeapon;
+    List<string> weaponList;
+
     [SerializeField] float currentHp;
 
     [SerializeField] float MaxHP;
@@ -15,18 +16,6 @@ public class PlayerController : MonoBehaviour
 
     //references
     PlayerMovement pm;
-
-    private void Awake()
-    {
-        //set all the references connected to the player interactions
-        pm = GetComponent<PlayerMovement>();
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,11 +27,31 @@ public class PlayerController : MonoBehaviour
     {
         //set player initial position
         transform.position = Vector2.zero;
-        //set the variables of the default val of the player stats to the player controller variables
+        //set all the references connected to the player interactions
+        pm = GetComponent<PlayerMovement>();
     }
 
-    public float GetMovementSpeed() => pm.moveSpeed;
-    public float GetMaxHp() => MaxHP;
+    #region Weapons
+    public List<string> GetCurrentWeaponList() { return weaponList; }
+
+    public void AddWeapon(string weapon)
+    {
+        weaponList.Add(weapon);
+
+    }
+
+    public void RemoveWeapon(string weapon)
+    {
+        weaponList.Remove(weapon);
+    }
+    public void ClearWeaponList()
+    {
+        weaponList.Clear();
+    }
+
+    #endregion
+
+    #region character function
     public void ChangeCharacter(string currentCharacter)
     {
         this.currentCharacter = currentCharacter;
@@ -59,12 +68,14 @@ public class PlayerController : MonoBehaviour
     {
         return currentCharacter;
     }
+    #endregion
 
-    public float GetCurrentHp()
-    {
-        return currentHp;
-    }
+    #region player stats function
+    public float GetMovementSpeed() => pm.moveSpeed;
+    public float GetMaxHp() => MaxHP;
+    public float GetCurrentHp() => currentHp;
 
+    #endregion
     public void TakeDamage(int damage)
     {
         currentHp -= damage;
