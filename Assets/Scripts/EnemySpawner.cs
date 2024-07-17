@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemy.name == enemyName)
             {
                 //Call the set stats function in the enemycontroller to set its stats based on the database
-                spawn.GetComponent<EnemyController>().SetStats(enemy.hp , enemy.atk, enemy.moveSpeed);
+                spawn.GetComponent<EnemyController>().SetStats(enemy.hp , enemy.atk, enemy.moveSpeed, enemy.atkCooldown);
             }
         }
     }

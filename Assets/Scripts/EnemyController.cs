@@ -59,6 +59,8 @@ public class EnemyController : MonoBehaviour
     private int hp;
     [SerializeField]
     private int atk;
+    [SerializeField]
+    private int atkCooldown;
 
     //Holds navmesh agent reference 
     private NavMeshAgent agent;
@@ -66,8 +68,6 @@ public class EnemyController : MonoBehaviour
     //Variables for attacks  
     private bool canAttack = true;
     private bool targetInRange = false;
-    [SerializeField]
-    private float timeBetweenAttacks; 
 
     void Awake()
     {
@@ -96,11 +96,12 @@ public class EnemyController : MonoBehaviour
 
     //Initializes the enemy stats 
     //Switch to this after implementing enemy spawning
-    public void SetStats(int hp, int atk, float speed)
+    public void SetStats(int hp, int atk, float speed, int atkCooldown)
     {
         this.hp = hp;
         this.atk = atk;
         agent.speed = speed;
+        this.atkCooldown = atkCooldown;
     }
 
     //Controls the enemy movement 
@@ -138,7 +139,7 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("Timer started");
         canAttack = false;
-        yield return new WaitForSeconds(timeBetweenAttacks);
+        yield return new WaitForSeconds(atkCooldown);
         canAttack = true;
     }
 
