@@ -27,7 +27,7 @@ public class HUDController : MonoBehaviour
     public void UpdatePlayerStats()
     {
         //Spd: 00, Current Hp: 00, Max Hp: 00 
-        playerStatsTxt.text = "Spd: " + Game.GetPlayer().GetSpeed() + " Max Health: " + Game.GetPlayer().GetMaxHp();
+        playerStatsTxt.text = "Spd: " + Game.GetPlayer().GetMovementSpeed() + " Max Health: " + Game.GetPlayer().GetMaxHp();
         Character character = Game.GetCharacterByRefID(Game.GetPlayer().GetCurrentCharacter());
         characterTxt.text = character.name;
     }

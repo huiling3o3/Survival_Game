@@ -15,6 +15,7 @@ public class Player
     //float playerAtkInterval;
     //float playerAtkRange;
 
+
     bool statDirty; //track when the stats have been changed
 
     public Player(string currentCharacter)

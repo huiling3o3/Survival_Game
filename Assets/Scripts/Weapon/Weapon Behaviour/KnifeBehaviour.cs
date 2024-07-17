@@ -14,9 +14,20 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         //set the movement of the knife
         transform.position += direction * kc.speed * Time.deltaTime;
+    }
+
+    protected void OnTriggerEnter2D(Collider2D col)
+    {
+        //Reference the script from the collided collider and deal damage using TakeDamage()
+        if (col.CompareTag("Enemy"))
+        {
+            EnemyController enemy = col.GetComponent<EnemyController>();
+            enemy.TakeDamage(kc.damage);
+            Destroy(gameObject);
+        }
     }
 }

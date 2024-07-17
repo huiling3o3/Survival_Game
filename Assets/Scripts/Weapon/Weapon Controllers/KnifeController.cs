@@ -24,5 +24,4 @@ public class KnifeController : WeaponController
         //reference the player moving direction to shoot the knife
         spawnedKnife.GetComponent<KnifeBehaviour>().DirectionChecker(pm.lastMovedVector);
     }
-
 }

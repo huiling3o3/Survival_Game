@@ -16,10 +16,11 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        Game.SetGameController(this);
+        Game.SetGameController(this);       
         dm.GetComponent<Database>();
         dm.SetDatabase();
         pc = playerObj.GetComponent<PlayerController>();
+        Game.SetPlayer(pc);
 
         //Set the initial character to be unlocked for the player to select
         Character character = Game.GetCharacterByRefID(initCharacter);
@@ -44,15 +45,10 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         CreatePlayer();
-
-
     }
 
     public void CreatePlayer()
     {
-        //Create new player and set the static reference in Game
-        Game.SetPlayer(new Player(initCharacter));
-
         //initialise the player
         pc.Init();
 
@@ -61,7 +57,7 @@ public class GameController : MonoBehaviour
     }
     public void SetCharacter(string characterId)
     {
-        Game.GetPlayer().ChangeCurrentCharacter(characterId);
+        Game.GetPlayer().ChangeCharacter(characterId);
         //update the UI
         Game.GetHUDController().UpdatePlayerStats();
         //close menu

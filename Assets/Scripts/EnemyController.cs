@@ -45,14 +45,7 @@ public class EnemyController : MonoBehaviour
     //    targetCharacter.TakeDamage(damage);
     //}
 
-    //public void TakeDamage(int damage)
-    //{
-    //    hp -= damage;
-    //    if (hp < 1)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    
 
     //Gets a reference to the player 
     [SerializeField]
@@ -147,5 +140,19 @@ public class EnemyController : MonoBehaviour
         canAttack = false;
         yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            DestroyEnemy();
+        }
+    }
+
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 }

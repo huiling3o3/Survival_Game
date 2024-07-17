@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float currentHp;
+    string currentCharacter;
+    string currentWeapon;
+    [SerializeField] float currentHp;
 
-    [SerializeField] private float playerMaxHP;
+    [SerializeField] float MaxHP;
 
     [SerializeField] StatusBar hpBar;
 
@@ -36,24 +39,30 @@ public class PlayerController : MonoBehaviour
         //set player initial position
         transform.position = Vector2.zero;
         //set the variables of the default val of the player stats to the player controller variables
-        SetPlayerIntialStat();
     }
-    public void SetPlayerIntialStat()
+
+    public float GetMovementSpeed() => pm.moveSpeed;
+    public float GetMaxHp() => MaxHP;
+    public void ChangeCharacter(string currentCharacter)
     {
-        //Assign the player health, speed, and damage point
-        playerMaxHP = Game.GetPlayer().GetMaxHp();
-        currentHp = playerMaxHP;
-        pm.ChangeMovementSpeed(Game.GetPlayer().GetSpeed());
+        this.currentCharacter = currentCharacter;
+
+        //get the character id
+        Character playerCharacter = Game.GetCharacterByRefID(this.currentCharacter);
+        //change the player variables according to the character
+        MaxHP = playerCharacter.hp;
+        currentHp = MaxHP;
+        pm.ChangeMovementSpeed(playerCharacter.moveSpeed);
+    }
+
+    public string GetCurrentCharacter()
+    {
+        return currentCharacter;
     }
 
     public float GetCurrentHp()
     {
         return currentHp;
-    }
-
-    public void DealDamage()
-    { 
-        
     }
 
     public void TakeDamage(int damage)
@@ -66,6 +75,6 @@ public class PlayerController : MonoBehaviour
         }
 
         //create an event subscription when player health is decreased
-        hpBar.SetState(currentHp, playerMaxHP);
+        hpBar.SetState(currentHp, MaxHP);
     }
 }

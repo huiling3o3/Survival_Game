@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 1274238543836284454}
   - component: {fileID: 7213024979269189362}
   m_Layer: 0
-  m_Name: GarlicController
+  m_Name: MeleeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1274238543836284454
 Transform:
   m_ObjectHideFlags: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   prefab: {fileID: 603695544711702942, guid: 1e81d46e3769c474dad87fcfa12712a4, type: 3}
   damage: 0
   speed: 0
+  atkRange: 0
   cooldownDuration: 3
-  timeDisappear: 0
 --- !u!1 &3725443355498558426
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 4662040620295996373}
   - component: {fileID: 8294561118823269001}
   - component: {fileID: 5221588717258411125}
+  - component: {fileID: 5663294965223238641}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -200,7 +201,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.25, y: 2.0625}
+  m_Size: {x: 0.72, y: 1.43}
   m_Direction: 0
 --- !u!114 &4662040620295996373
 MonoBehaviour:
@@ -251,6 +252,21 @@ MonoBehaviour:
   lastHorizontalVector: 0
   lastVerticalVector: 0
   lastMovedVector: {x: 0, y: 0}
+--- !u!114 &5663294965223238641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725443355498558426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a984c321d0ff8024d89fdfd50bf02671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHp: 0
+  MaxHP: 0
+  hpBar: {fileID: 0}
 --- !u!1 &9076307882090610387
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,8 +277,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5648731588725898606}
   - component: {fileID: 8071512954507763377}
+  - component: {fileID: 2487413676199527}
   m_Layer: 0
-  m_Name: Knife Projectile Weapon
+  m_Name: Projectile Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,8 +313,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7233169698506022469, guid: 300ed45337b0efd49bc87612a17c6edc, type: 3}
-  damage: 0
+  damage: 10
   speed: 10
+  atkRange: 2
   cooldownDuration: 2
-  timeDisappear: 0
   pm: {fileID: 5221588717258411125}
+--- !u!58 &2487413676199527
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076307882090610387}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2

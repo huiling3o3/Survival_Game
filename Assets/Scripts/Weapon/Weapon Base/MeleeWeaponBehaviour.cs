@@ -7,6 +7,12 @@ public class MeleeWeaponBehaviour : MonoBehaviour
 {
     public float destroyAfterSeconds;
 
+    //Current stats
+    protected float currentDamage;
+    protected float currentSpeed;
+    protected float currentCooldownDuration;
+    protected int currentPierce;
+
     protected virtual void Start()
     {
         Destroy(gameObject, destroyAfterSeconds);
@@ -16,5 +22,14 @@ public class MeleeWeaponBehaviour : MonoBehaviour
     void Update()
     {
         
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Enemy"))
+        {
+            //EnemyStats enemy = col.GetComponent<EnemyStats>();
+            //enemy.TakeDamage(currentDamage);
+        }
     }
 }

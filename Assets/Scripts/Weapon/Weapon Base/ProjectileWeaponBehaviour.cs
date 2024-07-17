@@ -8,6 +8,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 {
     protected Vector3 direction;
     public float destroyAfterSeconds;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -66,4 +67,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);
     }
+
+    
+
 }

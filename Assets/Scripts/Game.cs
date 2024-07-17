@@ -6,13 +6,15 @@ using UnityEngine;
 public static class Game
 {
     //private static PlayerController player;
-    private static Player mainPlayer;
+    private static PlayerController mainPlayer;
     private static List<Character> characterList;
     private static List<Buff> buffList;
     private static List<Enemy> enemyList;
+    private static List<Weapon> weaponList;
     private static GameController gameController;
     private static HUDController hudController;
 
+    #region HUD
     public static HUDController GetHUDController()
     {
         return hudController;
@@ -22,7 +24,9 @@ public static class Game
     {
         hudController = hc;
     }
+    #endregion
 
+    #region gamecontroller
     public static GameController GetGameController()
     {
         return gameController;
@@ -32,21 +36,26 @@ public static class Game
     {
         gameController = gc;
     }
+    #endregion
 
+    #region player
     /// <summary>
     /// Player get and set
     /// </summary>
     /// <returns></returns>
-    public static Player GetPlayer()
+    public static PlayerController GetPlayer()
     {
         return mainPlayer;
     }
 
-    public static void SetPlayer(Player Player)
+    public static void SetPlayer(PlayerController Player)
     {
         mainPlayer = Player;
     }
 
+    #endregion
+
+    #region character
     /// <summary>
     /// Character Set and Get
     /// </summary>
@@ -68,6 +77,9 @@ public static class Game
         characterList = cList;
     }
 
+    #endregion
+
+    #region buff
     /// <summary>
     /// Buff Set and Get
     /// </summary>
@@ -80,12 +92,9 @@ public static class Game
     {
         return buffList.Find(x => x.id == id);
     }
-
-    public static string GetSystemTime()
-    {
-        return System.DateTime.Now.ToString();
-    }
-
+    #endregion
+    
+    #region enemy
     /// <summary>
     /// Enemy Set and Get
     public static Enemy GetEnemyByRefID(string id)
@@ -99,5 +108,26 @@ public static class Game
     public static void SetEnemyList(List<Enemy> eList)
     {
         enemyList = eList;
+    }
+    #endregion
+
+    #region weapon
+    public static Weapon GetWeaponByRefID(string id)
+    {
+        return weaponList.Find(x => x.id == id);
+    }
+    public static List<Weapon> GetWeaponList()
+    {
+        return weaponList;
+    }
+    public static void SetWeaponList(List<Weapon> wList)
+    {
+        weaponList = wList;
+    }
+    #endregion
+
+    public static string GetSystemTime()
+    {
+        return System.DateTime.Now.ToString();
     }
 }
