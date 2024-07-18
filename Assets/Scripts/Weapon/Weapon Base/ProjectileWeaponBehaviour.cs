@@ -8,11 +8,11 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 {
     protected Vector3 direction;
     public float destroyAfterSeconds;
-
-    // Start is called before the first frame update
-    public virtual void init()
+    protected WeaponController wc;
+    public virtual void init(WeaponController wc)
     {
         Destroy(gameObject, destroyAfterSeconds);
+        this.wc = wc;
     }
 
     public void DirectionChecker(Vector3 dir)
@@ -67,7 +67,4 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);
     }
-
-    
-
 }

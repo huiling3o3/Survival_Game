@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject playerObj;
-    PlayerController pc;
+    //references to assigned
+    public GameObject playerObj;    
     public InputHandler inputHandler;
-    public Database dm;
-    private bool gameIsActive = false;
+    Database dm;
+    PlayerController pc;
+    //bool gameIsActive = false;
 
     [SerializeField]
     private Transform[] Spawnlocation;
 
-    public GameObject garlicControllerPrefab;
-    //initial character 
+    //initial character & weapon
     public string initCharacter;
     public string initWeapon;
 
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
         Game.SetGameController(this);
 
         //set up the database
-        dm.GetComponent<Database>();
+        dm = GetComponent<Database>();
         dm.SetDatabase();
 
         //Set reference for the player
@@ -72,6 +72,7 @@ public class GameController : MonoBehaviour
     {
         //set player initial weapon
         SetWeapon(initWeapon);
+        SetWeapon("w303");
         //spawn the enemy
         enemySpawner = Game.GetEnemySpawner();
         //set input handler to player movement script

@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class KnifeBehaviour : ProjectileWeaponBehaviour
 {
-    KnifeController kc;
-
     // Start is called before the first frame update
-    public override void init()
-    {
-        base.init();
-        kc = FindAnyObjectByType<KnifeController>();
-    }
+    //public override void init(WeaponController wc)
+    //{
+    //    base.init();
+    //    this.wc = wc;
+    //}
 
     // Update is called once per frame
     protected void Update()
     {
         //set the movement of the knife
-        transform.position += direction * kc.speed * Time.deltaTime;
+        transform.position += direction * wc.speed * Time.deltaTime;
     }
 
     protected void OnTriggerEnter2D(Collider2D col)
@@ -26,7 +24,7 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
         if (col.CompareTag("Enemy"))
         {
             EnemyController enemy = col.GetComponent<EnemyController>();
-            enemy.TakeDamage(kc.damage);
+            enemy.TakeDamage(wc.damage);
             Destroy(gameObject);
         }
     }

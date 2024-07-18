@@ -17,9 +17,6 @@ public class WeaponController : MonoBehaviour
     public float atkRange;// the radius of the attack range
     public float cooldownDuration;
     float currentCooldown;
-    int minAtkRmage = 2;
-    int maxAtkRmage = 10;
-
     public virtual void init()
     {
         //set the current cool down to the cool down duration
@@ -40,10 +37,10 @@ public class WeaponController : MonoBehaviour
 
         this.speed = speed;
 
-        this.atkRange = 2f * range;
+        this.atkRange = range;
 
         //Set the collider to the atk range
-        this.transform.localScale = new Vector3(atkRange, atkRange, atkRange);
+        //this.transform.localScale = new Vector3(atkRange, atkRange, atkRange);
 
         this.cooldownDuration = cooldown;
 
@@ -55,18 +52,5 @@ public class WeaponController : MonoBehaviour
     {
         //reset the cooldown time
         currentCooldown = cooldownDuration;
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        // Check if the enemy is within range to ATTACK
-        //if (col.CompareTag("Enemy"))
-        //{
-        //    currentCooldown -= Time.deltaTime;
-        //    if (currentCooldown <= 0f)
-        //    {
-        //        DoAttack();
-        //    }
-        //}
     }
 }

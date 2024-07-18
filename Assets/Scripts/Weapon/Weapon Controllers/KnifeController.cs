@@ -19,7 +19,7 @@ public class KnifeController : WeaponController
         KnifeBehaviour kb = spawnedKnife.GetComponent<KnifeBehaviour>();
 
         //initialise the projectile
-        kb.init();
+        kb.init(this);
         //reference the player moving direction to shoot the knife
         kb.DirectionChecker(Game.GetPlayer().GetLastMovedVector());
     }

@@ -110,7 +110,6 @@ public class EnemyController : MonoBehaviour
         PlayerController playerHealth = objToDamage.GetComponent<PlayerController>();
         if (playerHealth != null)
         {
-            Debug.Log("Player take damge +" + atk);
             playerHealth.TakeDamage(atk);
         }
 
@@ -131,8 +130,9 @@ public class EnemyController : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {
+    {        
         hp -= damage;
+        Debug.Log($"Enemy took {damage} damage");
         if (hp <= 0)
         {
             DestroyEnemy();

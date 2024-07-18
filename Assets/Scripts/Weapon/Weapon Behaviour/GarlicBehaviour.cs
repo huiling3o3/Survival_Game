@@ -5,20 +5,19 @@ using UnityEngine;
 public class GarlicBehaviour : MeleeWeaponBehaviour
 {
     List<GameObject> markedEnemies;
-    protected override void Start()
+    public override void init(WeaponController wc)
     {
-        base.Start();
-        markedEnemies = new List<GameObject>();
+        base.init(wc);
+        //markedEnemies = new List<GameObject>();
+        //gc = FindAnyObjectByType<GarlicController>();
     }
 
     protected override void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Enemy") && !markedEnemies.Contains(col.gameObject))
+        if (col.CompareTag("Enemy"))
         {
             EnemyController enemy = col.GetComponent<EnemyController>();
-            //enemy.TakeDamage(damage);
-
-            markedEnemies.Add(col.gameObject);  //Mark the enemy
+            enemy.TakeDamage(wc.damage);
         }
     }
 

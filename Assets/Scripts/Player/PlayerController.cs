@@ -73,8 +73,8 @@ public class PlayerController : MonoBehaviour
         if (currentHp >= 0)
         {
             currentHp -= damage;
-        }        
-
+        }
+        Debug.Log($"player took {damage} damage");
         if (currentHp <= 0) 
         {
             Debug.Log("Character dead");

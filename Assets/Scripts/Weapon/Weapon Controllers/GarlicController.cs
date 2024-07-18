@@ -17,5 +17,7 @@ public class GarlicController : WeaponController
         //So when spawned, it will follow the player around
         spawnedGarlic.transform.position = transform.position; 
         spawnedGarlic.transform.parent = transform;
+        //initialise the melee weapon behaviour
+        spawnedGarlic.GetComponent<GarlicBehaviour>().init(this);
     }
 }
