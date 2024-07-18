@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class KnifeBehaviour : ProjectileWeaponBehaviour
 {
-    // Start is called before the first frame update
-    //public override void init(WeaponController wc)
-    //{
-    //    base.init();
-    //    this.wc = wc;
-    //}
-
     // Update is called once per frame
     protected void Update()
     {
@@ -26,6 +19,11 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
             EnemyController enemy = col.GetComponent<EnemyController>();
             enemy.TakeDamage(wc.damage);
             Destroy(gameObject);
+        }
+        else if(col.CompareTag("Barrel"))
+        {
+            BarrelController barrel = col.GetComponent<BarrelController>();
+            barrel.TakeHit();
         }
     }
 }

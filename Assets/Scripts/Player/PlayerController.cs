@@ -66,6 +66,11 @@ public class PlayerController : MonoBehaviour
     public float GetMaxHp() => MaxHP;
     public float GetCurrentHp() => currentHp;
     public Vector2 GetLastMovedVector() => pm.lastMovedVector;
+
+    public void IncreaseHealth(float newHp) 
+    {
+        currentHp = currentHp * newHp;
+    }
     #endregion
 
     public void TakeDamage(int damage)

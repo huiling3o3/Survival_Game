@@ -10,19 +10,22 @@ public static class Game
     private static List<Buff> buffList;
     private static List<Enemy> enemyList;
     private static List<Weapon> weaponList;
+    private static List<Barrel> barrelList;
     private static List<WaveData> waveDataList;
     private static WeaponManager weaponManager;
     private static GameController gameController;
     private static HUDController hudController;
     private static EnemySpawner enemySpawner;
     private static BarrelRandomizer barrelRandomizer;
-
+    private static BarrelSpawner barrelSpawner;
     public static WeaponManager GetWeaponManager() => weaponManager;
     public static void SetWeaponManager(WeaponManager wm) => weaponManager = wm;
     public static BarrelRandomizer GetBarrelRandomizer() => barrelRandomizer;
     public static void SetBarrelRandomizer(BarrelRandomizer br) => barrelRandomizer = br;
     public static EnemySpawner GetEnemySpawner() => enemySpawner;
     public static void SetEnemySpawner(EnemySpawner es) => enemySpawner = es;
+    public static BarrelSpawner GetBarrelSpawner() => barrelSpawner;
+    public static void SetBarrelSpawner(BarrelSpawner bs) => barrelSpawner = bs;
 
     #region HUD
     public static HUDController GetHUDController() => hudController;
@@ -108,6 +111,16 @@ public static class Game
     {
         waveDataList = wDList;
     }
+    #endregion
+
+    #region barrel
+    public static Barrel GetBarrelByRefID(string id)
+    {
+        return barrelList.Find(x => x.id == id);
+    }
+    public static List<Barrel> GetBarrelList() => barrelList;
+    public static void SetBarrelList(List<Barrel> bList) => barrelList = bList;
+
     #endregion
 
     public static string GetSystemTime()

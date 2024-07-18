@@ -4,7 +4,6 @@ using UnityEngine;
 using System.IO;
 using System.Text;
 using System;
-using System.Runtime.InteropServices.ComTypes;
 
 /// <summary>
 /// Contains all the method that read the file from the CSV and set it into the Game
@@ -16,6 +15,7 @@ public class Database : MonoBehaviour
     string enemyFilePath = "Assets/CSV/EnemyRef.csv";
     string weaponFilePath = "Assets/CSV/WeaponRef.csv";
     string waveFilePath = "Assets/CSV/WaveRef.csv";
+    string barrelFilePath = "Assets/CSV/BarrelRef.csv";
     string analyticsTracking = "Assets/CSV/Analytics.csv";
 
     // Start is called before the first frame update
@@ -63,6 +63,7 @@ public class Database : MonoBehaviour
         Game.SetCharacterList(GetCharacterList());
         Game.SetEnemyList(GetEnemyList());
         Game.SetWeaponList(GetWeaponList());
+        Game.SetBarrelList(GetBarrelList());
         Debug.Log("Data added successfully into Game");
 
         //Game.SetBuffList(GetBuffList());
@@ -315,6 +316,54 @@ public class Database : MonoBehaviour
             }
         }
         return waveDataList;
+    }
+
+    public List<Barrel> GetBarrelList()
+    {
+        List<Barrel> barrelList = new List<Barrel>();
+
+        //Check if file exist
+        if (File.Exists(barrelFilePath))
+        {
+
+            using (StreamReader sr = new StreamReader(barrelFilePath))
+            {
+                string line = "";
+                bool isFirstLine = true;
+
+                while (!sr.EndOfStream) //reading the file and haven't reach the end
+                {
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (isFirstLine)
+                        {
+                            // Skip the header line
+                            isFirstLine = false;
+                            continue;
+                        }
+
+                        //Split the data into an array of attributes
+                        string[] fields = line.Split(',');
+
+                        //assign the attributes
+                        string id = fields[0];
+                        int hitPoint = int.Parse(fields[1]);
+                        float healthPoint = float.Parse(fields[2]);
+
+                        //Debug.Log($"ADD Character id: {id} name: {name} desc: {desc} hp: {hp} movepeed: {moveSpeed}");
+
+                        //Create the new character based on the data
+                        //string id, string name, string desc, int hp, int atk, int atkRange, int atkInterval, float moveSpeed
+                        Barrel barrel = new Barrel(id, hitPoint, healthPoint);
+                        barrelList.Add(barrel);
+                    }
+
+                }
+
+            }
+        }
+
+        return barrelList;
     }
 }
 

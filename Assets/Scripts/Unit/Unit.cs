@@ -31,8 +31,6 @@ public class Unit
         this.unitType = unitType;
         this.hp = hp;
         this.atk = atk;
-        //this.atkRange = atkRange;
-        //this.atkInterval = atkInterval;
         this.moveSpeed = moveSpeed;
     }
 

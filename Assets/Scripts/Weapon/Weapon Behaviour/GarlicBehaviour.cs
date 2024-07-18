@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class GarlicBehaviour : MeleeWeaponBehaviour
 {
-    List<GameObject> markedEnemies;
     public override void init(WeaponController wc)
     {
         base.init(wc);
-        //markedEnemies = new List<GameObject>();
-        //gc = FindAnyObjectByType<GarlicController>();
     }
 
     protected override void OnTriggerEnter2D(Collider2D col)
@@ -18,6 +15,11 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
         {
             EnemyController enemy = col.GetComponent<EnemyController>();
             enemy.TakeDamage(wc.damage);
+        }
+        else if (col.CompareTag("Barrel"))
+        {
+            BarrelController barrel = col.GetComponent<BarrelController>();
+            barrel.TakeHit();
         }
     }
 
