@@ -6,7 +6,11 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
     GameObject zombieGuyPrefab;
+
+    [SerializeField]
     GameObject zombieGirlPrefab;
+
+    [SerializeField]
     GameObject bossPrefab;
 
     private void Awake()
@@ -26,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
             case "Guy Zombies":
                 spawn = Instantiate(zombieGuyPrefab);
                 break;
-            case "Zombie Girl":
+            case "Girl Zombies":
                 spawn = Instantiate(zombieGirlPrefab);
                 break;
             case "Big Bad Wolf":

@@ -10,6 +10,7 @@ public static class Game
     private static List<Buff> buffList;
     private static List<Enemy> enemyList;
     private static List<Weapon> weaponList;
+    private static List<WaveData> waveDataList;
     private static WeaponManager weaponManager;
     private static GameController gameController;
     private static HUDController hudController;
@@ -92,6 +93,21 @@ public static class Game
     public static List<Weapon> GetWeaponList() => weaponList;
     public static void SetWeaponList(List<Weapon> wList) => weaponList = wList;
 
+    #endregion
+
+    #region enemyWave
+    public static WaveData GetWaveByRefID(string waveID)
+    {
+        return waveDataList.Find(x => x.waveID == waveID);
+    }
+    public static List<WaveData> GetWaveDataList()
+    {
+        return waveDataList;
+    }
+    public static void SetWaveDataList(List<WaveData> wDList)
+    {
+        waveDataList = wDList;
+    }
     #endregion
 
     public static string GetSystemTime()

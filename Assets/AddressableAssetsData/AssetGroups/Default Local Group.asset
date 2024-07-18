@@ -37,6 +37,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dcc85a1e86010e47a8a0c16bf534926
+    m_Address: Assets/CSV/WaveRef.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7d659cfcc7b5e894c8e55c86c089ee08, type: 2}
   m_SchemaSet:

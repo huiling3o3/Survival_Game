@@ -1,0 +1,16 @@
+waveID,waveNumber,enemyID,enemyCount
+wave1e201,1,e201,10
+wave2e201,2,e201,10
+wave2e202,2,e202,10
+wave3e201,3,e201,12
+wave3e202,3,e202,10
+wave3e203,3,e203,6
+wave4e201,4,e201,14
+wave4e202,4,e202,13
+wave4e203,4,e203,9
+wave4e204,4,e204,2
+wave5e201,5,e201,16
+wave5e202,5,e202,14
+wave5e203,5,e203,11
+wave5e204,5,e204,5
+wave5e205,5,e205,1

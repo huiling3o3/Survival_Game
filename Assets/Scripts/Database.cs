@@ -15,6 +15,7 @@ public class Database : MonoBehaviour
     string buffFilePath = "";
     string enemyFilePath = "Assets/CSV/EnemyRef.csv";
     string weaponFilePath = "Assets/CSV/WeaponRef.csv";
+    string waveFilePath = "Assets/CSV/WaveRef.csv";
     string analyticsTracking = "Assets/CSV/Analytics.csv";
 
     // Start is called before the first frame update
@@ -271,6 +272,49 @@ public class Database : MonoBehaviour
 
         }
         return weaponList;
+    }
+
+    public List<WaveData> GetWaveDataList()
+    {
+        List<WaveData> waveDataList = new List<WaveData>();
+
+        if (File.Exists(enemyFilePath))
+        {
+            using (StreamReader sr = new StreamReader(waveFilePath))
+            {
+                string line = "";
+                bool isFirstLine = true;
+
+                while (!sr.EndOfStream) //reading the file and haven't reach the end
+                {
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (isFirstLine)
+                        {
+                            // Skip the header line
+                            isFirstLine = false;
+                            continue;
+                        }
+
+                        //Split the data into an array of attributes
+                        string[] fields = line.Split(',');
+
+                        //assign the attributes
+                        string waveID = fields[0];
+                        int waveNumber = int.Parse(fields[1]);
+                        string enemyID = fields[2];
+                        int enemyCount = int.Parse(fields[3]);
+
+                        Debug.Log($"ADD wave id: {waveID} wave number: {waveNumber} enemy id: {enemyID} enemy count: {enemyCount}");
+
+                        //Create the new buff based on the data
+                        WaveData wave = new WaveData(waveID, waveNumber, enemyID, enemyCount);
+                        waveDataList.Add(wave);
+                    }
+                }
+            }
+        }
+        return waveDataList;
     }
 }
 

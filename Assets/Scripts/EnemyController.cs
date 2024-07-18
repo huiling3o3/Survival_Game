@@ -116,13 +116,13 @@ public class EnemyController : MonoBehaviour
 
         //Add in attack animations too 
 
-        Debug.Log("Attacking target");
+        // Debug.Log("Attacking target");
         StartCoroutine(AttackTimer());
     }
     //Timer to add in pauses between attacks
     IEnumerator AttackTimer()
     {
-        Debug.Log("Timer started");
+        // Debug.Log("Timer started");
         canAttack = false;
         agent.isStopped = true;
         yield return new WaitForSeconds(atkCooldown);
