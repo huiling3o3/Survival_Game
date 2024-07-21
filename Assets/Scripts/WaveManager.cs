@@ -6,16 +6,20 @@ public class WaveManager : MonoBehaviour
 {
     public EnemySpawner enemySpawner; // Reference to the EnemySpawner script
     public Transform[] spawnLocations; // Array of spawn locations
-    public Database database; // Reference to the Database script
 
     private List<WaveData> waveDataList; // List to store wave data
     private int currentWave = 0; // Current wave number
+
+    public bool waveEnded = false; //Bool to check if wave has ended
+
+    [SerializeField] private Database database;
 
     // Start is called before the first frame update
     void Start()
     {
         waveDataList = database.GetWaveDataList(); // Get wave data from Database
         StartCoroutine(SpawnWaves()); // Start the wave spawning coroutine
+        Game.SetWaveManager(this);
     }
 
     // Coroutine to manage the spawning of waves
@@ -37,14 +41,22 @@ public class WaveManager : MonoBehaviour
                     enemySpawner.SpawnEnemy(waveData.EnemyID, spawnLocation);
 
                     // Wait a short delay between spawns
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(5f);
+
                 }
             }
 
             // Move to the next wave
             currentWave++;
+
+            //Wait until the last enemy is defeated 
+            yield return new WaitUntil(() => waveEnded = true);
+
             // Wait a delay before starting the next wave
             yield return new WaitForSeconds(2f);
+
+            //Sets the bool to false for the next wave
+            waveEnded = false;
         }
     }
 

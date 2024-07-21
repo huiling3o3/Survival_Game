@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 // a class to store all the static object that can be access anywhere in the scene
@@ -18,6 +19,7 @@ public static class Game
     private static EnemySpawner enemySpawner;
     private static BarrelRandomizer barrelRandomizer;
     private static BarrelSpawner barrelSpawner;
+    private static WaveManager waveManager;
     public static WeaponManager GetWeaponManager() => weaponManager;
     public static void SetWeaponManager(WeaponManager wm) => weaponManager = wm;
     public static BarrelRandomizer GetBarrelRandomizer() => barrelRandomizer;
@@ -26,6 +28,8 @@ public static class Game
     public static void SetEnemySpawner(EnemySpawner es) => enemySpawner = es;
     public static BarrelSpawner GetBarrelSpawner() => barrelSpawner;
     public static void SetBarrelSpawner(BarrelSpawner bs) => barrelSpawner = bs;
+    public static WaveManager GetWaveManager() => waveManager;
+    public static void SetWaveManager(WaveManager wave) => waveManager = wave;
 
     #region HUD
     public static HUDController GetHUDController() => hudController;

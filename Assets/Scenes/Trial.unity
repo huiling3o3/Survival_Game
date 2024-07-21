@@ -123,6 +123,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &55816594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 55816596}
+  - component: {fileID: 55816595}
+  m_Layer: 0
+  m_Name: WaveController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &55816595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55816594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84652ec528d5f94585723f8513df340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawner: {fileID: 149459692}
+  spawnLocations:
+  - {fileID: 1142735401}
+  - {fileID: 1654467502}
+  - {fileID: 371552960}
+  - {fileID: 1690575786}
+  waveEnded: 0
+  database: {fileID: 1060652383}
+--- !u!4 &55816596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55816594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.44248, y: -1.4276751, z: -0.27151275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &81059685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,8 +323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieGuyPrefab: {fileID: 2283738708162891013, guid: 7384ffeaea0cb5d4888b7ea9712ebef5, type: 3}
-  zombieGirlPrefab: {fileID: 3582399629148908738, guid: 3f9080eb7dbdffc4dbc5b22047775e44, type: 3}
-  bossPrefab: {fileID: 193298448949645304, guid: d7bb951b673b6e040b33849eb31bf47d, type: 3}
+  zombieGirlPrefab: {fileID: 2283738708162891013, guid: 96f0f975190411a469d4a52c42d54079, type: 3}
+  bossPrefab: {fileID: 2283738708162891013, guid: 91e975f44d067134295b66f370605ce9, type: 3}
+  spawnedEnemies: []
 --- !u!4 &149459693
 Transform:
   m_ObjectHideFlags: 0
@@ -538,9 +591,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3725443355205618892}
     - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
+      propertyPath: initWeapon
+      value: w101
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 1010623091}
+    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
+      propertyPath: Spawnlocation.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
       propertyPath: Spawnlocation.Array.data[0]
       value: 
@@ -789,7 +850,7 @@ Transform:
   m_GameObject: {fileID: 371552959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.6, z: 0}
+  m_LocalPosition: {x: 0, y: -5.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8034,6 +8095,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 1564763263}
+--- !u!114 &1060652383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8170162136257658171, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
+  m_PrefabInstance: {fileID: 258970470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6064b6814ae4ae84794b25063688c911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1066247508
 GameObject:
   m_ObjectHideFlags: 0
@@ -8430,7 +8502,7 @@ Transform:
   m_GameObject: {fileID: 1142735400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.509999, y: 0.08, z: 0}
+  m_LocalPosition: {x: -10.25, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8944,7 +9016,7 @@ Transform:
   m_GameObject: {fileID: 1654467501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.56, y: -0.03, z: 0}
+  m_LocalPosition: {x: 9.94, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8975,7 +9047,7 @@ Transform:
   m_GameObject: {fileID: 1690575785}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.56, z: 0}
+  m_LocalPosition: {x: 0, y: 5.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9741,3 +9813,4 @@ SceneRoots:
   - {fileID: 1818685660}
   - {fileID: 149459693}
   - {fileID: 1647298395}
+  - {fileID: 55816596}

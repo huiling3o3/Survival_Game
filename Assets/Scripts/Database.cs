@@ -64,6 +64,7 @@ public class Database : MonoBehaviour
         Game.SetEnemyList(GetEnemyList());
         Game.SetWeaponList(GetWeaponList());
         Game.SetBarrelList(GetBarrelList());
+        Game.SetWaveDataList(GetWaveDataList());
         Debug.Log("Data added successfully into Game");
 
         //Game.SetBuffList(GetBuffList());

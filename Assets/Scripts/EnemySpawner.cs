@@ -13,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     GameObject bossPrefab;
 
+    [SerializeField]
+    private List<GameObject> spawnedEnemies = new List<GameObject>(); //List to contain all enemies 
+
     private void Awake()
     {
         Game.SetEnemySpawner(this);
@@ -45,5 +48,22 @@ public class EnemySpawner : MonoBehaviour
         //initialise the enemy stats and start its function
         spawn.GetComponent<EnemyController>().Init();
         spawn.GetComponent<EnemyController>().SetStats(enemy.hp, enemy.atk, enemy.moveSpeed, enemy.atkCooldown);
+        spawnedEnemies.Add(spawn); //Adds to the list of enemies 
+    }
+
+    public void DestroyEnemy(GameObject enemyToDestroy)
+    {
+        Destroy(enemyToDestroy);
+        if(spawnedEnemies == null)
+        {
+            Game.GetWaveManager().waveEnded = true; //If all enemies are dead, set the waveEnded bool to true
+        }
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            DestroyEnemy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
     }
 }

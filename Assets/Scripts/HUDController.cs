@@ -17,11 +17,13 @@ public class HUDController : MonoBehaviour
     public void CloseCharacterSelectMenu()
     { 
         SelectCharacterUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void OpenCharacterSelectMenu()
     {
         SelectCharacterUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void UpdatePlayerStats()
