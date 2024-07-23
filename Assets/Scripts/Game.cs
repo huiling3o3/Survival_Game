@@ -69,6 +69,7 @@ public static class Game
     {
         buffList = bList;
     }
+    public static List<Buff> GetBuffList() => buffList;
     public static Buff GetBuffByRefID(string id)
     {
         return buffList.Find(x => x.id == id);

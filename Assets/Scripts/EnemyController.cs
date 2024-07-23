@@ -11,8 +11,8 @@ public class EnemyController : MonoBehaviour
     Animator am;
     SpriteRenderer sr;
     PlayerMovement pm;
+
     //Variables for enemy stats
-    //Remove serialize fields after switching to enemy spawning 
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -21,6 +21,11 @@ public class EnemyController : MonoBehaviour
     private int atk;
     [SerializeField]
     private int atkCooldown;
+
+    [SerializeField]
+    private GameObject chestPrefab; // Assign the chest prefab in the inspector
+    [Range(0, 1)]
+    public float chestDropRate = 0.33f;
 
     //Holds navmesh agent reference 
     private NavMeshAgent agent;
@@ -141,6 +146,15 @@ public class EnemyController : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        DropChest();
         Destroy(gameObject);
+    }
+
+    void DropChest()
+    {
+        if (Random.value <= chestDropRate)
+        {
+            Instantiate(chestPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

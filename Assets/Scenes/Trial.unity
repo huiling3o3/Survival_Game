@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 55816596}
   - component: {fileID: 55816595}
   m_Layer: 0
-  m_Name: WaveController
+  m_Name: WaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -850,7 +850,7 @@ Transform:
   m_GameObject: {fileID: 371552959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.58, z: 0}
+  m_LocalPosition: {x: 0, y: -6.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8502,7 +8502,7 @@ Transform:
   m_GameObject: {fileID: 1142735400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.25, y: 0.08, z: 0}
+  m_LocalPosition: {x: -11.37, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9016,7 +9016,7 @@ Transform:
   m_GameObject: {fileID: 1654467501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.94, y: -0.03, z: 0}
+  m_LocalPosition: {x: 12.01, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9047,7 +9047,7 @@ Transform:
   m_GameObject: {fileID: 1690575785}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.18, z: 0}
+  m_LocalPosition: {x: 0, y: 6.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

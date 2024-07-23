@@ -59,11 +59,4 @@ public class EnemySpawner : MonoBehaviour
             Game.GetWaveManager().waveEnded = true; //If all enemies are dead, set the waveEnded bool to true
         }
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            DestroyEnemy(GameObject.FindGameObjectWithTag("Enemy"));
-        }
-    }
 }

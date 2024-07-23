@@ -9,6 +9,7 @@ public class WaveManager : MonoBehaviour
 
     private List<WaveData> waveDataList; // List to store wave data
     private int currentWave = 0; // Current wave number
+    private float enemySpawnDelay = 5f;
 
     public bool waveEnded = false; //Bool to check if wave has ended
 
@@ -41,13 +42,16 @@ public class WaveManager : MonoBehaviour
                     enemySpawner.SpawnEnemy(waveData.EnemyID, spawnLocation);
 
                     // Wait a short delay between spawns
-                    yield return new WaitForSeconds(5f);
+                    yield return new WaitForSeconds(enemySpawnDelay);
 
                 }
             }
 
             // Move to the next wave
             currentWave++;
+
+            enemySpawnDelay -= 0.5f;
+            Debug.Log($"Enemy Spawn Delay is {enemySpawnDelay}");
 
             //Wait until the last enemy is defeated 
             yield return new WaitUntil(() => waveEnded = true);

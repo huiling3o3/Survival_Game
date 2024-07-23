@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
     {
         //set player initial weapon
         SetWeapon(initWeapon);
-        SetWeapon("w303");
+        SetWeapon("w103");
         //spawn the enemy
         enemySpawner = Game.GetEnemySpawner();
         //set input handler to player movement script

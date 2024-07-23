@@ -20,10 +20,10 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
             enemy.TakeDamage(wc.damage);
             Destroy(gameObject);
         }
-       else if(col.CompareTag("Barrel"))
+        else if (col.CompareTag("Barrel"))
         {
             BarrelController barrel = col.GetComponent<BarrelController>();
             barrel.TakeHit();
-        } 
+        }
     }
 }

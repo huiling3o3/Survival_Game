@@ -1,10 +1,10 @@
 waveID,waveNumber,enemyID,enemyCount
-wave1e101,1,e101,3
-wave2e102,2,e102,2
-wave2e105,2,e105,1
-wave3e101,3,e101,1
-wave3e102,3,e102,10
-wave3e103,3,e103,6
+wave1e101,1,e101,5
+wave2e102,2,e101,3
+wave2e105,2,e102,5
+wave3e101,3,e101,5
+wave3e102,3,e102,5
+wave3e103,3,e105,1
 wave4e101,4,e101,14
 wave4e102,4,e102,13
 wave4e103,4,e103,9

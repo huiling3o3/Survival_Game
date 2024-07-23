@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public void AddWeapon(string weaponID, GameObject weaponPrefab)
     {
         if (!PlayerWeapons.ContainsKey(weaponID))
-        {           
+        {
             GameObject weaponInstance = Instantiate(weaponPrefab, transform);
             Debug.Log("weapon added success!");
             Weapon weapon = Game.GetWeaponByRefID(weaponID);
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     public float GetCurrentHp() => currentHp;
     public Vector2 GetLastMovedVector() => pm.lastMovedVector;
 
-    public void IncreaseHealth(float newHp) 
+    public void IncreaseHealth(float newHp)
     {
         currentHp = currentHp * newHp;
     }
@@ -80,12 +80,24 @@ public class PlayerController : MonoBehaviour
             currentHp -= damage;
         }
         Debug.Log($"player took {damage} damage");
-        if (currentHp <= 0) 
+        if (currentHp <= 0)
         {
             Debug.Log("Character dead");
         }
 
         //create an event subscription when player health is decreased
         hpBar.SetState(currentHp, MaxHP);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Chest"))
+        {
+            Chest chest = collision.gameObject.GetComponent<Chest>();
+            if (chest != null)
+            {
+                chest.OpenChest();
+            }
+        }
     }
 }
