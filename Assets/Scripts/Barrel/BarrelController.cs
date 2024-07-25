@@ -4,27 +4,46 @@ using UnityEngine;
 
 public class BarrelController : MonoBehaviour
 {
-    [SerializeField] int hitPoints = 3; // The number of hits the barrel can take
-    [SerializeField] float dropRate = 0.5f; // Probability of dropping a health potion (0.5 means 50%)
-
-    public GameObject healthPotionPrefab; // The health potion prefab
+    [SerializeField] Sprite[] barrelSprites;
+    [SerializeField] GameObject healthPotionPrefab; // The health potion prefab  
+    [SerializeField] float healthPoint; //the health points to pass in the health potion
+    [SerializeField] int currentHitPoints = 0; // The number of hits the barrel can take
+    public void SetStats(int hitPts, float healthPt)
+    {
+        currentHitPoints = hitPts;
+        healthPoint = healthPt;
+        GetComponent<SpriteRenderer>().sprite = barrelSprites[0];
+    }
 
     public void TakeHit()
     {
-        hitPoints--;
+        --currentHitPoints;
 
-        if (hitPoints <= 0)
+        //change the sprite according to the number of hits
+        if (currentHitPoints <= 0)
         {
-            Destroy(gameObject);
             DropHealthPotion();
+            Destroy(gameObject);          
+        }
+        else if (currentHitPoints <= 1)
+        {
+            GetComponent<SpriteRenderer>().sprite = barrelSprites[2];
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = barrelSprites[1];
         }
     }
 
     void DropHealthPotion()
     {
-        if (Random.value <= dropRate)
+        GameObject hc_gameObject = Instantiate(healthPotionPrefab, transform.position, Quaternion.identity);
+        HealthCollectable hc = hc_gameObject.GetComponent<HealthCollectable>();
+        if (hc != null) 
         {
-            Instantiate(healthPotionPrefab, transform.position, Quaternion.identity);
+            // set the health point
+            hc.SetHP(healthPoint);            
         }
+        
     }
 }

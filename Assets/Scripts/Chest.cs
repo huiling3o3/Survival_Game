@@ -10,17 +10,25 @@ public class Chest : MonoBehaviour
 
     void Start()
     {
-        weapons = Game.GetWeaponList();
-        List<Buff> allBuffs = Game.GetBuffList();
-        weaponBuff = allBuffs.FindAll(buff => buff.buffType == Buff.BuffType.ATK || buff.buffType == Buff.BuffType.RANGE || buff.buffType == Buff.BuffType.RATE);
-        playerBuff = allBuffs.FindAll(buff => buff.buffType == Buff.BuffType.HP || buff.buffType == Buff.BuffType.SPEED);
-
+        //weapons = Game.GetWeaponList();
+        //List<Buff> allBuffs = Game.GetBuffList();
+        //weaponBuff = allBuffs.FindAll(buff => buff.buffType == Buff.BuffType.ATK || buff.buffType == Buff.BuffType.RANGE || buff.buffType == Buff.BuffType.RATE);
+        //playerBuff = allBuffs.FindAll(buff => buff.buffType == Buff.BuffType.HP || buff.buffType == Buff.BuffType.SPEED);
     }
 
     public void OpenChest()
     {
         // Display the reward selection UI
         Debug.Log("Chest opened. Select your reward!");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            //Interact with the Chest UI
+            OpenChest();
+        }
     }
 
     // Method to give the selected reward to the player

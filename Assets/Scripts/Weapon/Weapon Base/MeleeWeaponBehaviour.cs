@@ -20,6 +20,11 @@ public class MeleeWeaponBehaviour : MonoBehaviour
             EnemyController enemy = col.GetComponent<EnemyController>();
             enemy.TakeDamage(wc.damage);
         }
+        else if (col.CompareTag("Barrel"))
+        {
+            BarrelController barrel = col.GetComponent<BarrelController>();
+            barrel.TakeHit();
+        }
     }
 
 }

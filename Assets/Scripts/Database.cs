@@ -280,7 +280,7 @@ public class Database : MonoBehaviour
     {
         List<WaveData> waveDataList = new List<WaveData>();
 
-        if (File.Exists(enemyFilePath))
+        if (File.Exists(waveFilePath))
         {
             using (StreamReader sr = new StreamReader(waveFilePath))
             {
@@ -306,11 +306,12 @@ public class Database : MonoBehaviour
                         int waveNumber = int.Parse(fields[1]);
                         string enemyID = fields[2];
                         int enemyCount = int.Parse(fields[3]);
+                        string barrelID = fields[4];
+                        int barrelCount = int.Parse(fields[5]);
+                        //Debug.Log($"ADD wave id: {waveID} wave number: {waveNumber} enemy id: {enemyID} enemy count: {enemyCount} barrel id {barrelID} barrel count: {barrelCount}");
 
-                        Debug.Log($"ADD wave id: {waveID} wave number: {waveNumber} enemy id: {enemyID} enemy count: {enemyCount}");
-
-                        //Create the new buff based on the data
-                        WaveData wave = new WaveData(waveID, waveNumber, enemyID, enemyCount);
+                        //Create the new wave based on the data
+                        WaveData wave = new WaveData(waveID, waveNumber, enemyID, enemyCount,barrelID,barrelCount);
                         waveDataList.Add(wave);
                     }
                 }
@@ -351,10 +352,9 @@ public class Database : MonoBehaviour
                         int hitPoint = int.Parse(fields[1]);
                         float healthPoint = float.Parse(fields[2]);
 
-                        //Debug.Log($"ADD Character id: {id} name: {name} desc: {desc} hp: {hp} movepeed: {moveSpeed}");
-
-                        //Create the new character based on the data
-                        //string id, string name, string desc, int hp, int atk, int atkRange, int atkInterval, float moveSpeed
+                        //Create the new barrel based on the data
+                        //string id, int hitpoint, float health point
+                        //Debug.Log($"ADD barrel id: {id} hit point: {hitPoint} health point: {healthPoint}");
                         Barrel barrel = new Barrel(id, hitPoint, healthPoint);
                         barrelList.Add(barrel);
                     }

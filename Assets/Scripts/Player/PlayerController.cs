@@ -66,12 +66,18 @@ public class PlayerController : MonoBehaviour
     public float GetMaxHp() => MaxHP;
     public float GetCurrentHp() => currentHp;
     public Vector2 GetLastMovedVector() => pm.lastMovedVector;
-
-    public void IncreaseHealth(float newHp)
+    public Vector2 GetMoveDir() => pm.moveDir;
+    public void IncreaseHealth(float newHp) //newHp is in percentage
     {
-        currentHp = currentHp * newHp;
+        currentHp += currentHp * newHp;
+        if (currentHp > MaxHP)
+        { 
+            currentHp = MaxHP;
+        }
+
+        //create an event subscription when player health is decreased
+        hpBar.SetState(currentHp, MaxHP);
     }
-    #endregion
 
     public void TakeDamage(int damage)
     {
@@ -89,15 +95,5 @@ public class PlayerController : MonoBehaviour
         hpBar.SetState(currentHp, MaxHP);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Chest"))
-        {
-            Chest chest = collision.gameObject.GetComponent<Chest>();
-            if (chest != null)
-            {
-                chest.OpenChest();
-            }
-        }
-    }
+    #endregion
 }

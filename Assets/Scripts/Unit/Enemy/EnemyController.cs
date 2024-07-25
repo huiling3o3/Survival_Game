@@ -140,14 +140,10 @@ public class EnemyController : MonoBehaviour
         Debug.Log($"Enemy took {damage} damage");
         if (hp <= 0)
         {
-            DestroyEnemy();
+            Destroy(gameObject);
+            Game.GetGameController().EnemyKilled();
+            DropChest();
         }
-    }
-
-    public void DestroyEnemy()
-    {
-        DropChest();
-        Destroy(gameObject);
     }
 
     void DropChest()

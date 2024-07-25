@@ -11,16 +11,7 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
 
     protected override void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Enemy"))
-        {
-            EnemyController enemy = col.GetComponent<EnemyController>();
-            enemy.TakeDamage(wc.damage);
-        }
-        else if (col.CompareTag("Barrel"))
-        {
-            BarrelController barrel = col.GetComponent<BarrelController>();
-            barrel.TakeHit();
-        }
+        base.OnTriggerEnter2D(col);
     }
 
 }

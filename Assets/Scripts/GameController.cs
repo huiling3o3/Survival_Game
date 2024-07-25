@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -9,18 +10,14 @@ public class GameController : MonoBehaviour
     public InputHandler inputHandler;
     Database dm;
     PlayerController pc;
-    //bool gameIsActive = false;
-
-    [SerializeField]
-    private Transform[] Spawnlocation;
+    bool gameIsActive = false;
 
     //initial character & weapon
     public string initCharacter;
     public string initWeapon;
-
-    float timer = 0f;
-    private EnemySpawner enemySpawner;
-    private float timeBetweenSpawn = 10f;
+    
+    //Game Controller Variables
+    public int numOfEnemiesKilled;
 
     private void Awake()
     {
@@ -43,10 +40,10 @@ public class GameController : MonoBehaviour
         pc.Init();
     }
 
-
+    
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         //Open character select menu
         Game.GetHUDController().OpenCharacterSelectMenu();        
     }
@@ -55,35 +52,30 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer < timeBetweenSpawn)
-        {
-            timer += Time.deltaTime;
-            if (timer >= timeBetweenSpawn)
-            {
-                Debug.Log("Enemy Spawned");
-                int rand = Random.Range(0, 3);
-                enemySpawner.SpawnEnemy("e101", Spawnlocation[rand]);
-                //timer = 0f;
-            }
-        }
+       
     }  
 
     public void StartGame()
     {
         //set player initial weapon
         SetWeapon(initWeapon);
+        //set the second weapon 
         SetWeapon("w103");
-        //spawn the enemy
-        enemySpawner = Game.GetEnemySpawner();
+
+        //call the wave manager to start the wave of enemies
+        Game.GetWaveManager().NextWave();
+        
+        //update the HUD manager to update the UI
+        Game.GetHUDController().UpdateWaveStats(Game.GetWaveManager().GetCurrentWave(), Game.GetWaveManager().GetEnemyCountInWave());
+
         //set input handler to player movement script
         inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>());
-    }
+    }  
 
     public void SetCharacter(string characterId)
     {
         //update the player stats with the character selected info
-        Game.GetPlayer().ChangeCharacter(characterId);
-        
+        Game.GetPlayer().ChangeCharacter(characterId);       
         //update the UI
         Game.GetHUDController().UpdatePlayerStats();
         //close menu
@@ -104,4 +96,47 @@ public class GameController : MonoBehaviour
             return true;
         else return false;
     }
+
+    public void EnemyKilled()
+    {
+        numOfEnemiesKilled++;       
+
+        //Check if all the current wave of enemies are killed if killed 
+        if (numOfEnemiesKilled == Game.GetWaveManager().GetEnemyCountInWave())
+        {
+            //call the wave manager to start the next wave of enemies
+            Game.GetWaveManager().NextWave();
+            //reset the number of enemies killed
+            numOfEnemiesKilled = 0;
+        }
+
+        //update the HUD manager to update the UI on the wave stats to get the number of enemies left 
+        Game.GetHUDController().UpdateWaveStats(Game.GetWaveManager().GetCurrentWave(), Game.GetWaveManager().GetEnemyCountInWave() - numOfEnemiesKilled);
+    }
+
+    #region Menus
+    public void ResumeGame()
+    {
+        //unpause game
+        Time.timeScale = 1f;
+        gameIsActive = true;
+
+        //set input handler to movement script
+        inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>());
+
+        //close pause menu
+        //ClosePauseMenu();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        gameIsActive = false;
+    }
+
+    public void ClosePauseMenu()
+    {
+        //menuSceneManager.CloseMenuScene("PauseMenuScene");
+    }
+    #endregion
 }

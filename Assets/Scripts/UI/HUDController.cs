@@ -8,6 +8,8 @@ public class HUDController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI playerStatsTxt, characterTxt;
     [SerializeField]
+    private TextMeshProUGUI waveStatsTxt, enemiesTxt;
+    [SerializeField]
     GameObject SelectCharacterUI;
     public void Awake()
     {
@@ -32,6 +34,12 @@ public class HUDController : MonoBehaviour
         playerStatsTxt.text = "Spd: " + Game.GetPlayer().GetMovementSpeed() + " Max Health: " + Game.GetPlayer().GetMaxHp();
         Character character = Game.GetCharacterByRefID(Game.GetPlayer().GetCurrentCharacter());
         characterTxt.text = character.name;
+    }
+
+    public void UpdateWaveStats(int waveNo, int enemies)
+    {
+        waveStatsTxt.text = waveNo.ToString();
+        enemiesTxt.text = enemies.ToString();
     }
 
     // Start is called before the first frame update

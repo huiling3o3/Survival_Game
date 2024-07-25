@@ -11,6 +11,7 @@ public class Barrel
     {
         this.id = id;
         this.hitPoints = hitPoints;
+        this.healthPoint = healthPoint;
     }
 }
 

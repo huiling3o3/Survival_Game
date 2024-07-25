@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Game.SetEnemySpawner(this);
     }
+
     //change the enemy name to enemyID when change to wave manager
     public void SpawnEnemy(string enemyID, Transform spawnLocation)
     { 
@@ -49,14 +51,5 @@ public class EnemySpawner : MonoBehaviour
         spawn.GetComponent<EnemyController>().Init();
         spawn.GetComponent<EnemyController>().SetStats(enemy.hp, enemy.atk, enemy.moveSpeed, enemy.atkCooldown);
         spawnedEnemies.Add(spawn); //Adds to the list of enemies 
-    }
-
-    public void DestroyEnemy(GameObject enemyToDestroy)
-    {
-        Destroy(enemyToDestroy);
-        if(spawnedEnemies == null)
-        {
-            Game.GetWaveManager().waveEnded = true; //If all enemies are dead, set the waveEnded bool to true
-        }
     }
 }

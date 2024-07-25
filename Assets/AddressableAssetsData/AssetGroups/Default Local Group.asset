@@ -42,6 +42,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9dfe862a5f38134fb6364f1be823b41
+    m_Address: Assets/CSV/BarrelRef.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7d659cfcc7b5e894c8e55c86c089ee08, type: 2}
   m_SchemaSet:
