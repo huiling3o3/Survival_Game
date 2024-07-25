@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    string currentCharacter;
-
     private Dictionary<string, GameObject> PlayerWeapons = new Dictionary<string, GameObject>();
+
+    [Header("Player Stats")]
+    string currentCharacter;
 
     [SerializeField] float currentHp;
 
@@ -16,13 +17,14 @@ public class PlayerController : MonoBehaviour
 
     //references
     PlayerMovement pm;
-
+    PlayerAnimator pa;
     public void Init()
     {
         //set player initial position
         transform.position = Vector2.zero;
         //set all the references connected to the player interactions
         pm = GetComponent<PlayerMovement>();
+        pa = GetComponent<PlayerAnimator>();
     }
 
     #region Weapons
@@ -49,7 +51,11 @@ public class PlayerController : MonoBehaviour
 
         //get the character id
         Character playerCharacter = Game.GetCharacterByRefID(this.currentCharacter);
-        //change the player variables according to the character
+
+        //Swap the animator controller according to the character name
+        pa.ChangeAnimator(playerCharacter.name);
+
+        //Set characters stats
         MaxHP = playerCharacter.hp;
         currentHp = MaxHP;
         pm.ChangeMovementSpeed(playerCharacter.moveSpeed);

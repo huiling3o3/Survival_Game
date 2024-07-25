@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     PlayerMovement pm;
     SpriteRenderer sr;
 
+    [SerializeField] RuntimeAnimatorController[] characterAnimatorList;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,6 +19,19 @@ public class PlayerAnimator : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
+    public void ChangeAnimator(string characterName)
+    {
+        //Joy Update this with 3 more characters
+        if (characterAnimatorList.Length != 0)
+        {
+            if (characterName == "Red Riding Hood")
+            {
+                am.runtimeAnimatorController = characterAnimatorList[0];
+
+            }
+        }        
+    }
+        
     // Update is called once per frame
     void Update()
     {

@@ -30,14 +30,8 @@ public class GameController : MonoBehaviour
 
         //Set reference for the player
         pc = playerObj.GetComponent<PlayerController>();
-        Game.SetPlayer(pc);
-
-        //Set the initial character to be unlocked for the player to select
-        Character character = Game.GetCharacterByRefID(initCharacter);
-        character.locked = false;
-
-        //initialise the player
-        pc.Init();
+        
+        Character character = Game.GetCharacterByRefID(initCharacter);     
     }
 
     
@@ -74,10 +68,18 @@ public class GameController : MonoBehaviour
 
     public void SetCharacter(string characterId)
     {
+        //setup the player
+
+        //initialise the player
+        pc.Init();
+        Game.SetPlayer(pc);
+
         //update the player stats with the character selected info
-        Game.GetPlayer().ChangeCharacter(characterId);       
-        //update the UI
-        Game.GetHUDController().UpdatePlayerStats();
+        Game.GetPlayer().ChangeCharacter(characterId);
+
+        //update the player UI sprite on the HP Bar
+        Game.GetHUDController().ChangeCharacterSprite(characterId);
+
         //close menu
         Game.GetHUDController().CloseCharacterSelectMenu();
 

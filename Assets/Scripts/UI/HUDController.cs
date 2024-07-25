@@ -5,12 +5,14 @@ using TMPro;
 
 public class HUDController : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI playerStatsTxt, characterTxt;
-    [SerializeField]
-    private TextMeshProUGUI waveStatsTxt, enemiesTxt;
-    [SerializeField]
-    GameObject SelectCharacterUI;
+
+    [Header("Wave Txt")]
+    [SerializeField] private TextMeshProUGUI waveStatsTxt, enemiesTxt;
+    [Header("Select Character UI")]
+    [SerializeField] GameObject SelectCharacterUI;
+    [Header("Character Sprite")]
+    [SerializeField] Sprite[] CharacterSprites;
+    [SerializeField] SpriteRenderer HPSprite;
     public void Awake()
     {
         Game.SetHUDController(this);
@@ -28,12 +30,15 @@ public class HUDController : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void UpdatePlayerStats()
+    public void ChangeCharacterSprite(string characterID)
     {
-        //Spd: 00, Current Hp: 00, Max Hp: 00 
-        playerStatsTxt.text = "Spd: " + Game.GetPlayer().GetMovementSpeed() + " Max Health: " + Game.GetPlayer().GetMaxHp();
-        Character character = Game.GetCharacterByRefID(Game.GetPlayer().GetCurrentCharacter());
-        characterTxt.text = character.name;
+        //get the character id
+        Character c = Game.GetCharacterByRefID(characterID);
+
+        if (c.name == "Red Riding Hood")
+        {
+            HPSprite.sprite = CharacterSprites[0];
+        }
     }
 
     public void UpdateWaveStats(int waveNo, int enemies)

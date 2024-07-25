@@ -11,6 +11,7 @@ public class WeaponManager : MonoBehaviour
     {
         Game.SetWeaponManager(this);
     }
+
     public GameObject GetWeaponPrefab(string weaponName)
     {
         if (WeaponPrefabList.Count != 0)
