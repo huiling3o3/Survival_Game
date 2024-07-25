@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class CharacterSelect : MonoBehaviour
 {
+    //To be written in the inspector
     public string characterId;
+    
     Character character;
     Button thisbtn;
     [SerializeField]
@@ -19,27 +21,13 @@ public class CharacterSelect : MonoBehaviour
         character = Game.GetCharacterByRefID(characterId);
         thisbtn = GetComponent<Button>();
         buttonText.text = character.name;
-        UpdateBtnStatus();
         // Add a listener to the onClick event
         thisbtn.onClick.AddListener(OnButtonClick);
     }
     void OnButtonClick()
     {
-        Debug.Log("Button was clicked!");
+        //Debug.Log("Button was clicked!");
         //Set the player character to the characterID;
         Game.GetGameController().SetCharacter(characterId);
-    }
-
-    public void UpdateBtnStatus()
-    {
-        //Check if the character is locked if it is set the button to be non-interactable
-        if (character.locked)
-        {
-            thisbtn.interactable = false;
-        }
-        else
-        {
-            thisbtn.interactable = true;
-        }
     }
 }
