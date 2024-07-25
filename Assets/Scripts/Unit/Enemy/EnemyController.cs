@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour
 
     void SpriteDirectionChecker()
     {
-        if (pm.lastHorizontalVector < 0)
+        if (agent.velocity.x < 0)
         {
             sr.flipX = true;
         }
