@@ -102,7 +102,7 @@ public class Player
         { 
             Buff buff = Game.GetBuffByRefID(buffId);
 
-            switch (buff.buffType)
+            switch (buff.name)
             {
                 case Buff.BuffType.HP:
                     playerMaxHp *= Mathf.CeilToInt(1f + buff.buffValue);

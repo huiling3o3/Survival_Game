@@ -5,11 +5,11 @@ using UnityEngine;
 public class Buff
 {
     public string id { get; }
-    public string name { get; }
-    public BuffType buffType { get; }
+    public BuffType name { get; }
+    public string buffType { get; }
     public float buffValue { get; }
 
-    public Buff(string id, string name, BuffType buffType, float buffValue)
+    public Buff(string id, BuffType name, string buffType, float buffValue)
     {
         this.id = id;
         this.name = name;
