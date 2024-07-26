@@ -5,24 +5,29 @@ using UnityEngine;
 public class Buff
 {
     public string id { get; }
-    public BuffType name { get; }
-    public string buffType { get; }
+    public buffName name { get; }
+    public buffType bufftype { get; }
     public float buffValue { get; }
 
-    public Buff(string id, BuffType name, string buffType, float buffValue)
+    public Buff(string id, buffName name, buffType bType, float buffValue)
     {
         this.id = id;
         this.name = name;
-        this.buffType = buffType;
+        this.bufftype = bType;
         this.buffValue = buffValue;
     }
 
-    public enum BuffType
+    //HP - FOR CHARACTER ONLY, ATK & COOLDOWN IS FOR WEAPON ONLY
+    public enum buffName
     { 
         HP,
         ATK,
         SPEED,
-        RATE,
-        RANGE
+        COOLDOWN
+    }
+    public enum buffType
+    {
+        CHARACTER,
+        WEAPON
     }
 }

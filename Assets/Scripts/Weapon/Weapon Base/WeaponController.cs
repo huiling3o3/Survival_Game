@@ -12,11 +12,14 @@ public class WeaponController : MonoBehaviour
     [Header("Weapon Stats")]
     public GameObject prefab;
 
-    public int damage; //atk
-    public float speed;
-    public float atkRange;// the radius of the attack range
-    public float cooldownDuration;
+    protected int damage; //atk
+    protected float speed;
+    protected float atkRange;// the radius of the attack range
+    protected float cooldownDuration;
     float currentCooldown;
+
+    protected int maxBuffLvl = 3;
+    protected int currentBuffLvl = 1;
     public virtual void init()
     {
         //set the current cool down to the cool down duration
@@ -28,6 +31,22 @@ public class WeaponController : MonoBehaviour
         if (currentCooldown <= 0f)   //Once the cooldown becomes 0, attack
         {
             DoAttack();
+        }
+    }
+
+    public void BuffUpgrade(Buff.buffName name, int value)
+    {
+        switch (name)
+        {
+            case Buff.buffName.ATK:
+                damage = value;
+                break;
+            case Buff.buffName.SPEED:
+                speed = value;
+                break;
+            case Buff.buffName.COOLDOWN:
+                speed = value;
+                break;
         }
     }
 

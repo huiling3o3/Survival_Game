@@ -156,7 +156,7 @@ public class Database : MonoBehaviour
                         string type = fields[2];
                         float buffValue = float.Parse(fields[3]);
 
-                        Buff.BuffType buffName = (Buff.BuffType)System.Enum.Parse(typeof(Buff.BuffType), name);
+                        Buff.buffName buffName = (Buff.buffName)System.Enum.Parse(typeof(Buff.buffName), name);
 
                         //Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
 

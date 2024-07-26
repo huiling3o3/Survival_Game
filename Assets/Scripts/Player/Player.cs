@@ -104,19 +104,19 @@ public class Player
 
             switch (buff.name)
             {
-                case Buff.BuffType.HP:
+                case Buff.buffName.HP:
                     playerMaxHp *= Mathf.CeilToInt(1f + buff.buffValue);
                     break;
-                case Buff.BuffType.ATK:
+                case Buff.buffName.ATK:
                     //playerAtk *= 1f + buff.buffValue; 
                     break;
-                case Buff.BuffType.SPEED:
+                case Buff.buffName.SPEED:
                     //playerSpeed *= 1f + buff.buffValue;
                     break;
-                case Buff.BuffType.RATE:
+                case Buff.buffName.RATE:
                     //playerAtkInterval *= 1f + buff.buffValue;
                     break;
-                case Buff.BuffType.RANGE:
+                case Buff.buffName.RANGE:
                     //playerAtkRange *= 1f + buff.buffValue;
                     break;
 
