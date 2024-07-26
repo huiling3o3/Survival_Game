@@ -10049,6 +10049,7 @@ MonoBehaviour:
   WeaponPrefabList:
   - {fileID: 5490874515244889291, guid: 070d1c8455b5395458c6ce709cc36b11, type: 3}
   - {fileID: 8528614889637346886, guid: d00b2ba8740bf344ba0eb842be4db389, type: 3}
+  - {fileID: 8412267375856206214, guid: a6177678309d2124fb90f13b9c6ed3f3, type: 3}
 --- !u!4 &1647298395
 Transform:
   m_ObjectHideFlags: 0

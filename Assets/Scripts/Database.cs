@@ -10,13 +10,13 @@ using System;
 /// </summary>
 public class Database : MonoBehaviour
 {
-    string characterFilePath = "Assets/CSV/CharacterRef.csv";
-    string buffFilePath = "Assets/CSV/BuffRef.csv";
-    string enemyFilePath = "Assets/CSV/EnemyRef.csv";
-    string weaponFilePath = "Assets/CSV/WeaponRef.csv";
-    string waveFilePath = "Assets/CSV/WaveRef.csv";
-    string barrelFilePath = "Assets/CSV/BarrelRef.csv";
-    string analyticsTracking = "Assets/CSV/Analytics.csv";
+    string characterFilePath = Application.streamingAssetsPath + "/CSV/CharacterRef.csv";
+    string buffFilePath = Application.streamingAssetsPath + "/CSV/BuffRef.csv";
+    string enemyFilePath = Application.streamingAssetsPath + "/CSV/EnemyRef.csv";
+    string weaponFilePath = Application.streamingAssetsPath + "/CSV/WeaponRef.csv";
+    string waveFilePath = Application.streamingAssetsPath + "/CSV/WaveRef.csv";
+    string barrelFilePath = Application.streamingAssetsPath + "/CSV/BarrelRef.csv";
+    string analyticsTracking = Application.streamingAssetsPath + "/CSV/Analytics.csv";
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +65,7 @@ public class Database : MonoBehaviour
         Game.SetWeaponList(GetWeaponList());
         Game.SetBarrelList(GetBarrelList());
         Game.SetWaveDataList(GetWaveDataList());
-        Game.SetBuffList(GetBuffList());
+        //Game.SetBuffList(GetBuffList());
         Debug.Log("Data added successfully into Game");
     }
 
@@ -156,7 +156,7 @@ public class Database : MonoBehaviour
                         string type = fields[2];
                         float buffValue = float.Parse(fields[3]);
 
-                        Buff.buffName buffName = (Buff.buffName)System.Enum.Parse(typeof(Buff.buffName), name);
+                        //Buff.buffName buffName = (Buff.buffName)System.Enum.Parse(typeof(Buff.buffName), name);
 
                         //Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
 

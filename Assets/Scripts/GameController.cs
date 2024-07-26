@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
         //set player initial weapon
         SetWeapon(initWeapon);
         //set the second weapon 
-        SetWeapon("w103");
+        SetWeapon("w102");
 
         //call the wave manager to start the wave of enemies
         Game.GetWaveManager().NextWave();

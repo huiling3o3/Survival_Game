@@ -22,6 +22,8 @@ public class WeaponManager : MonoBehaviour
                     return WeaponPrefabList[0];
                 case "Force Field":
                     return WeaponPrefabList[1];
+                case "Axe":
+                    return WeaponPrefabList[2];
             }
             Debug.Log("no weapon found!");
             return null;
