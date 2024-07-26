@@ -39,6 +39,16 @@ public class HUDController : MonoBehaviour
         {
             HPSprite.sprite = CharacterSprites[0];
         }
+
+        else if (c.name == "Blacksmith")
+        {
+            HPSprite.sprite = CharacterSprites[1];
+        }
+
+        else if (c.name == "Librarian")
+        {
+            HPSprite.sprite = CharacterSprites[2];
+        }
     }
 
     public void UpdateWaveStats(int waveNo, int enemies)
