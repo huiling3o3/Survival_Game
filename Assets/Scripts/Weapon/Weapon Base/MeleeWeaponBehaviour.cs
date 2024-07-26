@@ -18,7 +18,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             EnemyController enemy = col.GetComponent<EnemyController>();
-            enemy.TakeDamage(wc.damage);
+            enemy.TakeDamage(wc.GetWeaponDamage());
         }
         else if (col.CompareTag("Barrel"))
         {

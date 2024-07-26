@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 /// <summary>
@@ -14,12 +15,12 @@ public class WeaponController : MonoBehaviour
 
     protected int damage; //atk
     protected float speed;
-    protected float atkRange;// the radius of the attack range
     protected float cooldownDuration;
     float currentCooldown;
 
-    protected int maxBuffLvl = 3;
-    protected int currentBuffLvl = 1;
+    private int maxBuffLvl = 3;
+    private int currentBuffLvl = 1;
+
     public virtual void init()
     {
         //set the current cool down to the cool down duration
@@ -32,6 +33,19 @@ public class WeaponController : MonoBehaviour
         {
             DoAttack();
         }
+    }
+
+    public float GetWeaponSpeed() => speed;
+    public int GetWeaponDamage() => damage;
+    public float GetWeaponCoolDown() => cooldownDuration;
+
+    public bool CheckMaxBuffLvl()
+    {
+        if (currentBuffLvl >= maxBuffLvl)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void BuffUpgrade(Buff.buffName name, int value)
@@ -50,16 +64,11 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void SetStats(int damage, float speed,int range,float cooldown)
+    public void SetStats(int damage, float speed,float cooldown)
     {
         this.damage = damage;
 
         this.speed = speed;
-
-        this.atkRange = range;
-
-        //Set the collider to the atk range
-        //this.transform.localScale = new Vector3(atkRange, atkRange, atkRange);
 
         this.cooldownDuration = cooldown;
 

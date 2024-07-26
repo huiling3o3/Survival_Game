@@ -161,8 +161,8 @@ public class Database : MonoBehaviour
                         //Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
 
                         //Create the new buff based on the data
-                        Buff buff = new Buff(id, buffName, type, buffValue);
-                        buffList.Add(buff);
+                        //Buff buff = new Buff(id, buffName, type, buffValue);
+                        //buffList.Add(buff);
                     }
 
                 }

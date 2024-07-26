@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
             Weapon weapon = Game.GetWeaponByRefID(weaponID);
             //set the weapon details from the weapon class
             weaponInstance.GetComponent<WeaponController>().init();
-            weaponInstance.GetComponent<WeaponController>().SetStats(weapon.atk, weapon.speed, weapon.ranged, weapon.cooldown);
+            weaponInstance.GetComponent<WeaponController>().SetStats(weapon.atk, weapon.speed, weapon.cooldown);
             PlayerWeapons.Add(weaponID, weaponInstance);
         }
     }

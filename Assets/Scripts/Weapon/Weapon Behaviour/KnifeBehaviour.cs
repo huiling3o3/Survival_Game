@@ -8,7 +8,7 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
     protected void Update()
     {
         //set the movement of the knife
-        transform.position += direction * wc.speed * Time.deltaTime;
+        transform.position += direction * wc.GetWeaponSpeed() * Time.deltaTime;
     }
 
     protected void OnTriggerEnter2D(Collider2D col)
@@ -17,7 +17,7 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
         if (col.CompareTag("Enemy"))
         {
             EnemyController enemy = col.GetComponent<EnemyController>();
-            enemy.TakeDamage(wc.damage);
+            enemy.TakeDamage(wc.GetWeaponDamage());
             Destroy(gameObject);
         }
         else if (col.CompareTag("Barrel"))
