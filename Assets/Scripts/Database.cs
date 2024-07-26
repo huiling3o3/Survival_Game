@@ -11,7 +11,7 @@ using System;
 public class Database : MonoBehaviour
 {
     string characterFilePath = "Assets/CSV/CharacterRef.csv";
-    string buffFilePath = "";
+    string buffFilePath = "Assets/CSV/BuffRef.csv";
     string enemyFilePath = "Assets/CSV/EnemyRef.csv";
     string weaponFilePath = "Assets/CSV/WeaponRef.csv";
     string waveFilePath = "Assets/CSV/WaveRef.csv";
@@ -65,9 +65,8 @@ public class Database : MonoBehaviour
         Game.SetWeaponList(GetWeaponList());
         Game.SetBarrelList(GetBarrelList());
         Game.SetWaveDataList(GetWaveDataList());
+        Game.SetBuffList(GetBuffList());
         Debug.Log("Data added successfully into Game");
-
-        //Game.SetBuffList(GetBuffList());
     }
 
     public List<Character> GetCharacterList()
@@ -153,16 +152,16 @@ public class Database : MonoBehaviour
 
                         //assign the attributes
                         string id = fields[0];
-                        string name = fields[1];
-                        string type = fields[2].ToUpper();
+                        string name = fields[1].ToUpper();
+                        string type = fields[2];
                         float buffValue = float.Parse(fields[3]);
 
-                        Buff.BuffType buffType = (Buff.BuffType)System.Enum.Parse(typeof(Buff.BuffType), type);
+                        Buff.BuffType buffName = (Buff.BuffType)System.Enum.Parse(typeof(Buff.BuffType), name);
 
                         //Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
 
                         //Create the new buff based on the data
-                        Buff buff = new Buff(id, name, buffType, buffValue);
+                        Buff buff = new Buff(id, buffName, type, buffValue);
                         buffList.Add(buff);
                     }
 

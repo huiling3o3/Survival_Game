@@ -47,6 +47,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bac30fef9f9502d4c9fc411bd1300a96
+    m_Address: Assets/CSV/BuffRef.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7d659cfcc7b5e894c8e55c86c089ee08, type: 2}
   m_SchemaSet:

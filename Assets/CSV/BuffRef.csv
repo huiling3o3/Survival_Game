@@ -1,0 +1,7 @@
+buffID,buffName,buffType,buffValue
+b101,HP,Character,5
+b102,Speed,Character,1
+b103,ATK,Weapon,5
+b104,Range,Weapon,1
+b106,Rate,Weapon,1
+b107,Speed,Weapon,1

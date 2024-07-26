@@ -27,8 +27,18 @@ public class PlayerAnimator : MonoBehaviour
             if (characterName == "Red Riding Hood")
             {
                 am.runtimeAnimatorController = characterAnimatorList[0];
-
             }
+
+            else if (characterName == "Blacksmith")
+            {
+                am.runtimeAnimatorController = characterAnimatorList[1];
+            }
+
+            else if (characterName == "Librarian")
+            {
+                am.runtimeAnimatorController = characterAnimatorList[2];
+            }
+
         }        
     }
         
