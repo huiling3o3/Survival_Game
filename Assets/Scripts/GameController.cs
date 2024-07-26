@@ -136,9 +136,5 @@ public class GameController : MonoBehaviour
         gameIsActive = false;
     }
 
-    public void ClosePauseMenu()
-    {
-        //menuSceneManager.CloseMenuScene("PauseMenuScene");
-    }
     #endregion
 }
