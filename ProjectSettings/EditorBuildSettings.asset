@@ -11,5 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PauseMenuScene.unity
+    guid: 88722c86255fc9e49b5466159afccb68
+  - enabled: 1
+    path: Assets/Scenes/StartMenuScene.unity
+    guid: 7c09d6c08c48b4d449c0da29d4059bd6
+  - enabled: 1
+    path: Assets/Scenes/Dialogue.unity
+    guid: c50f5279bbd4a174da6654f38250b4b4
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 661066c2dc8da2a4c8de8f51d483be3a, type: 2}

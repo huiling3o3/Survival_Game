@@ -66,6 +66,7 @@ public class Database : MonoBehaviour
         Game.SetWeaponList(GetWeaponList());
         Game.SetBarrelList(GetBarrelList());
         Game.SetWaveDataList(GetWaveDataList());
+        Game.SetDialogueList(GetDialogueList());
         //Game.SetBuffList(GetBuffList());
         Debug.Log("Data added successfully into Game");
     }
@@ -398,12 +399,14 @@ public class Database : MonoBehaviour
                         string cutscneID = fields[0];
                         string nextCutsceneID = fields[1];
                         int cutsceneSetID = int.Parse(fields[2]);
-                        string leftSpeaker = fields[3];
-                        string rightSpeaker = fields[4];
-                        string speech = fields[5];
+                        string currentSpeaker = fields[3];
+                        string leftSpeaker = fields[4];
+                        string rightSpeaker = fields[5];
+                        string speech = fields[6];
 
+                        //Debug.Log($"ADD dialogue id: {cutscneID} SetID: {cutsceneSetID} leftSpeaker: {leftSpeaker}");
                         //Create the new dialogue based on the data
-                        Dialogue dialogue = new Dialogue(cutscneID, nextCutsceneID, cutsceneSetID, leftSpeaker, rightSpeaker, speech);
+                        Dialogue dialogue = new Dialogue(cutscneID, nextCutsceneID, cutsceneSetID,currentSpeaker, leftSpeaker, rightSpeaker, speech);
                         dialogueList.Add(dialogue);
                     }
 

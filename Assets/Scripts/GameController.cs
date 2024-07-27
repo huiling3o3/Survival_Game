@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Schema;
 using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour
     public GameObject playerObj;    
     public InputHandler inputHandler;
     private MenuSceneManager menuSceneManager;
+    public DialogueUIController dialogueUIController;
     Database dm;
     PlayerController pc;
 
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour
         pc = playerObj.GetComponent<PlayerController>();
         //Set reference to the menu
         menuSceneManager = GetComponent<MenuSceneManager>();
+        
         //get the character initial character
         Character character = Game.GetCharacterByRefID(initCharacter);     
     }
@@ -48,10 +51,11 @@ public class GameController : MonoBehaviour
     {
         //show start menu
         OpenStartMenu();
-
+        //set reference to dialogue display
+        dialogueUIController = Game.GetDialogueUIController();
         //initialise the player
         pc.Init();
-        Game.SetPlayer(pc);       
+        Game.SetPlayer(pc);
     }
 
 
@@ -67,17 +71,22 @@ public class GameController : MonoBehaviour
     {
         CloseStartMenu();
 
-        //Open character select menu
-        Game.GetHUDController().OpenCharacterSelectMenu();
+        //resume Game
+        ResumeGame();
 
-        //set player initial weapon
-        SetWeapon(initWeapon);
-        //set the second weapon 
-        SetWeapon("w102");
+        //OpenDialogue();
+        //Game.GetDialogueUIController().StartDialogue();
+        //Open character select menu
+        //Game.GetHUDController().OpenCharacterSelectMenu();       
     }
 
     public void StartWave()
     {
+        //set player initial weapon
+        SetWeapon(initWeapon);
+        //set the second weapon 
+        SetWeapon("w102");
+
         //RESET timers
         gameTimer = 0;
         //reset the number of enemies killed
@@ -123,7 +132,7 @@ public class GameController : MonoBehaviour
         else return false;
     }
 
-    public void PlayerDied()
+    public void GameOver()
     {
         gameOver = true;
         OpenStartMenu();
@@ -149,6 +158,20 @@ public class GameController : MonoBehaviour
     {
         Game.GetHUDController().UpdateWaveStats(Game.GetWaveManager().GetCurrentWave(), Game.GetWaveManager().GetEnemyCountInWave() - numOfEnemiesKilled);
     }
+
+    #region input
+    public void SetDialogueReciever()
+    {
+        //set input receiver
+        inputHandler.SetInputReceiver(dialogueUIController);
+    }
+
+    public void SetPlayerInputReciever()
+    {
+        //set input handler to movement script
+        inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>()); ;
+    }
+    #endregion
 
     #region Menus
 
