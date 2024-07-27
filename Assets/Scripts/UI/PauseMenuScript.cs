@@ -37,5 +37,5 @@ public class PauseMenuScript : MonoBehaviour, IInputReceiver
         //resume game
         gameController.ResumeGame();
     }
-    //TASK 2a END
+
 }
