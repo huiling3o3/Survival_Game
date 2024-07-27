@@ -132,7 +132,7 @@ public class GameController : MonoBehaviour
         else return false;
     }
 
-    public void PlayerDied()
+    public void GameOver()
     {
         gameOver = true;
         OpenStartMenu();
