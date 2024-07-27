@@ -22,6 +22,21 @@ public class EnemySpawner : MonoBehaviour
         Game.SetEnemySpawner(this);
     }
 
+    public void ClearSpawnedEnemies()
+    {
+        if (spawnedEnemies.Count != 0)
+        {
+            for (int i = 0; i < spawnedEnemies.Count; i++)
+            {
+                Destroy(spawnedEnemies[i]);
+            }
+
+            //clear list
+            spawnedEnemies.Clear();
+        }
+    
+    }
+
     //change the enemy name to enemyID when change to wave manager
     public void SpawnEnemy(string enemyID, Transform spawnLocation)
     { 

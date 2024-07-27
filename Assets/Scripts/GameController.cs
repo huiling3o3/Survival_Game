@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -8,16 +9,21 @@ public class GameController : MonoBehaviour
     //references to assigned
     public GameObject playerObj;    
     public InputHandler inputHandler;
+    private MenuSceneManager menuSceneManager;
     Database dm;
     PlayerController pc;
-    bool gameIsActive = false;
 
     //initial character & weapon
     public string initCharacter;
     public string initWeapon;
     
     //Game Controller Variables
-    public int numOfEnemiesKilled;
+    public int numOfEnemiesKilled = 0;
+    public int totalNumEnemiesKilled = 0;
+    private float gameTimer;
+    private bool gameIsActive = false;
+    public bool gameOver = false;
+
 
     private void Awake()
     {
@@ -30,50 +36,68 @@ public class GameController : MonoBehaviour
 
         //Set reference for the player
         pc = playerObj.GetComponent<PlayerController>();
-        
+        //Set reference to the menu
+        menuSceneManager = GetComponent<MenuSceneManager>();
+        //get the character initial character
         Character character = Game.GetCharacterByRefID(initCharacter);     
     }
 
     
     // Start is called before the first frame update
     void Start()
-    {        
-        //Open character select menu
-        Game.GetHUDController().OpenCharacterSelectMenu();        
+    {
+        //show start menu
+        OpenStartMenu();
+
+        //initialise the player
+        pc.Init();
+        Game.SetPlayer(pc);       
     }
 
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (!gameIsActive) return;
+        //proceed game timers
+        gameTimer += Time.deltaTime;
     }  
 
     public void StartGame()
     {
+        CloseStartMenu();
+
+        //Open character select menu
+        Game.GetHUDController().OpenCharacterSelectMenu();
+
         //set player initial weapon
         SetWeapon(initWeapon);
         //set the second weapon 
         SetWeapon("w102");
+    }
+
+    public void StartWave()
+    {
+        //RESET timers
+        gameTimer = 0;
+        //reset the number of enemies killed
+        numOfEnemiesKilled = 0;
+        totalNumEnemiesKilled = 0;
+        //reset wave
+        Game.GetWaveManager().WaveReset();
 
         //call the wave manager to start the wave of enemies
         Game.GetWaveManager().NextWave();
-        
-        //update the HUD manager to update the UI
-        Game.GetHUDController().UpdateWaveStats(Game.GetWaveManager().GetCurrentWave(), Game.GetWaveManager().GetEnemyCountInWave());
 
-        //set input handler to player movement script
-        inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>());
-    }  
+        //update the HUD manager to update the UI
+        UpdateHUD(numOfEnemiesKilled);
+
+        //resume Game
+        ResumeGame();
+    }
 
     public void SetCharacter(string characterId)
     {
-        //setup the player
-
-        //initialise the player
-        pc.Init();
-        Game.SetPlayer(pc);
-
         //update the player stats with the character selected info
         Game.GetPlayer().ChangeCharacter(characterId);
 
@@ -83,7 +107,7 @@ public class GameController : MonoBehaviour
         //close menu
         Game.GetHUDController().CloseCharacterSelectMenu();
 
-        StartGame();
+        StartWave();
     }
 
     public void SetWeapon(string weaponId)
@@ -99,10 +123,16 @@ public class GameController : MonoBehaviour
         else return false;
     }
 
+    public void PlayerDied()
+    {
+        gameOver = true;
+        OpenStartMenu();
+    }
+
     public void EnemyKilled()
     {
         numOfEnemiesKilled++;       
-
+        totalNumEnemiesKilled++;
         //Check if all the current wave of enemies are killed if killed 
         if (numOfEnemiesKilled == Game.GetWaveManager().GetEnemyCountInWave())
         {
@@ -113,10 +143,15 @@ public class GameController : MonoBehaviour
         }
 
         //update the HUD manager to update the UI on the wave stats to get the number of enemies left 
+        UpdateHUD(numOfEnemiesKilled);
+    }
+    public static void UpdateHUD(int numOfEnemiesKilled)
+    {
         Game.GetHUDController().UpdateWaveStats(Game.GetWaveManager().GetCurrentWave(), Game.GetWaveManager().GetEnemyCountInWave() - numOfEnemiesKilled);
     }
 
     #region Menus
+
     public void ResumeGame()
     {
         //unpause game
@@ -127,13 +162,55 @@ public class GameController : MonoBehaviour
         inputHandler.SetInputReceiver(playerObj.GetComponent<PlayerMovement>());
 
         //close pause menu
-        //ClosePauseMenu();
+        ClosePauseMenu();
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0;
         gameIsActive = false;
+    }
+
+    public void ClosePauseMenu()
+    {
+        menuSceneManager.CloseMenuScene("PauseMenuScene");
+    }
+
+    public void OpenPauseMenu()
+    {
+        PauseGame();
+
+        menuSceneManager.OpenMenuScene("PauseMenuScene", () =>
+        {
+            //initialize menu after scene finishes loading
+            PauseMenuScript menuScript = FindObjectOfType<PauseMenuScript>();
+            menuScript.InitializeMenu(this);
+
+            inputHandler.SetInputReceiver(menuScript);
+        });
+    }
+
+    public void OpenStartMenu()
+    {
+        PauseGame();
+
+        ClosePauseMenu();
+
+        menuSceneManager.OpenMenuScene("StartMenuScene", () =>
+        {
+            //initialize menu after scene finishes loading
+            StartMenuScript menuScript = FindObjectOfType<StartMenuScript>();
+            menuScript.InitializeMenu(this);
+
+            //set input receiver
+            inputHandler.SetInputReceiver(menuScript);
+            menuScript.ShowStartMenu(Game.GetWaveManager().GetCurrentWave(),totalNumEnemiesKilled,gameTimer);
+        });
+    }
+
+    public void CloseStartMenu()
+    {
+        menuSceneManager.CloseMenuScene("StartMenuScene");
     }
 
     #endregion

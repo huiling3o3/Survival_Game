@@ -127,6 +127,12 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public void WaveReset()
+    {
+        currentWave = 0;
+        enemySpawner.ClearSpawnedEnemies();
+    }
+
     public int GetEnemyCountInWave()
     {
         return EnemyCountInWave;

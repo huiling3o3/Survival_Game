@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
         if (currentHp <= 0)
         {
             Debug.Log("Character dead");
+            Game.GetGameController().PlayerDied();
         }
 
         //create an event subscription when player health is decreased

@@ -769,33 +769,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3725443355205618892}
     - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
-      propertyPath: initWeapon
-      value: w101
-      objectReference: {fileID: 0}
-    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 1010623091}
-    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
-      propertyPath: Spawnlocation.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
-      propertyPath: Spawnlocation.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
-      propertyPath: Spawnlocation.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
-      propertyPath: Spawnlocation.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1568083042301602798, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
-      propertyPath: Spawnlocation.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3961951632110076840, guid: 466c073b655d14d42a79fcb03935f28c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.26208022
