@@ -52,6 +52,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52a1110ad0ff1d94789918934706c75b
+    m_Address: /StreamingAssets/CSV/DialogueRef.csvef.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7d659cfcc7b5e894c8e55c86c089ee08, type: 2}
   m_SchemaSet:

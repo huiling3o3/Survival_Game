@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    private List<Weapon> weapons;
-    private List<Buff> playerBuff;
-    private List<Buff> weaponBuff;
+    private List<Weapon> weapons = Game.GetWeaponList();
+    private List<Buff> playerBuff = Game.GetBuffList();
+    private List<Buff> weaponBuff = Game.GetBuffList();
 
     void Start()
     {
@@ -20,6 +20,8 @@ public class Chest : MonoBehaviour
     {
         // Display the reward selection UI
         Debug.Log("Chest opened. Select your reward!");
+        Game.GetHUDController().OpenChestItemSelectMenu();
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,31 +34,31 @@ public class Chest : MonoBehaviour
     }
 
     // Method to give the selected reward to the player
-    public void GiveReward(int option)
-    {
-        switch (option)
-        {
-            case 0:
-                if (weapons.Count > 0)
-                {
-                    Weapon newWeapon = weapons[Random.Range(0, weapons.Count)];
-                    Debug.Log("Received Weapon: " + newWeapon.name);
-                }
-                break;
-            case 1:
-                if (weaponBuff.Count > 0)
-                {
-                    Buff newWeaponBuff = weaponBuff[Random.Range(0, weaponBuff.Count)];
-                    Debug.Log("Received Weapon Buff: " + newWeaponBuff.name);
-                }
-                break;
-            case 2:
-                if (playerBuff.Count > 0)
-                {
-                    Buff newCharacterBuff = playerBuff[Random.Range(0, playerBuff.Count)];
-                    Debug.Log("Received Character Buff: " + newCharacterBuff.name);
-                }
-                break;
-        }
-    }
+    //public void GiveReward(int option)
+    //{
+    //    switch (option)
+    //    {
+    //        case 0:
+    //            if (weapons.Count > 0)
+    //            {
+    //                Weapon newWeapon = weapons[Random.Range(0, weapons.Count)];
+    //                Debug.Log("Received Weapon: " + newWeapon.name);
+    //            }
+    //            break;
+    //        case 1:
+    //            if (weaponBuff.Count > 0)
+    //            {
+    //                Buff newWeaponBuff = weaponBuff[Random.Range(0, weaponBuff.Count)];
+    //                Debug.Log("Received Weapon Buff: " + newWeaponBuff.name);
+    //            }
+    //            break;
+    //        case 2:
+    //            if (playerBuff.Count > 0)
+    //            {
+    //                Buff newCharacterBuff = playerBuff[Random.Range(0, playerBuff.Count)];
+    //                Debug.Log("Received Character Buff: " + newCharacterBuff.name);
+    //            }
+    //            break;
+    //    }
+    //}
 }

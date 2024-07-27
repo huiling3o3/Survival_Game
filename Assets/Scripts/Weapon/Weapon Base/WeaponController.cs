@@ -59,7 +59,7 @@ public class WeaponController : MonoBehaviour
                 speed = value;
                 break;
             case Buff.buffName.COOLDOWN:
-                speed = value;
+                cooldownDuration = value;
                 break;
         }
     }

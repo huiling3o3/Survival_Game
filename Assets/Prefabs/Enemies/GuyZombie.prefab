@@ -128,7 +128,7 @@ MonoBehaviour:
   atk: 0
   atkCooldown: 0
   chestPrefab: {fileID: 5230660642166630123, guid: b73388467a54eba46895d9cfeae7cbfd, type: 3}
-  chestDropRate: 0.33
+  chestDropRate: 0.25
 --- !u!195 &8108117161562422374
 NavMeshAgent:
   m_ObjectHideFlags: 0

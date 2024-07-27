@@ -13,6 +13,9 @@ public class HUDController : MonoBehaviour
     [Header("Character Sprite")]
     [SerializeField] Sprite[] CharacterSprites;
     [SerializeField] SpriteRenderer HPSprite;
+    [Header("Select Chest Item UI")]
+    [SerializeField] GameObject SelectChestItemUI;
+
     public void Awake()
     {
         Game.SetHUDController(this);
@@ -49,6 +52,17 @@ public class HUDController : MonoBehaviour
         {
             HPSprite.sprite = CharacterSprites[2];
         }
+    }
+    public void CloseChestItemSelectMenu()
+    {
+        SelectChestItemUI.SetActive(false);
+        Game.GetGameController().ResumeGame();
+    }
+
+    public void OpenChestItemSelectMenu()
+    {
+        SelectChestItemUI.SetActive(true);
+        Game.GetGameController().PauseGame();
     }
 
     public void UpdateWaveStats(int waveNo, int enemies)
