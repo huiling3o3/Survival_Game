@@ -131,6 +131,7 @@ public class WaveManager : MonoBehaviour
     {
         currentWave = 0;
         enemySpawner.ClearSpawnedEnemies();
+        barrelSpawner.ClearSpawnedBarrel();
     }
 
     public int GetEnemyCountInWave()

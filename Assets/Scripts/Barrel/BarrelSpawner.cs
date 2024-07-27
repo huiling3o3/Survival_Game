@@ -21,7 +21,7 @@ public class BarrelSpawner : MonoBehaviour
         boundaryMax = mainCamera.ViewportToWorldPoint(new Vector2(0.9f, 0.9f));
     }
 
-    public void ClearSpawnedEnemies()
+    public void ClearSpawnedBarrel()
     {
         if (spawnedBarrel.Count != 0)
         {
