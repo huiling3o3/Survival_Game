@@ -13,6 +13,7 @@ public static class Game
     private static List<Weapon> weaponList;
     private static List<Barrel> barrelList;
     private static List<WaveData> waveDataList;
+    private static List<Dialogue> dialogueList;
     private static WeaponManager weaponManager;
     private static GameController gameController;
     private static HUDController hudController;
@@ -128,6 +129,22 @@ public static class Game
 
     #endregion
 
+    #region dialogue
+    public static Dialogue GetDialogueByRefID(string cutsceneID)
+    {
+        return dialogueList.Find(x => x.cutsceneID == cutsceneID);
+    }
+
+    public static List <Dialogue> GetDialogueList() 
+    {  
+        return dialogueList; 
+    }
+
+    public static void SetDialogueList(List <Dialogue> dList)
+    {
+        dialogueList = dList;
+    }
+    #endregion
     public static string GetSystemTime()
     {
         return System.DateTime.Now.ToString();

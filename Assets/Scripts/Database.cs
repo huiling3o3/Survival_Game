@@ -16,6 +16,7 @@ public class Database : MonoBehaviour
     string weaponFilePath = Application.streamingAssetsPath + "/CSV/WeaponRef.csv";
     string waveFilePath = Application.streamingAssetsPath + "/CSV/WaveRef.csv";
     string barrelFilePath = Application.streamingAssetsPath + "/CSV/BarrelRef.csv";
+    string dialogueFilePath = Application.streamingAssetsPath + "/CSV/DialogueRef.csv";
     string analyticsTracking = Application.streamingAssetsPath + "/CSV/Analytics.csv";
 
     // Start is called before the first frame update
@@ -217,7 +218,7 @@ public class Database : MonoBehaviour
                 }
 
             }
-            
+
         }
         return enemyList;
     }
@@ -310,7 +311,7 @@ public class Database : MonoBehaviour
                         //Debug.Log($"ADD wave id: {waveID} wave number: {waveNumber} enemy id: {enemyID} enemy count: {enemyCount} barrel id {barrelID} barrel count: {barrelCount}");
 
                         //Create the new wave based on the data
-                        WaveData wave = new WaveData(waveID, waveNumber, enemyID, enemyCount,barrelID,barrelCount);
+                        WaveData wave = new WaveData(waveID, waveNumber, enemyID, enemyCount, barrelID, barrelCount);
                         waveDataList.Add(wave);
                     }
                 }
@@ -364,6 +365,54 @@ public class Database : MonoBehaviour
         }
 
         return barrelList;
+    }
+
+    public List<Dialogue> GetDialogueList()
+    {
+        List<Dialogue> dialogueList = new List<Dialogue>();
+
+        //Check if file exist
+        if (File.Exists(dialogueFilePath))
+        {
+
+            using (StreamReader sr = new StreamReader(dialogueFilePath))
+            {
+                string line = "";
+                bool isFirstLine = true;
+
+                while (!sr.EndOfStream) //reading the file and haven't reach the end
+                {
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (isFirstLine)
+                        {
+                            // Skip the header line
+                            isFirstLine = false;
+                            continue;
+                        }
+
+                        //Split the data into an array of attributes
+                        string[] fields = line.Split(',');
+
+                        //assign the attributes
+                        string cutscneID = fields[0];
+                        string nextCutsceneID = fields[1];
+                        int cutsceneSetID = int.Parse(fields[2]);
+                        string leftSpeaker = fields[3];
+                        string rightSpeaker = fields[4];
+                        string speech = fields[5];
+
+                        //Create the new dialogue based on the data
+                        Dialogue dialogue = new Dialogue(cutscneID, nextCutsceneID, cutsceneSetID, leftSpeaker, rightSpeaker, speech);
+                        dialogueList.Add(dialogue);
+                    }
+
+                }
+
+            }
+        }
+
+        return dialogueList;
     }
 }
 

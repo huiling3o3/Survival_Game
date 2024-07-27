@@ -1,0 +1,11 @@
+cutsceneID,nextCutsceneID,cutsceneSetID,currentSpeaker,leftSpeaker,rightSpeaker,speech
+cs101101,cs101102,101,right,Red Riding Hood,Blacksmith,Red Riding Hood!
+cs101102,cs101103,101,left,Red Riding Hood,Blacksmith,Hello Mr BlackSmith!
+cs101103,cs101104,101,right,Red Riding Hood,Blacksmith,We have to hurry!
+cs101104,cs101105,101,left,Red Riding Hood,Blacksmith,What's the matter?
+cs101105,cs101106,101,right,Red Riding Hood,Blacksmith,Ms Librarian will explain to you. I have to get going!
+cs102106,cs102107,102,left,Red Riding Hood,Librarian,What's going on?
+cs102107,cs102108,102,right,Red Riding Hood,Librarian,We are being attacked and need your help!
+cs102108,cs102109,102,left,Red Riding Hood,Librarian,But I don't have anything
+cs102109,cs102110,102,right,Red Riding Hood,Librarian,Here take this knife for now! I have to find more people to help
+cs102110,,102,left,Red Riding Hood,Librarian,And she's gone...
