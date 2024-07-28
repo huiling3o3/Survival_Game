@@ -1,4 +1,4 @@
-weaponID,weaponName,weaponDescription,weaponType,weaponATK,weaponRange,weaponSpeed,weaponCoolDown
-w101,Knife,A reliable and swift melee weapon perfect for close combat. Lightweight and easy to handle making it ideal for quick and precise attacks,Ranged,5,3,10,2
-w102,Axe,A standard firearm that provides a balance between damage and firing speed. Suitable for taking out enemies from a moderate distance with accuracy.,Melee,10,3,1,3
-w103,Force Field,An advanced defensive device that generates a protective barrier around the user. Deals damage to enemies that come too close,Melee,6,3,1,5
+weaponID,weaponName,weaponDescription,weaponType,weaponATK,weaponSpeed,weaponCoolDown
+w101,Knife,A reliable and swift melee weapon perfect for close combat. Lightweight and easy to handle making it ideal for quick and precise attacks,Ranged,5,10,2
+w102,Axe,A standard firearm that provides a balance between damage and firing speed. Suitable for taking out enemies from a moderate distance with accuracy.,Melee,10,1,3
+w103,Force Field,An advanced defensive device that generates a protective barrier around the user. Deals damage to enemies that come too close,Melee,6,1,5

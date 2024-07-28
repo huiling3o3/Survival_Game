@@ -258,14 +258,13 @@ public class Database : MonoBehaviour
                         string type = fields[3];
                         Weapon.WeaponType weaponType = (Weapon.WeaponType)System.Enum.Parse(typeof(Weapon.WeaponType), type);
                         int atk = int.Parse(fields[4]);
-                        int range = int.Parse(fields[5]);
-                        int speed = int.Parse(fields[6]);
-                        int cooldown = int.Parse(fields[7]);
+                        int speed = int.Parse(fields[5]);
+                        int cooldown = int.Parse(fields[6]);
 
                         //Debug.Log($"ADD weapon id: {id} name: {name} desc: {desc} weapontype: {type} atk power: {atk} cooldown: {cooldown}");
                         //Create the new enemy based on the data
                         //string id, string name, string desc, int hp, int atk, float moveSpeed
-                        Weapon weapon = new Weapon(id, name, desc, weaponType, atk, range, speed, cooldown);
+                        Weapon weapon = new Weapon(id, name, desc, weaponType, atk, speed, cooldown);
                         weaponList.Add(weapon);
                     }
 

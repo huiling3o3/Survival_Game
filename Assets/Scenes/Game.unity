@@ -377,6 +377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutsceneSetID: 101
+  blacksmithNPC: {fileID: 202344481}
+  librarianNPC: {fileID: 1388493849}
 --- !u!4 &202344485
 Transform:
   m_ObjectHideFlags: 0
@@ -8003,6 +8005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutsceneSetID: 102
+  blacksmithNPC: {fileID: 202344481}
+  librarianNPC: {fileID: 1388493849}
 --- !u!4 &1388493851
 Transform:
   m_ObjectHideFlags: 0
@@ -8115,6 +8119,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.796875, y: 1.3125}
   m_EdgeRadius: 0
+--- !u!1 &1394186123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394186124}
+  m_Layer: 0
+  m_Name: =======NPC==========
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1394186124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394186123}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 962.655, y: 500.26083, z: -13.681653}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1508964547 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8717459499957332899, guid: 007ecc1bf50eb1c4eaf813952362000f, type: 3}
@@ -9187,5 +9222,6 @@ SceneRoots:
   - {fileID: 1647298395}
   - {fileID: 55816596}
   - {fileID: 2037990268768898887}
+  - {fileID: 1394186124}
   - {fileID: 1388493851}
   - {fileID: 202344485}

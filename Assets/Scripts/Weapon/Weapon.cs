@@ -15,18 +15,16 @@ public class Weapon
     public string description { get; }
     public WeaponType type { get; }
     public int atk { get; }
-    public int ranged { get; }
     public float speed { get; }
     public int cooldown { get; }
 
-    public Weapon (string id, string name, string description, WeaponType type, int atk, int range, float speed, int cooldown)
+    public Weapon (string id, string name, string description, WeaponType type, int atk, float speed, int cooldown)
     {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
         this.atk = atk;
-        this.ranged = range;
         this.speed = speed;
         this.cooldown = cooldown;
     }

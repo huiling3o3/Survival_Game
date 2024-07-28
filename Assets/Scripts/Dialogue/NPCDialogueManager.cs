@@ -12,6 +12,12 @@ public class NPCDialogueManager : MonoBehaviour
     private List<Dialogue> dialogueDataList; // List to store dialogue data
     private Queue<Dialogue> DialogueDataListQueue = new Queue<Dialogue>();
 
+    [SerializeField] private GameObject blacksmithNPC; // reference to the Blacksmith 
+    [SerializeField] private GameObject librarianNPC; // reference to the Librarian 
+
+    private bool hasTalkedToBlacksmith = false; // track if player has talked to the blacksmith
+    private bool hasTalkedToLibrarian = false; // track if player has talked to the librarian
+
     private void Awake()
     {
         Game.SetNPCDialogueManager(this);
@@ -21,6 +27,10 @@ public class NPCDialogueManager : MonoBehaviour
     void Start()
     {
         InitializeDialogue();
+        if (librarianNPC != null && cutsceneSetID == 101)
+        {
+            librarianNPC.SetActive(false); // ensure librarian is initially inactive
+        }
     }
 
     private void Update()
@@ -29,6 +39,16 @@ public class NPCDialogueManager : MonoBehaviour
         {
             Game.GetDialogueUIController().StartDialogue(DialogueDataListQueue);
             Game.GetGameController().SetDialogueReciever();
+        }
+
+        if (DialogueDataListQueue.Count == 0 && cutsceneSetID == 101 && !hasTalkedToBlacksmith)
+        {
+            CompleteBlacksmithDialogue();
+        }
+
+        if (DialogueDataListQueue.Count == 0 && cutsceneSetID == 102 && !hasTalkedToLibrarian)
+        {
+            CompleteLibrarianDialogue();
         }
     }
 
@@ -89,6 +109,20 @@ public class NPCDialogueManager : MonoBehaviour
             }
         }
 
+    }
+
+    // Method to check if the blacksmith dialogue is complete
+    private void CompleteBlacksmithDialogue()
+    {
+        hasTalkedToBlacksmith = true;
+        librarianNPC.SetActive(true); // Activate the librarian NPC after the conversation is complete
+        blacksmithNPC.SetActive(false);
+    }
+
+    private void CompleteLibrarianDialogue()
+    {
+        hasTalkedToLibrarian = true;
+        librarianNPC.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
