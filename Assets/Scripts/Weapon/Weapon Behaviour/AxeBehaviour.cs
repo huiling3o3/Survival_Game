@@ -7,7 +7,14 @@ public class AxeBehaviour : MeleeWeaponBehaviour
     private WaitForSeconds delay = new WaitForSeconds(3f);
     public override void init(WeaponController wc)
     {
-        StartCoroutine(StayActive());
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(StayActive());
+        }
+        else
+        {
+            Debug.LogWarning("Cannot start coroutine because the GameObject is inactive!");
+        }
         this.wc = wc;
     }
 

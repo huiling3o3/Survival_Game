@@ -42,7 +42,6 @@ public class AxeController : WeaponController
         }
 
         //initialise the melee weapon behaviour to damage the enemy
-        prefab.SetActive(true);
         prefab.GetComponent<AxeBehaviour>().init(this);
     }
 }

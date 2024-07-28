@@ -8,7 +8,14 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
     public override void init(WeaponController wc)
     {
         this.wc = wc;
-        StartCoroutine(StayActive());       
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(StayActive());
+        }
+        else
+        {
+            Debug.LogWarning("Cannot start coroutine because the GameObject is inactive!");
+        }
     }
 
     protected override void OnTriggerEnter2D(Collider2D col)
