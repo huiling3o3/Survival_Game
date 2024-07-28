@@ -123,7 +123,8 @@ public class NPCDialogueManager : MonoBehaviour
     private void CompleteLibrarianDialogue()
     {
         hasTalkedToLibrarian = true;
-        librarianNPC.SetActive(false);
+        //librarianNPC.SetActive(false);
+        //Game.GetGameController().DialogueCompleted();
     }
 
     void OnTriggerEnter2D(Collider2D other)

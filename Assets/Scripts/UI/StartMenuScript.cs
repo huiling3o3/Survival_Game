@@ -33,10 +33,10 @@ public class StartMenuScript : MonoBehaviour, IInputReceiver
 
         if (gameController.gameOver)
         {
-            gameOverText.text += "\nGame Stats\n---";
+            gameOverText.text += "\nGame Over: Game Stats\n-------------------------------";
             gameOverText.text += "\nSurvived until Wave: " + success;
             gameOverText.text += "\nEnemies Killed: " + numOfEnemiesKilled;
-            //gameOverText.text += "\nTime survived: " + Mathf.FloorToInt(timer) + "s";
+            gameOverText.text += "\nTime survived: " + Mathf.FloorToInt(timer) + "s";
 
             gameOverText.text += "\n\nSpace - Play Again";
             gameOverText.text += "\nEsc - Exit";

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Reflection;
+using UnityEngine.Events;
 
 public class DialogueUIController : MonoBehaviour, IInputReceiver
 {
@@ -20,9 +21,11 @@ public class DialogueUIController : MonoBehaviour, IInputReceiver
     [SerializeField]
     private bool isTyping;
 
+    public UnityEvent OnDialogueCompletion;
+
     private void Awake()
     {
-        //remember to keep this on in the game
+        //remember to keep this on in the scene editor
         Game.SetDialogueUIController(this);
     }
 
@@ -129,6 +132,7 @@ public class DialogueUIController : MonoBehaviour, IInputReceiver
             gameObject.SetActive(false);
             //Clear the queue
             DialogueDataListQueue.Clear();
+            OnDialogueCompletion.Invoke();
             Game.GetGameController().SetPlayerInputReciever();
         }
     }

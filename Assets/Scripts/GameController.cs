@@ -7,24 +7,28 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [Header("To be Assigned")]
     //references to assigned
     public GameObject playerObj;    
     public InputHandler inputHandler;
-    private MenuSceneManager menuSceneManager;
+    
     public DialogueUIController dialogueUIController;
+    MenuSceneManager menuSceneManager;
     Database dm;
     PlayerController pc;
 
     //initial character & weapon
     public string initCharacter;
     public string initWeapon;
-    
+    [Header("Game Controller")]
     //Game Controller Variables
     public int numOfEnemiesKilled = 0;
     public int totalNumEnemiesKilled = 0;
     private float gameTimer;
+
     private bool gameIsActive = false;
     public bool gameOver = false;
+
     private void Awake()
     {
         //Set the reference to Game
@@ -38,7 +42,7 @@ public class GameController : MonoBehaviour
         pc = playerObj.GetComponent<PlayerController>();
         //Set reference to the menu
         menuSceneManager = GetComponent<MenuSceneManager>();
-        
+
         //get the character initial character
         Character character = Game.GetCharacterByRefID(initCharacter);     
     }
@@ -49,8 +53,7 @@ public class GameController : MonoBehaviour
     {
         //show start menu
         OpenStartMenu();
-        //set reference to dialogue display
-        dialogueUIController = Game.GetDialogueUIController();
+
         //initialise the player
         pc.Init();
         Game.SetPlayer(pc);
@@ -63,6 +66,13 @@ public class GameController : MonoBehaviour
         if (!gameIsActive) return;
         //proceed game timers
         gameTimer += Time.deltaTime;
+
+        //Cheat code to skip dialogue
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            DialogueCompleted();
+            SetCharacter(initCharacter);
+        }
     }  
 
     public void StartGame()
@@ -70,23 +80,21 @@ public class GameController : MonoBehaviour
         CloseStartMenu();
 
         //resume Game
-        ResumeGame();
-
-        //set player initial weapon
-        SetWeapon(initWeapon);
+        ResumeGame();        
         //OpenDialogue();
         //Game.GetDialogueUIController().StartDialogue();
         //Open character select menu
         //Game.GetHUDController().OpenCharacterSelectMenu();       
     }
 
-    public void StartWave()
+    IEnumerator StartWave()
     {
+        //wait for 2 seconds before starting the game
+        yield return new WaitForSeconds(2f);
+
         Debug.Log("Game Controller: Calling Start Wave");
         //set player initial weapon
         SetWeapon(initWeapon);
-        //set the second weapon 
-        SetWeapon("w102");
 
         //RESET timers
         gameTimer = 0;
@@ -116,38 +124,12 @@ public class GameController : MonoBehaviour
 
         //close menu
         Game.GetHUDController().CloseCharacterSelectMenu();
-
-        StartWave();
     }
 
     public void SetWeapon(string weaponId)
     {
         string weaponName = Game.GetWeaponByRefID(weaponId).name;
         Game.GetPlayer().AddWeapon(weaponId, Game.GetWeaponManager().GetWeaponPrefab(weaponName));
-    }
-
-    //TODO #1
-    public void SetWeaponBuff(string buffID)
-    {
-        //upgrade players first weapon
-        //Get player first weapon, index starts with 1
-        //Check if weapon has reach the max buff lvl if not 
-        //then call the weapon method buffUpgrade and pass in the buff object
-        Buff weaponBuff = Game.GetBuffByRefID(buffID);
-
-        // Get the player's first weapon (index starts with 1)
-        Weapon firstWeapon = Game.GetPlayer().GetWeaponByIndex(1);
-
-
-    }
-
-    //TODO #2
-    public void SetCharacterBuff(string buffID)
-    {
-        //Get the buff based on the id
-        Buff buff = Game.GetBuffByRefID(buffID);
-        //Call the player controller and call its method upgrade character stats and pass in the buff val
-        Game.GetPlayer().UpgradeCharacterStats(buff);
     }
 
     public bool CheckInitialCharacter(string id) 
@@ -157,6 +139,10 @@ public class GameController : MonoBehaviour
         else return false;
     }
 
+    public void DialogueCompleted()
+    {
+        StartCoroutine(StartWave());
+    }
     public void GameOver()
     {
         gameOver = true;

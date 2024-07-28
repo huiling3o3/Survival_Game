@@ -12,13 +12,18 @@ public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
     public GameObject prefab;
-
+    [SerializeField]
+    protected string weaponName;
+    [SerializeField]
     protected int damage; //atk
+    [SerializeField]
     protected float speed;
+    [SerializeField]
     protected float cooldownDuration;
+    [SerializeField]
     float currentCooldown;
-
     private int maxBuffLvl = 3;
+    [SerializeField]
     private int currentBuffLvl = 1;
 
     public virtual void init()
@@ -35,6 +40,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    public string GetWeaponName() => weaponName;
     public float GetWeaponSpeed() => speed;
     public int GetWeaponDamage() => damage;
     public float GetWeaponCoolDown() => cooldownDuration;
@@ -50,22 +56,34 @@ public class WeaponController : MonoBehaviour
 
     public void BuffUpgrade(Buff buff)
     {
+        if (CheckMaxBuffLvl())
+            return;
+
         switch (buff.name)
         {
             case Buff.buffName.ATK:
-                damage = (int)buff.buffValue;
+                damage += (int)buff.buffValue;
                 break;
             case Buff.buffName.SPEED:
-                speed = buff.buffValue;
+                speed += buff.buffValue;
                 break;
             case Buff.buffName.COOLDOWN:
-                cooldownDuration = buff.buffValue;
+                float newCoolDown = (buff.buffValue * 0.5f);
+                if (newCoolDown <= 0)
+                {
+                    newCoolDown = 1;
+                }
+                cooldownDuration -= newCoolDown;
                 break;
         }
+
+        currentBuffLvl++;
     }
 
-    public void SetStats(int damage, float speed,float cooldown)
+    public void SetStats(string name, int damage, float speed,float cooldown)
     {
+        this.weaponName = name;
+
         this.damage = damage;
 
         this.speed = speed;
