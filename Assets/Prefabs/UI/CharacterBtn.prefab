@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 970664016356039068}
   - component: {fileID: 6023153348914750243}
   - component: {fileID: 4835864455541337055}
-  - component: {fileID: 5763562417627374803}
+  - component: {fileID: 4332843058183523196}
   m_Layer: 5
   m_Name: CharacterBtn
   m_TagString: Untagged
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5763562417627374803
+--- !u!114 &4332843058183523196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,8 +265,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3231437423418332192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30065db8938c9ae479c4282d481b19cc, type: 3}
+  m_Script: {fileID: 11500000, guid: beb7d3e109b643a44a8bc64d83acb6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 0
-  buttonText: {fileID: 0}
+  characterId: 
+  buttonText: {fileID: 8606345328034696134}
