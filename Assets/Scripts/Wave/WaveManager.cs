@@ -11,7 +11,7 @@ public class WaveManager : MonoBehaviour
     private List<WaveData> waveDataList; // List to store wave data
     private int currentWave = 0; // Current wave number
     private int EnemyCountInWave = 0; // Total number of enemy per wave
-     
+    private string currentWaveID = string.Empty;   
     private Queue<WaveData> waveDataListQueue = new Queue<WaveData>(); //Adds waves into a queue to spawn 
 
     private float enemySpawnDelay = 5f;
@@ -85,7 +85,7 @@ public class WaveManager : MonoBehaviour
         Debug.Log("Spawning enemies");
 
         WaveData waveToSpawn = waveDataListQueue.Dequeue(); //Gets the wave to spawn 
-
+        currentWaveID = waveToSpawn.waveID;
         Debug.Log($"WaveNo: {currentWave} Number of enemies: {waveToSpawn.enemyCount}");
 
         if (currentWave > 1)
@@ -144,6 +144,8 @@ public class WaveManager : MonoBehaviour
     { 
         return currentWave;
     }
+
+    public string GetCurrentWaveID() { return currentWaveID; }
 
     // Gets a random spawn location from the array
     private Transform GetRandomSpawnLocation()

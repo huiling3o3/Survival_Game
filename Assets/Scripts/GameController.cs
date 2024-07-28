@@ -151,6 +151,7 @@ public class GameController : MonoBehaviour
     {
         gameOver = true;
         OpenStartMenu();
+        dm.WriteAnalyticsTracking(Game.GetWaveManager().GetCurrentWaveID(),totalNumEnemiesKilled,gameTimer);
     }
 
     public void EnemyKilled()

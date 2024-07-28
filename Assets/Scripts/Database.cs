@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Text;
 using System;
+using UnityEditor;
 
 /// <summary>
 /// Contains all the method that read the file from the CSV and set it into the Game
@@ -23,13 +24,16 @@ public class Database : MonoBehaviour
     void Start()
     {
         //WriteFile(analyticsTracking);
+
         //characterList =  GetCharacterList();
+
         //enemyList = GetEnemyList();
         //foreach (Character chara in characterList)
         //{
         //    Debug.Log($"id: {chara.id} name: {chara.name} desc: {chara.description} hp: {chara.hp} movepeed: {chara.moveSpeed}");
         //    Debug.Log(chara.id);
         //}
+
         //ReadFile(enemyFilePath);
     }
 
@@ -51,10 +55,22 @@ public class Database : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
+
                 sw.WriteLine(i.ToString() + ",hello, dear, my");
             }
         }
+    }
 
+    public void WriteAnalyticsTracking(string waveID, int enemiesKilled, float timeSurvived)
+    {
+        int time = Mathf.FloorToInt(timeSurvived);
+        using (StreamWriter sw = new StreamWriter(analyticsTracking, true))
+        {
+            //timestamp, waveid, enemies killed, time
+            Debug.Log(Game.GetSystemTime() + "," + waveID + "," + enemiesKilled + "," + time);
+            sw.WriteLine(Game.GetSystemTime() + "," + waveID + "," + enemiesKilled + "," + time);
+            Debug.Log("data written successfully");
+        }
     }
 
     public void SetDatabase()
