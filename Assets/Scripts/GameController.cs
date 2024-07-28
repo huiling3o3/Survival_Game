@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
         gameTimer += Time.deltaTime;
 
         //Cheat code to skip dialogue
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             SetCharacter(initCharacter);
         }
@@ -95,6 +95,8 @@ public class GameController : MonoBehaviour
         Debug.Log("Game Controller: Calling Start Wave");
         //set player initial weapon
         SetWeapon(initWeapon);
+        //SetWeapon("w102");
+        //SetWeapon("w103");
 
         //RESET timers
         gameTimer = 0;

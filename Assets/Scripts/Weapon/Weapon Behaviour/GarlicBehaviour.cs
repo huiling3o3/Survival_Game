@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GarlicBehaviour : MeleeWeaponBehaviour
 {
+    private WaitForSeconds delay = new WaitForSeconds(3f);
     public override void init(WeaponController wc)
     {
-        base.init(wc);
+        this.wc = wc;
+        StartCoroutine(StayActive());       
     }
 
     protected override void OnTriggerEnter2D(Collider2D col)
@@ -14,4 +16,10 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
         base.OnTriggerEnter2D(col);
     }
 
+    private IEnumerator StayActive()
+    {
+        gameObject.SetActive(true);
+        yield return delay;
+        gameObject.SetActive(false);
+    }
 }

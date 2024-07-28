@@ -34,23 +34,33 @@ public class ChestItem : MonoBehaviour
     
     public void SetItemID(string id)
     {
+        //set the value of the item
         ItemID = id;
+
+        //reset the button as interactable
+        //thisbtn.interactable = true;
+
         // stylise the button
-
-
         switch (itemName)
         {
             case itemType.New_Weapon:
-                // Get the weapon by ID
-                Weapon weapon = Game.GetWeaponByRefID(ItemID);
-                if (weapon != null)
+
+                if (ItemID == "")
                 {
-                    // Set the button text for the weapon
-                    buttonText.text = $"Get a {weapon.name} weapon";
+                    Debug.Log("no new weapon to get");
+                    //Set the button as uninteractable
+                    thisbtn.interactable = false;
+                    buttonText.text = "no new weapon to get";
                 }
                 else
                 {
-                    buttonText.text = "Unknown Weapon";
+                    // Get the weapon by ID
+                    Weapon weapon = Game.GetWeaponByRefID(ItemID);
+                    if (weapon != null)
+                    {
+                        // Set the button text for the weapon
+                        buttonText.text = $"Get a {weapon.name} weapon";
+                    }
                 }
                 break;
             case itemType.Weapon_Buff:
@@ -67,7 +77,7 @@ public class ChestItem : MonoBehaviour
                     }
                     else
                     {
-                        buttonText.text = "No eligible weapon for buff";
+                        buttonText.text = "Not eligible weapon for buff";
                     }
                 }
                 else
@@ -122,6 +132,10 @@ public class ChestItem : MonoBehaviour
             {
                 WeaponCtrl = null;
                 continue;
+            }
+            else 
+            {
+                break;
             }
         }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChestManager : MonoBehaviour
@@ -26,7 +27,7 @@ public class ChestManager : MonoBehaviour
         //for debugging purpose only
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            //GetChest();
+            GetChest();
         }
     }
 
@@ -39,13 +40,20 @@ public class ChestManager : MonoBehaviour
     private string GetNewWeapon()
     {
         List<Weapon> weapons = Game.GetWeaponList();
-        
+       
+        //check if player has all the weapon
+        if (Game.GetPlayer().GetWeaponCount() == weapons.Count)
+        {
+            return "";
+        }
+
+        //otherwise loop until a new weapon is found
         //Set the initial random weapon
         int rand = Random.Range(0, weapons.Count);
         Weapon newWeapon = weapons[rand];
 
-        Debug.Log($"Weapon {newWeapon.name} exist: "+ Game.GetPlayer().CheckWeaponExist(newWeapon.id));
-        
+        Debug.Log($"Weapon {newWeapon.name} exist: " + Game.GetPlayer().CheckWeaponExist(newWeapon.id));
+
         //Check if the weapon exist in the player's weapon list
         //if yes Keep looping
         while (Game.GetPlayer().CheckWeaponExist(newWeapon.id))
@@ -53,8 +61,7 @@ public class ChestManager : MonoBehaviour
             rand = Random.Range(0, weapons.Count);
             newWeapon = weapons[rand];
         }
-
-        //otherwise return the new weapon found
+        // return the new weapon found
         Debug.Log($"new weapon: {newWeapon.name}");
         return newWeapon.id;
     }

@@ -68,12 +68,12 @@ public class WeaponController : MonoBehaviour
                 speed += buff.buffValue;
                 break;
             case Buff.buffName.COOLDOWN:
-                float newCoolDown = (buff.buffValue * 0.5f);
-                if (newCoolDown <= 0)
+                float newCoolDown = cooldownDuration - (buff.buffValue * 0.5f);
+                if (newCoolDown <= 0.1f) // Ensuring a minimum cooldown duration
                 {
-                    newCoolDown = 1;
+                    newCoolDown = 0.1f;
                 }
-                cooldownDuration -= newCoolDown;
+                cooldownDuration = newCoolDown;
                 break;
         }
 
