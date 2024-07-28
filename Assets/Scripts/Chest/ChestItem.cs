@@ -43,17 +43,56 @@ public class ChestItem : MonoBehaviour
 
         ItemID = id;
         // stylise the button
-        buttonText.text = "Get " + itemName.ToString();
+        //buttonText.text = "Get " + itemName.ToString();
 
         switch (itemName)
         {
             case itemType.New_Weapon:
+                // Get the weapon by ID
+                Weapon weapon = Game.GetWeaponByRefID(ItemID);
+                if (weapon != null)
+                {
+                    // Set the button text for the weapon
+                    buttonText.text = $"Get a {weapon.name}";
+                }
+                else
+                {
+                    buttonText.text = "Unknown Weapon";
+                }
                 break;
             case itemType.Weapon_Buff:
-                //Get the player controller for the buff
-                GetPlayerWeaponController();
+                Buff weaponBuff = Game.GetBuffByRefID(ItemID);
+                if (weaponBuff != null && weaponBuff.bufftype == Buff.buffType.WEAPON)
+                {
+                    // Get the player weapon controller
+                    GetPlayerWeaponController();
+
+                    if (wc != null)
+                    {
+                        // Set the button text for the weapon buff
+                        buttonText.text = $"Upgrade your weapon's {weaponBuff.name} by {weaponBuff.buffValue}";
+                    }
+                    else
+                    {
+                        buttonText.text = "No eligible weapon for buff";
+                    }
+                }
+                else
+                {
+                    buttonText.text = "Invalid Buff Type";
+                }
                 break;
             case itemType.Character_Buff:
+                Buff characterBuff = Game.GetBuffByRefID(ItemID);
+                if (characterBuff != null && characterBuff.bufftype == Buff.buffType.CHARACTER)
+                {
+                    // Set the button text for the character buff
+                    buttonText.text = $"Upgrade your max {characterBuff.name} by {characterBuff.buffValue}";
+                }
+                else
+                {
+                    buttonText.text = "Invalid Buff Type";
+                }
                 break;
         }
         
