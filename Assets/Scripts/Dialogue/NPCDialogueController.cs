@@ -4,33 +4,18 @@ using UnityEngine;
 using System;
 
 
-public class NPCDialogueManager : MonoBehaviour
+public class NPCDialogueController : MonoBehaviour
 {
     [SerializeField]
-    private int cutsceneSetID;
+    public int cutsceneSetID;
     
     private List<Dialogue> dialogueDataList; // List to store dialogue data
     private Queue<Dialogue> DialogueDataListQueue = new Queue<Dialogue>();
-
-    [SerializeField] private GameObject blacksmithNPC; // reference to the Blacksmith 
-    [SerializeField] private GameObject librarianNPC; // reference to the Librarian 
-
-    private bool hasTalkedToBlacksmith = false; // track if player has talked to the blacksmith
-    private bool hasTalkedToLibrarian = false; // track if player has talked to the librarian
-
-    private void Awake()
-    {
-        Game.SetNPCDialogueManager(this);
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         InitializeDialogue();
-        if (librarianNPC != null && cutsceneSetID == 101)
-        {
-            librarianNPC.SetActive(false); // ensure librarian is initially inactive
-        }
     }
 
     private void Update()
@@ -40,16 +25,6 @@ public class NPCDialogueManager : MonoBehaviour
         {
             //Game.GetDialogueUIController().StartDialogue(DialogueDataListQueue);
             //Game.GetGameController().SetDialogueReciever();
-        }
-
-        if (DialogueDataListQueue.Count == 0 && cutsceneSetID == 101 && !hasTalkedToBlacksmith)
-        {
-            CompleteBlacksmithDialogue();
-        }
-
-        if (DialogueDataListQueue.Count == 0 && cutsceneSetID == 102 && !hasTalkedToLibrarian)
-        {
-            CompleteLibrarianDialogue();
         }
     }
 
@@ -112,28 +87,26 @@ public class NPCDialogueManager : MonoBehaviour
 
     }
 
-    // Method to check if the blacksmith dialogue is complete
-    private void CompleteBlacksmithDialogue()
-    {
-        hasTalkedToBlacksmith = true;
-        librarianNPC.SetActive(true); // Activate the librarian NPC after the conversation is complete
-        blacksmithNPC.SetActive(false);
-    }
-
-    private void CompleteLibrarianDialogue()
-    {
-        hasTalkedToLibrarian = true;
-        //librarianNPC.SetActive(false);
-        //Game.GetGameController().DialogueCompleted();
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Encountered player");
-            Game.GetDialogueUIController().StartDialogue(DialogueDataListQueue);
+            //Debug.Log("Encountered player");
+            Game.GetDialogueUIController().StartDialogue(DialogueDataListQueue, this);
             Game.GetGameController().SetDialogueReciever();
         }
     }
+
+    public void EndConversation()
+    {
+        if (gameObject.name == "NPC_BlackSmith")
+        {
+            Game.GetNPCManager().CompleteBlacksmithDialogue();
+        }
+        else 
+        {
+            Game.GetNPCManager().CompleteLibrarianDialogue();
+        }
+    }
+
 }

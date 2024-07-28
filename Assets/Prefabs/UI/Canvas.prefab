@@ -2028,7 +2028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8557453157234832926
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2103,6 +2103,9 @@ MonoBehaviour:
   contentText: {fileID: 4870870917871769260}
   textSpeed: 0.1
   isTyping: 0
+  OnDialogueCompletion:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7264325437490385328
 GameObject:
   m_ObjectHideFlags: 0

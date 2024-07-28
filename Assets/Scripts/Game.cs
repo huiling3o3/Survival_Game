@@ -21,8 +21,9 @@ public static class Game
     private static BarrelRandomizer barrelRandomizer;
     private static BarrelSpawner barrelSpawner;
     private static WaveManager waveManager;
-    private static NPCDialogueManager dialogueManager;
+    private static NPCDialogueController dialogueController;
     private static DialogueUIController dialogueUIController;
+    private static NPCManager npcManager;
     private static ChestManager chestManager;
     public static WeaponManager GetWeaponManager() => weaponManager;
     public static void SetWeaponManager(WeaponManager wm) => weaponManager = wm;
@@ -34,12 +35,14 @@ public static class Game
     public static void SetBarrelSpawner(BarrelSpawner bs) => barrelSpawner = bs;
     public static WaveManager GetWaveManager() => waveManager;
     public static void SetWaveManager(WaveManager wave) => waveManager = wave;
-    public static NPCDialogueManager GetNPCDialogueManager() => dialogueManager;
-    public static void SetNPCDialogueManager(NPCDialogueManager dialouge) => dialogueManager = dialouge;
+    public static NPCDialogueController GetNPCDialogueController() => dialogueController;
+    public static void SetNPCDialogueController(NPCDialogueController dialouge) => dialogueController = dialouge;
     public static DialogueUIController GetDialogueUIController() => dialogueUIController;
     public static void SetDialogueUIController(DialogueUIController dialougeCtrl) => dialogueUIController = dialougeCtrl;
     public static ChestManager GetChestManager() => chestManager;
     public static void SetChestManager(ChestManager cm) => chestManager = cm;
+    public static void SetNPCManager(NPCManager npcM) => npcManager = npcM;
+    public static NPCManager GetNPCManager() => npcManager;
 
     #region HUD
     public static HUDController GetHUDController() => hudController;

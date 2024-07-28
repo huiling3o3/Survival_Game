@@ -10,9 +10,9 @@ public class GameController : MonoBehaviour
     [Header("To be Assigned")]
     //references to assigned
     public GameObject playerObj;    
-    public InputHandler inputHandler;
-    
+    public InputHandler inputHandler;    
     public DialogueUIController dialogueUIController;
+    public NPCManager npcManager;
     MenuSceneManager menuSceneManager;
     Database dm;
     PlayerController pc;
@@ -80,9 +80,10 @@ public class GameController : MonoBehaviour
         CloseStartMenu();
 
         //resume Game
-        ResumeGame();        
-        //OpenDialogue();
-        //Game.GetDialogueUIController().StartDialogue();
+        ResumeGame();
+
+        npcManager.StartDialogue();
+
         //Open character select menu
         //Game.GetHUDController().OpenCharacterSelectMenu();       
     }
