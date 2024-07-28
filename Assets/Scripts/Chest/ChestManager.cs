@@ -26,7 +26,7 @@ public class ChestManager : MonoBehaviour
         //for debugging purpose only
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            GetChest();
+            //GetChest();
         }
     }
 
@@ -111,10 +111,10 @@ public class ChestManager : MonoBehaviour
                     item.SetItemID(weaponID);
                     break;
                 case ChestItem.itemType.Weapon_Buff:
-                    item.SetItemID(charBuffId);
+                    item.SetItemID(weaponBuffId);                    
                     break;
                 case ChestItem.itemType.Character_Buff:
-                    item.SetItemID(weaponBuffId);
+                    item.SetItemID(charBuffId);
                     break;
             }
         }

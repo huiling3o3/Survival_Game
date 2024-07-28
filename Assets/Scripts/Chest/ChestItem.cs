@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+using System;
 public class ChestItem : MonoBehaviour
 {
     [Header("Not To be assigned")]
@@ -15,6 +15,7 @@ public class ChestItem : MonoBehaviour
     //To be adjusted in the inspector
     public itemType itemName; //this can be either Character Buff/New Weapon/WeaponBuff
     Button thisbtn;
+    private WeaponController wc;
 
     public enum itemType
     {
@@ -43,26 +44,78 @@ public class ChestItem : MonoBehaviour
         ItemID = id;
         // stylise the button
         buttonText.text = "Get " + itemName.ToString();
+
+        switch (itemName)
+        {
+            case itemType.New_Weapon:
+                break;
+            case itemType.Weapon_Buff:
+                //Get the player controller for the buff
+                GetPlayerWeaponController();
+                break;
+            case itemType.Character_Buff:
+                break;
+        }
+        
     }
 
     void OnButtonClick()
     {
-        //Debug.Log("Button was clicked!");
         //Set the different function based on the itemtype
         switch (itemName)
         {
-            //TODO #3
             case itemType.New_Weapon:
-                //Call the method from Game controller to set weapon and pass in the item ID
+                Game.GetGameController().SetWeapon(ItemID);
                 break;
             case itemType.Weapon_Buff:
-                //Call the method from Game controller to set weapon buff and pass in the item ID
+                SetWeaponBuff();
                 break;
             case itemType.Character_Buff:
-                //Call the method from Game controller to set character buff and pass in the item ID
+                SetCharacterBuff();
                 break;
         }
         Debug.Log("Open");
         Game.GetHUDController().CloseChestItemSelectMenu();
+    }
+
+    public void GetPlayerWeaponController()
+    {
+        //Get the total number of player's weapon
+        int totalPlayerWeapon = Game.GetPlayer().GetWeaponCount();
+        WeaponController WeaponCtrl = null;
+        for (int i = 1; i <= totalPlayerWeapon; i++)
+        {
+            WeaponCtrl = Game.GetPlayer().GetWeaponByIndex(i);
+            if (WeaponCtrl.CheckMaxBuffLvl())
+            {
+                WeaponCtrl = null;
+                continue;
+            }
+        }
+
+        if (WeaponCtrl == null)
+        {            
+            Debug.Log("No weapons to buff anymore...");
+            //Set the button as uninteractable
+            thisbtn.interactable = false;
+        }
+        else 
+        {
+            wc = WeaponCtrl;
+        }
+    }
+
+    public void SetWeaponBuff()
+    {
+        Buff weaponBuff = Game.GetBuffByRefID(ItemID);
+        Debug.Log($"Buff name: {weaponBuff.name} type: {weaponBuff.bufftype} value: {weaponBuff.buffValue}");
+        wc.BuffUpgrade(weaponBuff);
+    }
+
+    public void SetCharacterBuff()
+    {
+        Buff characterBuff = Game.GetBuffByRefID(ItemID);
+        Debug.Log($"Buff name: {characterBuff.name} type: {characterBuff.bufftype} value: {characterBuff.buffValue}");
+        Game.GetPlayer().UpgradeCharacterStats(characterBuff);
     }
 }

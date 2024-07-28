@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -32,6 +33,15 @@ public class PlayerController : MonoBehaviour
         weaponIndex = 0;
     }
 
+    private void Update()
+    {
+        //for debugging purpose only
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            
+        }
+    }
+
     #region Weapons
     public void AddWeapon(string weaponID, GameObject weaponPrefab)
     {
@@ -43,7 +53,7 @@ public class PlayerController : MonoBehaviour
             Weapon weapon = Game.GetWeaponByRefID(weaponID);
             //set the weapon details from the weapon class
             weaponInstance.GetComponent<WeaponController>().init();
-            weaponInstance.GetComponent<WeaponController>().SetStats(weapon.atk, weapon.speed, weapon.cooldown);
+            weaponInstance.GetComponent<WeaponController>().SetStats(weapon.name,weapon.atk, weapon.speed, weapon.cooldown);
             PlayerWeapons.Add(weaponID, weaponInstance);
             WeaponKey.Add(weaponIndex, weaponID);
         }
@@ -60,17 +70,22 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public Weapon GetWeaponByIndex(int index)
+    public WeaponController GetWeaponByIndex(int index)
     {
         string weaponID = "";
         if (WeaponKey.ContainsKey(index))
         { 
             weaponID = WeaponKey[index];
+            //Debug.Log($"weapon key found: {weaponID}");
         }
 
-        Weapon playerWeapon = PlayerWeapons[weaponID].GetComponent<Weapon>();
+        WeaponController playerWeapon = PlayerWeapons[weaponID].GetComponent<WeaponController>();
+        
         return playerWeapon;
     }
+
+    public int GetWeaponCount() => PlayerWeapons.Count;
+
     #endregion
 
     #region character function
@@ -96,12 +111,13 @@ public class PlayerController : MonoBehaviour
         {
             case Buff.buffName.HP:
                 float newHP = buff.buffValue;
-                MaxHP = newHP;
+                MaxHP += newHP;
                 currentHp = MaxHP;
                 break;
             case Buff.buffName.SPEED:
-                //do new calulations if needed
-                float speed = buff.buffValue;
+                //get current speed
+                float speed = pm.moveSpeed;
+                speed += buff.buffValue;
                 pm.ChangeMovementSpeed(speed);
                 break;
         }
