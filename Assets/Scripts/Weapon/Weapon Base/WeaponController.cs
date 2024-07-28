@@ -48,18 +48,18 @@ public class WeaponController : MonoBehaviour
         return false;
     }
 
-    public void BuffUpgrade(Buff.buffName name, int value)
+    public void BuffUpgrade(Buff buff)
     {
-        switch (name)
+        switch (buff.name)
         {
             case Buff.buffName.ATK:
-                damage = value;
+                damage = (int)buff.buffValue;
                 break;
             case Buff.buffName.SPEED:
-                speed = value;
+                speed = buff.buffValue;
                 break;
             case Buff.buffName.COOLDOWN:
-                cooldownDuration = value;
+                cooldownDuration = buff.buffValue;
                 break;
         }
     }

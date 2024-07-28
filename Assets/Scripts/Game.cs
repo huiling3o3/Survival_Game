@@ -23,7 +23,7 @@ public static class Game
     private static WaveManager waveManager;
     private static NPCDialogueManager dialogueManager;
     private static DialogueUIController dialogueUIController;
-
+    private static ChestManager chestManager;
     public static WeaponManager GetWeaponManager() => weaponManager;
     public static void SetWeaponManager(WeaponManager wm) => weaponManager = wm;
     public static BarrelRandomizer GetBarrelRandomizer() => barrelRandomizer;
@@ -38,6 +38,8 @@ public static class Game
     public static void SetNPCDialogueManager(NPCDialogueManager dialouge) => dialogueManager = dialouge;
     public static DialogueUIController GetDialogueUIController() => dialogueUIController;
     public static void SetDialogueUIController(DialogueUIController dialougeCtrl) => dialogueUIController = dialougeCtrl;
+    public static ChestManager GetChestManager() => chestManager;
+    public static void SetChestManager(ChestManager cm) => chestManager = cm;
 
     #region HUD
     public static HUDController GetHUDController() => hudController;

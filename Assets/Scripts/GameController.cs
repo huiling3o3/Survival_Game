@@ -25,8 +25,6 @@ public class GameController : MonoBehaviour
     private float gameTimer;
     private bool gameIsActive = false;
     public bool gameOver = false;
-
-
     private void Awake()
     {
         //Set the reference to Game
@@ -74,6 +72,8 @@ public class GameController : MonoBehaviour
         //resume Game
         ResumeGame();
 
+        //set player initial weapon
+        SetWeapon(initWeapon);
         //OpenDialogue();
         //Game.GetDialogueUIController().StartDialogue();
         //Open character select menu
@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour
 
     public void StartWave()
     {
+        Debug.Log("Game Controller: Calling Start Wave");
         //set player initial weapon
         SetWeapon(initWeapon);
         //set the second weapon 
@@ -123,6 +124,23 @@ public class GameController : MonoBehaviour
     {
         string weaponName = Game.GetWeaponByRefID(weaponId).name;
         Game.GetPlayer().AddWeapon(weaponId, Game.GetWeaponManager().GetWeaponPrefab(weaponName));
+    }
+
+    //TODO #1
+    public void SetWeaponBuff(string buffID)
+    { 
+        //upgrade players first weapon
+        //Get player first weapon, index starts with 1
+        //Check if weapon has reach the max buff lvl if not 
+        //then call the weapon method buffUpgrade and pass in the buff object
+    }
+
+    //TODO #2
+    public void SetCharacterBuff(string buffID)
+    {
+        //Get the buff based on the id
+        Buff buff = Game.GetBuffByRefID(buffID);
+        //Call the player controller and call its method upgrade character stats and pass int he buff val
     }
 
     public bool CheckInitialCharacter(string id) 

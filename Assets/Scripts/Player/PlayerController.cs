@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Dictionary<string, GameObject> PlayerWeapons = new Dictionary<string, GameObject>();
-
+    private Dictionary<int, string> WeaponKey = new Dictionary<int, string>();
+    
     [Header("Player Stats")]
     string currentCharacter;
 
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] StatusBar hpBar;
 
+    private int weaponIndex = 0;
     //references
     PlayerMovement pm;
     PlayerAnimator pa;
@@ -25,6 +28,8 @@ public class PlayerController : MonoBehaviour
         //set all the references connected to the player interactions
         pm = GetComponent<PlayerMovement>();
         pa = GetComponent<PlayerAnimator>();
+        //reset the amountn of weapon
+        weaponIndex = 0;
     }
 
     #region Weapons
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!PlayerWeapons.ContainsKey(weaponID))
         {
+            weaponIndex++;
             GameObject weaponInstance = Instantiate(weaponPrefab, transform);
             Debug.Log("weapon added success!");
             Weapon weapon = Game.GetWeaponByRefID(weaponID);
@@ -39,9 +45,32 @@ public class PlayerController : MonoBehaviour
             weaponInstance.GetComponent<WeaponController>().init();
             weaponInstance.GetComponent<WeaponController>().SetStats(weapon.atk, weapon.speed, weapon.cooldown);
             PlayerWeapons.Add(weaponID, weaponInstance);
+            WeaponKey.Add(weaponIndex, weaponID);
         }
     }
 
+    public bool CheckWeaponExist(string weaponID)
+    {
+        // Check if a key exists
+        if (PlayerWeapons.ContainsKey(weaponID))
+        {
+            Console.WriteLine("weaponID exists.");
+            return true;
+        }
+        return false;
+    }
+
+    public Weapon GetWeaponByIndex(int index)
+    {
+        string weaponID = "";
+        if (WeaponKey.ContainsKey(index))
+        { 
+            weaponID = WeaponKey[index];
+        }
+
+        Weapon playerWeapon = PlayerWeapons[weaponID].GetComponent<Weapon>();
+        return playerWeapon;
+    }
     #endregion
 
     #region character function
@@ -59,6 +88,23 @@ public class PlayerController : MonoBehaviour
         MaxHP = playerCharacter.hp;
         currentHp = MaxHP;
         pm.ChangeMovementSpeed(playerCharacter.moveSpeed);
+    }
+
+    public void UpgradeCharacterStats(Buff buff)
+    {
+        switch (buff.name)
+        {
+            case Buff.buffName.HP:
+                float newHP = buff.buffValue;
+                MaxHP = newHP;
+                currentHp = MaxHP;
+                break;
+            case Buff.buffName.SPEED:
+                //do new calulations if needed
+                float speed = buff.buffValue;
+                pm.ChangeMovementSpeed(speed);
+                break;
+        }
     }
 
     public string GetCurrentCharacter()

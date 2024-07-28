@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    private List<Weapon> weapons = Game.GetWeaponList();
-    private List<Buff> playerBuff = Game.GetBuffList();
-    private List<Buff> weaponBuff = Game.GetBuffList();
-
+    private string weaponID;
     void Start()
     {
         //weapons = Game.GetWeaponList();
@@ -20,7 +17,8 @@ public class Chest : MonoBehaviour
     {
         // Display the reward selection UI
         Debug.Log("Chest opened. Select your reward!");
-        Game.GetHUDController().OpenChestItemSelectMenu();
+        //Game.GetHUDController().OpenChestItemSelectMenu();
+
         Destroy(gameObject);
     }
 

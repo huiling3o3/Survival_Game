@@ -3,30 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine.TextCore.Text;
 
 public class ChestItemSelect : MonoBehaviour
 {
+    //To be adjusted in the inspector
+    [SerializeField]
+    private itemType itemName; //this can be either Character Buff/New Weapon/WeaponBuff
+    [SerializeField]
+    private TextMeshProUGUI buttonText;
+
     private List<Buff> allBuffs = Game.GetBuffList();
-    private List<Weapon> weapons = Game.GetWeaponList();
+
+    private List<Weapon> availableWeaponList;
 
     private List<Buff> characterBuff = new List<Buff>();
     private List<Buff> weaponBuff = new List<Buff>();
 
     Button thisbtn;
-    Button characterBuffButton;
-    Button weaponBuffButton;
-    Button weaponButton;
 
+    public enum itemType
+    {
+        Character_Buff,
+        New_Weapon,
+        Weapon_Buff
+    }
 
     private void Start()
     {
+        //SetAvailableWeapons();
         //SplitBuffs(allBuffs);
         thisbtn = GetComponent<Button>();
+        //stylise the button
+        buttonText.text = "Get " + itemName.ToString();
+        // Add a listener to the onClick event
         thisbtn.onClick.AddListener(OnButtonClick);
     }
+
+    public void initialised()
+    {        
+        // Add a listener to the onClick event
+        thisbtn.onClick.AddListener(OnButtonClick);
+    }
+
+    
 
     void OnButtonClick()
     {
@@ -34,7 +54,6 @@ public class ChestItemSelect : MonoBehaviour
         //Set the player character to the characterID;
         Debug.Log("Open");
         Game.GetHUDController().CloseChestItemSelectMenu();
-        //Game.GetGameController().SetCharacter(characterId);
     }
 
     private void SplitBuffs(List<Buff> allBuffs)

@@ -25,9 +25,10 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+        //debugging purpose
         if(Input.GetKeyDown(KeyCode.Keypad1))
         {
-            NextWave();
+            //NextWave();
         }
     }
 
