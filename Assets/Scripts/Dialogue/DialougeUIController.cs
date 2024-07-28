@@ -14,14 +14,17 @@ public class DialogueUIController : MonoBehaviour, IInputReceiver
 
     //list to contain the value
     private Queue<Dialogue> DialogueDataListQueue = new Queue<Dialogue>();
+
+    //list to check the 
     Dialogue currentDialogue;
+
+    //reference to current NPCDialogueController 
+    NPCDialogueController currentNPC;
 
     public float textSpeed;
 
     [SerializeField]
     private bool isTyping;
-
-    public UnityEvent OnDialogueCompletion;
 
     private void Awake()
     {
@@ -87,7 +90,7 @@ public class DialogueUIController : MonoBehaviour, IInputReceiver
         
     }
 
-    public void StartDialogue(Queue<Dialogue> qd)
+    public void StartDialogue(Queue<Dialogue> qd, NPCDialogueController npc)
     {
         if (qd != null)
         {
@@ -100,6 +103,8 @@ public class DialogueUIController : MonoBehaviour, IInputReceiver
         //Show the Dialogue Panel
         gameObject.SetActive(true);
 
+        //Set the current npc
+        currentNPC = npc;
         //Retrieve the current line
         currentDialogue = DialogueDataListQueue.Dequeue();
         //set the character name
@@ -132,8 +137,10 @@ public class DialogueUIController : MonoBehaviour, IInputReceiver
             gameObject.SetActive(false);
             //Clear the queue
             DialogueDataListQueue.Clear();
-            OnDialogueCompletion.Invoke();
+            //Give the player control again
             Game.GetGameController().SetPlayerInputReciever();
+            // Notify NPCDialogueController that the conversation has ended
+            currentNPC.EndConversation();
         }
     }
 
