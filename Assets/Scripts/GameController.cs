@@ -128,11 +128,17 @@ public class GameController : MonoBehaviour
 
     //TODO #1
     public void SetWeaponBuff(string buffID)
-    { 
+    {
         //upgrade players first weapon
         //Get player first weapon, index starts with 1
         //Check if weapon has reach the max buff lvl if not 
         //then call the weapon method buffUpgrade and pass in the buff object
+        Buff weaponBuff = Game.GetBuffByRefID(buffID);
+
+        // Get the player's first weapon (index starts with 1)
+        Weapon firstWeapon = Game.GetPlayer().GetWeaponByIndex(1);
+
+
     }
 
     //TODO #2
@@ -140,7 +146,8 @@ public class GameController : MonoBehaviour
     {
         //Get the buff based on the id
         Buff buff = Game.GetBuffByRefID(buffID);
-        //Call the player controller and call its method upgrade character stats and pass int he buff val
+        //Call the player controller and call its method upgrade character stats and pass in the buff val
+        Game.GetPlayer().UpgradeCharacterStats(buff);
     }
 
     public bool CheckInitialCharacter(string id) 
