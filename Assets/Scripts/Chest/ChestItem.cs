@@ -32,7 +32,14 @@ public class ChestItem : MonoBehaviour
     }
     
     public void SetItemID(string id)
-    { 
+    {
+        //TODO #4: Currently the Button name is set to the item name
+        // I need you to Change it based on the what the buff does and what what object
+        //example: like the on button click code, based on the item name
+        //change the text to either "Get a {weapon name} weapon"/ "Upgrade your health to {buff val}"
+        //the string id is how you get the info, so if it is weapon it is a weapon id
+        //if it is a buff then you need to check the buff type/name 
+
         ItemID = id;
         // stylise the button
         buttonText.text = "Get " + itemName.ToString();
