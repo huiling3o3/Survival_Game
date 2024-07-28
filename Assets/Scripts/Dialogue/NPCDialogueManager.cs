@@ -35,10 +35,11 @@ public class NPCDialogueManager : MonoBehaviour
 
     private void Update()
     {
+        //Debugging purpose
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            Game.GetDialogueUIController().StartDialogue(DialogueDataListQueue);
-            Game.GetGameController().SetDialogueReciever();
+            //Game.GetDialogueUIController().StartDialogue(DialogueDataListQueue);
+            //Game.GetGameController().SetDialogueReciever();
         }
 
         if (DialogueDataListQueue.Count == 0 && cutsceneSetID == 101 && !hasTalkedToBlacksmith)
