@@ -67,7 +67,7 @@ public class Database : MonoBehaviour
         Game.SetBarrelList(GetBarrelList());
         Game.SetWaveDataList(GetWaveDataList());
         Game.SetDialogueList(GetDialogueList());
-        //Game.SetBuffList(GetBuffList());
+        Game.SetBuffList(GetBuffList());
         Debug.Log("Data added successfully into Game");
     }
 
@@ -155,16 +155,16 @@ public class Database : MonoBehaviour
                         //assign the attributes
                         string id = fields[0];
                         string name = fields[1].ToUpper();
-                        string type = fields[2];
+                        string type = fields[2].ToUpper(); ;
                         float buffValue = float.Parse(fields[3]);
 
-                        //Buff.buffName buffName = (Buff.buffName)System.Enum.Parse(typeof(Buff.buffName), name);
-
-                        //Debug.Log($"id: {id} name: {name} buff Type: {buffType} Buff Value: {buffValue}");
+                        Buff.buffName buffName = (Buff.buffName)System.Enum.Parse(typeof(Buff.buffName), name);
+                        Buff.buffType buffType = (Buff.buffType)System.Enum.Parse(typeof(Buff.buffType), type);
+                        Debug.Log($"id: {id} name: {buffName} buff Type: {buffType} Buff Value: {buffValue}");
 
                         //Create the new buff based on the data
-                        //Buff buff = new Buff(id, buffName, type, buffValue);
-                        //buffList.Add(buff);
+                        Buff buff = new Buff(id, buffName, buffType, buffValue);
+                        buffList.Add(buff);
                     }
 
                 }
