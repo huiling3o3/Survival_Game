@@ -8150,6 +8150,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1442927952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9063541576558447850, guid: 007ecc1bf50eb1c4eaf813952362000f, type: 3}
+  m_PrefabInstance: {fileID: 7863403567335895585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1508964547 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8717459499957332899, guid: 007ecc1bf50eb1c4eaf813952362000f, type: 3}
@@ -8512,6 +8517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201f254ebad19ea4a82dd0c46a937c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavePanel: {fileID: 1442927952}
   waveStatsTxt: {fileID: 56919084}
   enemiesTxt: {fileID: 691348357}
   SelectCharacterUI: {fileID: 488090769}

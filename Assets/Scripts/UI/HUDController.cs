@@ -7,6 +7,7 @@ public class HUDController : MonoBehaviour
 {
 
     [Header("Wave Txt")]
+    [SerializeField] GameObject wavePanel;
     [SerializeField] private TextMeshProUGUI waveStatsTxt, enemiesTxt;
     [Header("Select Character UI")]
     [SerializeField] GameObject SelectCharacterUI;
@@ -65,6 +66,10 @@ public class HUDController : MonoBehaviour
         Game.GetGameController().PauseGame();
     }
 
+    public void OpenWaveStatsPanel() 
+    {
+        wavePanel.SetActive(true);
+    }
     public void UpdateWaveStats(int waveNo, int enemies)
     {
         waveStatsTxt.text = waveNo.ToString();

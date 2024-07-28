@@ -70,7 +70,6 @@ public class GameController : MonoBehaviour
         //Cheat code to skip dialogue
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            DialogueCompleted();
             SetCharacter(initCharacter);
         }
     }  
@@ -83,15 +82,15 @@ public class GameController : MonoBehaviour
         ResumeGame();
 
         npcManager.StartDialogue();
-
-        //Open character select menu
-        //Game.GetHUDController().OpenCharacterSelectMenu();       
     }
 
     IEnumerator StartWave()
     {
         //wait for 2 seconds before starting the game
         yield return new WaitForSeconds(2f);
+
+        //Open the UI panel
+        Game.GetHUDController().OpenWaveStatsPanel();
 
         Debug.Log("Game Controller: Calling Start Wave");
         //set player initial weapon
@@ -125,6 +124,9 @@ public class GameController : MonoBehaviour
 
         //close menu
         Game.GetHUDController().CloseCharacterSelectMenu();
+
+        //Start wave
+        StartCoroutine(StartWave());
     }
 
     public void SetWeapon(string weaponId)
@@ -142,7 +144,8 @@ public class GameController : MonoBehaviour
 
     public void DialogueCompleted()
     {
-        StartCoroutine(StartWave());
+        //Open character select menu
+        Game.GetHUDController().OpenCharacterSelectMenu();        
     }
     public void GameOver()
     {
