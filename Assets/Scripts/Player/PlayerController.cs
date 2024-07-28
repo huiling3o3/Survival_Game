@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
         //set all the references connected to the player interactions
         pm = GetComponent<PlayerMovement>();
         pa = GetComponent<PlayerAnimator>();
-        //reset the amountn of weapon
+        //reset the amount of weapon
         weaponIndex = 0;
     }
 
@@ -85,6 +86,17 @@ public class PlayerController : MonoBehaviour
     }
 
     public int GetWeaponCount() => PlayerWeapons.Count;
+
+    //Rest function
+    public void Reset()
+    {
+        currentCharacter = "";
+        WeaponKey.Clear();
+        PlayerWeapons.Clear();
+        currentHp = 0;
+        MaxHP = 0;
+        weaponIndex = 0;
+    }
 
     #endregion
 
