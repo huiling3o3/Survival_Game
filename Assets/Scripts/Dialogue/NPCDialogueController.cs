@@ -28,7 +28,7 @@ public class NPCDialogueController : MonoBehaviour
         }
     }
 
-    private void InitializeDialogue()
+    public void InitializeDialogue()
     {
         dialogueDataList = Game.GetDialogueList();
         if (dialogueDataList != null)

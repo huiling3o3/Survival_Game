@@ -70,6 +70,10 @@ public class HUDController : MonoBehaviour
     {
         wavePanel.SetActive(true);
     }
+    public void CloseWaveStatsPanel()
+    {
+        wavePanel.SetActive(false);
+    }
     public void UpdateWaveStats(int waveNo, int enemies)
     {
         waveStatsTxt.text = waveNo.ToString();
