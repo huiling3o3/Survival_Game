@@ -17,7 +17,7 @@ public class Buff
         this.buffValue = buffValue;
     }
 
-    //HP & SPEED - FOR CHARACTER ONLY, ATK & COOLDOWN IS FOR WEAPON ONLY
+    //HP - FOR CHARACTER ONLY, ATK & COOLDOWN IS FOR WEAPON ONLY
     public enum buffName
     { 
         HP,

@@ -31,7 +31,8 @@ public class ChestItem : MonoBehaviour
         // Add a listener to the onClick event
         thisbtn.onClick.AddListener(OnButtonClick);
     }
-    
+
+    //Method to set the ItemID and update the button text
     public void SetItemID(string id)
     {
         //set the value of the item
@@ -107,6 +108,7 @@ public class ChestItem : MonoBehaviour
         switch (itemName)
         {
             case itemType.New_Weapon:
+                //Equip the new weapon by setting it in the game controller
                 Game.GetGameController().SetWeapon(ItemID);
                 break;
             case itemType.Weapon_Buff:
@@ -151,17 +153,21 @@ public class ChestItem : MonoBehaviour
         }
     }
 
+    //Method to apply the weapon buff to the selected weapon
     public void SetWeaponBuff()
     {
         Buff weaponBuff = Game.GetBuffByRefID(ItemID);
         Debug.Log($"Buff name: {weaponBuff.name} type: {weaponBuff.bufftype} value: {weaponBuff.buffValue}");
+        //Apply the buff upgrade to the weapon using the weapon controller
         wc.BuffUpgrade(weaponBuff);
     }
 
+    //Method to apply the character buff to the player's character
     public void SetCharacterBuff()
     {
         Buff characterBuff = Game.GetBuffByRefID(ItemID);
         Debug.Log($"Buff name: {characterBuff.name} type: {characterBuff.bufftype} value: {characterBuff.buffValue}");
+        //Upgrade the player's character stats with the buff
         Game.GetPlayer().UpgradeCharacterStats(characterBuff);
     }
 }
