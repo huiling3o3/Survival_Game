@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
 /*The base script for the type of unit is in the game: Characters, enemy*/
 public class Unit
 {
@@ -17,8 +18,7 @@ public class Unit
     public UnitType unitType { get;}
     public int hp { get;}
     public int atk { get;}
-    //public int atkRange { get; set; }
-    //public int atkInterval { get; set; }
+
     public float moveSpeed { get; set; }
 
     public Unit() { }

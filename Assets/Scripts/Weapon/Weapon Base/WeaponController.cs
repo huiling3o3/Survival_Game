@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
+
 /// <summary>
 /// Base script for all weapon controllers
 /// </summary>

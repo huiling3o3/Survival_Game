@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling
 public class KnifeController : WeaponController
 {
     // Start is called before the first frame update

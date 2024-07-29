@@ -6,6 +6,7 @@ using System;
 using System.Reflection;
 using UnityEngine.Events;
 
+// By Huiling
 public class DialogueUIController : MonoBehaviour, IInputReceiver
 {
     //References to the text UI

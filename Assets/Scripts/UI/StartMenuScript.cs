@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// By Huiling
 public class StartMenuScript : MonoBehaviour, IInputReceiver
 {
     private GameController gameController;

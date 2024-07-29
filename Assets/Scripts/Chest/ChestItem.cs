@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+
+// By Huiling, Joy
 public class ChestItem : MonoBehaviour
 {
     [Header("Not To be assigned")]

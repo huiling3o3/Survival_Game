@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling
 public class HealthCollectable : MonoBehaviour
 {
     float healthpoint; //0.5f => 50% increase

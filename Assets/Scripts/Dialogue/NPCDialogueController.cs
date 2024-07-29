@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
+// By Huiling
 public class NPCDialogueController : MonoBehaviour
 {
     [SerializeField]

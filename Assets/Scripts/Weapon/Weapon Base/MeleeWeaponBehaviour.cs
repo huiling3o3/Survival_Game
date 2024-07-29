@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling
 // Base script of all melee behaviours [To be placed on a prefab of a weapon that is melee]
 public class MeleeWeaponBehaviour : MonoBehaviour
 {

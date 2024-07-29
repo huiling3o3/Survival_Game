@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
 public class Enemy : Unit
 {
     public int atkCooldown { get; set; }

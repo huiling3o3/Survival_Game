@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
 public class WaveData
 {
     public string waveID { get; }

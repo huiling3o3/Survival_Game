@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+// By Huiling
 public class EnemyController : MonoBehaviour
 {
     //Gets a reference to the player 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling
 public class NPCManager : MonoBehaviour
 {
     [SerializeField] private GameObject blacksmithNPC; // reference to the Blacksmith 

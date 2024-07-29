@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
 //Contains the list of all the weapon prefab
 public class WeaponManager : MonoBehaviour
 {

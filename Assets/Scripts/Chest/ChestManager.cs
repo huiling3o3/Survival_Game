@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// By Huiling, Joy
 public class ChestManager : MonoBehaviour
 {
     private List<Buff> bufflist;
@@ -90,7 +91,7 @@ public class ChestManager : MonoBehaviour
     {
         List<Buff> weaponBuffList = new List<Buff>();
 
-        //filtered out the list of character buff
+        //filtered out the list of weapon buff
         for (int i = 0; i < bufflist.Count; i++)
         {
             if (bufflist[i].bufftype == Buff.buffType.WEAPON)

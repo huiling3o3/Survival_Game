@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
 public class WaveManager : MonoBehaviour
 {
     public EnemySpawner enemySpawner; // Reference to the EnemySpawner script

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
 public class ChestCollectable : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D col)

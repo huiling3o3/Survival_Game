@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling
 public interface IInputReceiver
 {
     void DoMoveDir(Vector2 aDir); //for movement controls

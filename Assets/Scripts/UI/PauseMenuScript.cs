@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// By Huiling
 public class PauseMenuScript : MonoBehaviour, IInputReceiver
 {
     private GameController gameController;

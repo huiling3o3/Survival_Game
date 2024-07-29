@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling
 public class BarrelRandomizer : MonoBehaviour
 {
     public List<GameObject> barrelSpawnPoints;

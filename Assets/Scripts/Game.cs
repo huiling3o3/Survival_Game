@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// By Huiling, Joy
+
 // a class to store all the static object that can be access anywhere in the scene
 public static class Game
 {

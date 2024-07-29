@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// By Huiling
 public class PlayerAnimator : MonoBehaviour
 {
     //References
