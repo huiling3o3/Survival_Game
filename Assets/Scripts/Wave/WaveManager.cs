@@ -77,6 +77,7 @@ public class WaveManager : MonoBehaviour
         else
         {
             Debug.Log("No waves to spawn");
+            Game.GetGameController().GameOver();
         }
     }
 

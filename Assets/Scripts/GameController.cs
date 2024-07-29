@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour
         //set player initial weapon
         SetWeapon(initWeapon);
         //SetWeapon("w102");
-        SetWeapon("w103");
+        //SetWeapon("w103");
 
         //RESET timers
         gameTimer = 0;

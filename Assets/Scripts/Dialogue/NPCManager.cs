@@ -14,6 +14,7 @@ public class NPCManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // ensure both NPCs are toggled off before start of game
         librarianNPC.SetActive(false);
         blacksmithNPC.SetActive(false);
     }
@@ -23,16 +24,17 @@ public class NPCManager : MonoBehaviour
         blacksmithNPC.SetActive(true);
     }
 
-    // Method to check if the blacksmith dialogue is complete
+    // method to check if the blacksmith dialogue is complete
     public void CompleteBlacksmithDialogue()
     {
-        librarianNPC.SetActive(true); // Activate the librarian NPC after the conversation is complete
-        blacksmithNPC.SetActive(false);
+        librarianNPC.SetActive(true); 
+        blacksmithNPC.SetActive(false); 
     }
 
+    // method to check if the librarian dialogue is complete
     public void CompleteLibrarianDialogue()
     {
-        librarianNPC.SetActive(false);
+        librarianNPC.SetActive(false); 
         Game.GetGameController().DialogueCompleted();
     }
 
