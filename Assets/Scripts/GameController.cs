@@ -4,7 +4,7 @@ using System.Xml.Schema;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     [Header("To be Assigned")]
@@ -76,12 +76,30 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        if (gameOver)
+        {
+            RestartGame();
+        }
+        
         CloseStartMenu();
-
+        //reset wave
+        Game.GetWaveManager().WaveReset();
+        //reset player
+        Game.GetPlayer().Reset();
         //resume Game
         ResumeGame();
-
+        //close the wave stats ui
+        Game.GetHUDController().CloseWaveStatsPanel();
         npcManager.StartDialogue();
+    }
+
+    public void RestartGame()
+    {
+        // Get the current active scene
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Reload the current scene
+        SceneManager.LoadScene(currentScene.name);
     }
 
     IEnumerator StartWave()
@@ -102,9 +120,7 @@ public class GameController : MonoBehaviour
         gameTimer = 0;
         //reset the number of enemies killed
         numOfEnemiesKilled = 0;
-        totalNumEnemiesKilled = 0;
-        //reset wave
-        Game.GetWaveManager().WaveReset();
+        totalNumEnemiesKilled = 0;        
 
         //call the wave manager to start the wave of enemies
         Game.GetWaveManager().NextWave();

@@ -21,6 +21,14 @@ public class NPCManager : MonoBehaviour
 
     public void StartDialogue()
     {
+        //set both false first
+        librarianNPC.SetActive(false);
+        blacksmithNPC.SetActive(false);
+
+        librarianNPC.GetComponent<NPCDialogueController>().InitializeDialogue();
+        blacksmithNPC.GetComponent<NPCDialogueController>().InitializeDialogue();
+
+
         blacksmithNPC.SetActive(true);
     }
 

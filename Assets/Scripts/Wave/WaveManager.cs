@@ -20,6 +20,11 @@ public class WaveManager : MonoBehaviour
     private void Awake()
     {
         Game.SetWaveManager(this);
+       
+    }
+
+    public void Start()
+    {
         InitializeWaves();
     }
 
@@ -134,6 +139,7 @@ public class WaveManager : MonoBehaviour
         currentWave = 0;
         enemySpawner.ClearSpawnedEnemies();
         barrelSpawner.ClearSpawnedBarrel();
+        StopAllCoroutines();
     }
 
     public int GetEnemyCountInWave()

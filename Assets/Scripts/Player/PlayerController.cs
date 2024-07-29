@@ -91,8 +91,16 @@ public class PlayerController : MonoBehaviour
     public void Reset()
     {
         currentCharacter = "";
-        WeaponKey.Clear();
+        foreach (KeyValuePair<string, GameObject> kvp in PlayerWeapons)
+        {
+            Console.WriteLine("Key: {0}, Value: {1}", kvp.Key, kvp.Value);
+            GameObject gameObject = kvp.Value;
+            Destroy(gameObject);
+        }
         PlayerWeapons.Clear();
+
+        WeaponKey.Clear();
+
         currentHp = 0;
         MaxHP = 0;
         weaponIndex = 0;
